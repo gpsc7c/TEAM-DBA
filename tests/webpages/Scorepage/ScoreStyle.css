@@ -1,0 +1,36 @@
+body{
+    background-color: silver;
+    color: blue;
+    alignment: center;
+    font-family: Calibri;
+}
+h1{
+    alignment: center;
+}
+.scoretable {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.scoretable tableh tr {
+    background-color: silver;
+    color: #ffffff;
+    text-align: left;
+}
+.scoretable th, html .scoretable td {
+    padding: 12px 15px;
+}
+.scoretable tbody tr {
+    border-bottom: 1px solid midnightblue;
+}
+
+.scoretable tableb tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.scoretable tableb tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
