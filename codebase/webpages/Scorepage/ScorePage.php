@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody id = "scoreboard">
-                
+
             </tbody>
         </table>
         <footer>

@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>FRACTION RUNNER Scoreboard</title>
         <link rel="stylesheet" href="ScoreStyle.css" type="text/css">
+        <script src="js/scoretable.js"></script>
     </head>
     <body>
         <header>
@@ -11,22 +12,16 @@
         </header>
 
         <table class="scoretable">
-            <tableh>
+            <thead>
                 <tr>
+                    <th>Rank</th>
                     <th>Name</th>
                     <th>Points</th>
                 </tr>
-            </tableh>
-            <tableb>
-                <tr>
-                    <td>NAME</td>
-                    <td>6000</td>
-                </tr>
-                <tr class="active-row">
-                    <td>OTHER</td>
-                    <td>5150</td>
-                </tr>
-            </tableb>
+            </thead>
+            <tbody id = "scoreboard">
+
+            </tbody>
         </table>
         <footer>
             <p>

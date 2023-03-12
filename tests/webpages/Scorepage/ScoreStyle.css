@@ -1,5 +1,5 @@
 body{
-    background-color: silver;
+    background-color: black;
     color: blue;
     alignment: center;
     font-family: Calibri;
@@ -15,8 +15,8 @@ h1{
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-.scoretable tableh tr {
-    background-color: silver;
+.scoretable thead tr {
+    background-color: Grey;
     color: #ffffff;
     text-align: left;
 }
@@ -27,10 +27,13 @@ h1{
     border-bottom: 1px solid midnightblue;
 }
 
-.scoretable tableb tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+.scoretable tbody tr:nth-of-type(even) {
+    background-color: silver;
+}
+.scoretable tbody tr:nth-of-type(odd) {
+    background-color: darkgrey;
 }
 
-.scoretable tableb tr:last-of-type {
+.scoretable tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
