@@ -17,6 +17,7 @@
                     <th>Rank</th>
                     <th>Name</th>
                     <th>Points</th>
+                    <th>Repeating String</th>
                 </tr>
             </thead>
             <tbody id = "scoreboard">
