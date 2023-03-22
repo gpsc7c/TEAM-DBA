@@ -11,6 +11,9 @@ function jump() {
   }
 }
 
+
+
+
 let isAlive = setInterval(function () {
      // get current dino Y position
     let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"));
@@ -21,15 +24,15 @@ let isAlive = setInterval(function () {
     console.log(dinoTop);
 
       // detect collision
-    if (cactusLeft <50 && cactusLeft >0 && dinoTop >= 140) {
+    if (cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140) {
 
         alert("Game Over!");
         console.log("collision");
     }
 
-
+  
 }, 10);
 
 document.addEventListener("keydown", function(event) {
-    jump();
+  jump();
 });

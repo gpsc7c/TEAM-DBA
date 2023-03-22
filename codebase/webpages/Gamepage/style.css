@@ -11,13 +11,15 @@
     background-image: url(img/trex.png);
     background-size: 50px 50px; 
     position: relative;
-    top: 150px;
+    top: 150px; 
+
 }
 
 .jump {
     animation: jump 0.3s linear;
+}
 
-@keyframes jump{
+@keyframes jump {
     0% {
         top: 150px;
     }
@@ -33,8 +35,11 @@
     80% {
         top: 130px;
     }
+    100% {
+        top: 150px;
+    }
 }
-}
+
 
 #cactus {
     width: 20px;
