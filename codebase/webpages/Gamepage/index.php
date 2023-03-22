@@ -27,5 +27,11 @@ if(mysqli_connect_errno()) {
         <div id="dino"></div>
         <div id="cactus"></div>
     </div>
+    <div>
+        <a href="../Homepage/GroupIntroPage.php"><button>Front Page</button></a>
+    </div>
+    <div>
+        <a href="../Scorepage/ScorePage.php"><button>Extended Scoreboard</button></a>
+    </div>
  </body>
 </html>

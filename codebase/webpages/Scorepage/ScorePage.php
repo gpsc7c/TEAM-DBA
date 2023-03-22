@@ -23,7 +23,12 @@ if(mysqli_connect_errno()) {
         <header>
             <h1>FRACTION RUNNER</h1>
         </header>
-
+        <div>
+            <a href="../Homepage/GroupIntroPage.php"><button>Front Page</button></a>
+        </div>
+        <div>
+            <a href="../Scorepage/ScorePage.php"><button>Extended Scoreboard</button></a>
+        </div>
         <table class="scoretable">
             <thead>
                 <tr>
@@ -37,6 +42,12 @@ if(mysqli_connect_errno()) {
 
             </tbody>
         </table>
+        <div>
+            <a href="../Homepage/GroupIntroPage.php"><button>Front Page</button></a>
+        </div>
+        <div>
+            <a href="../Gamepage/index.php"><button>Play Game</button></a>
+        </div>
         <footer>
             <p>
                 All rights reserved

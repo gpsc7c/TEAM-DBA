@@ -20,10 +20,10 @@
       <img src="static_image_3.jpg" alt="Static Image 3">
       <img src="animated_gif.gif" alt="Animated Gif of Game">
       <div>
-        <a href="https://game.example.com"><button>Play Game</button></a>
+        <a href="../Gamepage/index.php"><button>Play Game</button></a>
       </div>
       <div>
-        <a href="https://scoreboard.example.com"><button>Extended Scoreboard</button></a>
+        <a href="../Scorepage/ScorePage.php"><button>Extended Scoreboard</button></a>
       </div>
     </section>
     <footer>
