@@ -4,14 +4,13 @@ $username = "root";
 $password = "VfX!565WW!t552";
 $dbname = "scoreboard_dba";
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$dbconn = $mysqli = new mysqli($servername, $username, $password, $dbname);
 # Check connection
-if(mysqli_connect_errno()) {
-    echo "Connection failed";
-    exit();
-}
+error_reporting(E_ALL);
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 #echo "Connection successful.";
 ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -39,7 +38,6 @@ if(mysqli_connect_errno()) {
                 </tr>
             </thead>
             <tbody id = "scoreboard">
-
             </tbody>
         </table>
         <div>

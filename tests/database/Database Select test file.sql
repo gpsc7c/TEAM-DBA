@@ -1,0 +1,1 @@
+SELECT user_rank, user_name, user_score, digits FROM scoreboard_dba.users ORDER BY score DESC LIMIT 100  
