@@ -32,14 +32,16 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     <div>
         <a href="../Scorepage/ScorePage.php"><button>Extended Scoreboard</button></a>
     </div>
- <?php
- $sql = "INSERT INTO scoreboard_dba.users VALUES (0,2,'test',2, '001001001');";
+ <?php/*
+ $username = 'Alan'
+ $sql = "INSERT INTO scoreboard_dba.users VALUES (0,2,$username,2, '001001001');";
  if ($dbconn->query($sql) === TRUE) {
      echo "New record created successfully";
  } else {
      echo "Error: " . $sql . "<br>" . $dbconn->error;
  }
- $dbconn->close();
+ $sql = "SELECT * FROM  scoreboard_dba.users"
+ $dbconn->close();*/
  ?>
  </body>
 </html>
