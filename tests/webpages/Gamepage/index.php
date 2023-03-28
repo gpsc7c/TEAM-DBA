@@ -5,14 +5,13 @@ $username = "root";
 $password = "VfX!565WW!t552";
 $dbname = "scoreboard_dba";
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$dbconn = $mysqli = new mysqli($servername, $username, $password, $dbname);
 # Check connection
-if(mysqli_connect_errno()) {
-    echo "Connection failed";
-    exit();
-}
+error_reporting(E_ALL);
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 #echo "Connection successful.";
 ?>
+
 <html lang="en">
  <head>
     <meta charset="UTF-8" />
@@ -33,5 +32,16 @@ if(mysqli_connect_errno()) {
     <div>
         <a href="../Scorepage/ScorePage.php"><button>Extended Scoreboard</button></a>
     </div>
+ <?php/*
+ $username = 'Alan'
+ $sql = "INSERT INTO scoreboard_dba.users VALUES (0,2,$username,2, '001001001');";
+ if ($dbconn->query($sql) === TRUE) {
+     echo "New record created successfully";
+ } else {
+     echo "Error: " . $sql . "<br>" . $dbconn->error;
+ }
+ $sql = "SELECT * FROM  scoreboard_dba.users"
+ $dbconn->close();*/
+ ?>
  </body>
 </html>

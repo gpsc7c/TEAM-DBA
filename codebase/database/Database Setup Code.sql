@@ -15,6 +15,7 @@ CREATE TABLE `users` (
   `user_rank` int NOT NULL,
   `user_name` varchar(50) NOT NULL,
   `user_score` bigint,
+  `password` varchar(50) NOT NULL,
   `digits` bigint,
   #`time_set` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`)

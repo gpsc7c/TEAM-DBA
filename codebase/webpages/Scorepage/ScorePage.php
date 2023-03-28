@@ -1,10 +1,10 @@
 <?php
 $servername = "127.0.0.1";
-$username = "root";
-$password = "VfX!565WW!t552";
+$sqlusername = "root";
+$sqlpassword = "VfX!565WW!t552";
 $dbname = "scoreboard_dba";
-// Create connection
-$dbconn = $mysqli = new mysqli($servername, $username, $password, $dbname);
+// Create connection, username and pw here are for the sql server
+$dbconn = $mysqli = new mysqli($servername, $sqlusername, $sqlpassword, $dbname);
 # Check connection
 error_reporting(E_ALL);
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
