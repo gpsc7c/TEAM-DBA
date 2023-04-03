@@ -1,0 +1,44 @@
+User Manual   
+
+Welcome to Fraction Runner, an educational running game!
+
+In this game, the object is to see how long you can stay alive.
+Upon start, the player is asked to write a number.  
+The game puts player’s number in a fraction denominator over the number 1. 
+( 443 becomes 1/443 )
+The division produces a string of repeating decimals which will be the ground.
+The player runs on top of the numbers using Jump, Duck, or Attack to stay alive.  
+The player that stays alive the longest time is the winner.
+When running, check out the repeating decimals.. can you find the number 8?
+
+On the Home Screen you will see three choices:
+Fraction Runner – select when you are ready to begin the game
+Introduction Page – click to learn more about the game and its developers
+Top 100 Scoreboard – pick this to see who has the high score
+
+Controls: 
+Each character can perform three different actions:
+*Jump – spacebar or click jump
+*Attack – enter or click attack
+*Duck – down or click duck
+
+Gameplay:
+At the start, the player is asked to select a character.
+There is no skill difference between the characters.  
+When starting the game, the player must pick a number up to 999,999,999.
+After entering the number, the running game begins.
+
+The object of the game is to see how long the player can stay alive.
+The timer starts at the beginning of the game.
+Once the player has been hit by an object, the game is over.  
+The time is calculated and added to the Scoreboard.
+
+Tips and Tricks:
+*There are three different obstacles.  Each one can only be defeated by the correct action.
+*Use Jump when a hole appears
+*Use Duck when a bat is flying
+*Use Attack to break a wall
+*The runner will speed up as time continues.  Stay alert!
+*See if you can be the first of your friends to spot the number 8 on the ground.
+
+We Thank you for playing Fraction Runner.  Can you stay alive until you see the number 8?
