@@ -4,9 +4,10 @@ Welcome to Fraction Runner, an educational running game!
 
 In this game, the object is to see how long you can stay alive.
 Upon start, the player is asked to write a number.  
-The game puts player’s number in a fraction denominator over the number 1. 
-( 443 becomes 1/443 )
+The game puts player’s number in a fraction as the denominator over the same number of 9s. 
+(Example: 443 becomes 443/999)
 The division produces a string of repeating decimals which will be the ground.
+(From our earlier example: 443/999 becomes 0.443443443...)
 The player runs on top of the numbers using Jump, Duck, or Attack to stay alive.  
 The player that stays alive the longest time is the winner.
 When running, check out the repeating decimals.. can you find the number 8?
