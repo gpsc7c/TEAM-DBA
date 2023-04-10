@@ -11,9 +11,8 @@ SET character_set_client = utf8mb4 ;
 CREATE TABLE `users` (
 #Variable/column name/ids and rules
 #NOT NULL
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  `user_rank` int NOT NULL,
-  `user_name` varchar(50) NOT NULL,
+  `user_id` int NOT NULL UNIQUE AUTO_INCREMENT,
+  `user_name` varchar(50) UNIQUE NOT NULL,
   `user_score` bigint,
   `password` varchar(50) NOT NULL,
   `digits` bigint,
@@ -24,7 +23,7 @@ CREATE TABLE `users` (
 CREATE TABLE `fractions` (
 #Variable/column name/ids and rules
 #NOT NULL
-  `digits` varchar(9),
+  `digits` varchar(9) UNIQUE,
   `fraction` decimal(10,9) CHECK(fraction>0) CHECK(fraction<1),
   `divisor` int, 
   PRIMARY KEY (`digits`)
