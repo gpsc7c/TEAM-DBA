@@ -1,0 +1,121 @@
+/*Stylesheet Basic*/
+/* basic stylesheet that is applied to every page */
+
+body {
+    background-image:url('../img/bgi.jpg');
+    background-size: cover;
+    color: black ;
+    background-color: darkgrey;
+    font-family: "Arial Black";
+    margin: 18px;
+    line-height: 26px;
+    background-repeat:no-repeat;
+}
+html { overflow-y: scroll }
+a:link {color: white;}
+a:visited {color: darkgrey;}
+a:hover {color: yellow;}
+a{
+    text-decoration: none;
+}
+label {
+    display: block;
+    text-align: left;
+
+}
+input, select {
+    width:100%;
+    margin: 0 auto;
+}
+button {
+    width: 200px;
+    height: 70px;
+    background-color: black;
+    border-color: black;
+}
+span, #passerr, #nameerr, #passerr2, #passrules, #phonerules {
+    text-align: left;
+    align-self: auto;
+    font-size: 8px;
+}
+
+.cell{
+    background: darkgrey;
+    border: black solid 2px;
+    text-align: left;
+    padding: 2%;
+    width: 200%;
+}
+.col-sm-9{
+    padding-top: 100px ;
+    padding-bottom: 2600px;
+    height: fit-content;
+    position: relative;
+    left: 10vw;
+}
+.container {
+
+}
+.hidden{
+    display: none;
+}
+.error{
+    color: blue;
+}
+.shown{
+    display: contents;
+    color: blue;
+    font-family: Bahnschrift;
+}
+.has-none{
+    border:0px;
+}
+.has-success{
+    border:3px solid green;
+}
+.has-error{
+    border:3px solid red;
+}
+.menuitem {
+    border-radius: 3px;
+    margin: 4px;
+    font-family: "Arial Black";
+    color: white;
+}
+.wrapper {
+    position: relative;
+    overflow: auto;
+}
+
+#menubar, #footer{
+    background-color: black;
+    text-align: center;
+    color: aliceblue;
+    width: 100%;
+    float: right;
+    position: fixed;
+    left:0;
+    max-width: 100vw;
+
+}
+#menubar{
+    top: 0;
+    z-index: 1;
+    margin-bottom: 2px;
+}
+#footer{
+    bottom: 0;
+}
+#main{
+    position: absolute;
+    position: center;
+}
+#submit, #goback{
+    width: 90px;
+    alignment: center;
+    margin: 0 auto;
+    align-self: center;
+}
+
+
+
