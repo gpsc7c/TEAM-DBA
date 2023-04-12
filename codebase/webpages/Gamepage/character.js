@@ -82,6 +82,7 @@ class Character {
     }
 
     takeDamage() {
+        if(this.isTouching(enemy))
         this.health -= 10; // Character loses 10 health points when hit by an enemy
         if (this.health <= 0) {
           this.die();
