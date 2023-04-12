@@ -24,9 +24,18 @@ Pro Tips: Here are some tips and tricks to keep in mind when programming the Fra
 1.	Use requestAnimationFrame() to create a smooth game loop that runs at a consistent frame rate.  It is the best choice because ____________
 2.	Use collision detection algorithms, such as AABB or SAT, to detect collisions between character and the obstacles.  We have decided to go with ______ because…
 3.	Use a sprite sheet / Free Texture Packer  to animate the character and obstacles. 
-4.	Create a Database by the use of localStorage to store the high score between game sessions.  We choose this _____________ because …
+4.	Create 2 Databases by the use of MySQL to store the high score, fractions and user information database between game sessions.  We choose this method because       
+    locally hosting the database off-server is not a valid option in this case, and the numbers and user data need to be stored on separate tables to 
+    prevent column bloat. We are using mysqli within php to access the server.
+    [IMPORTANT]
+    Firing query "Database Setup Code" in dba/codebase/database using MySQL Workbench or similar is REQUIRED to set up a local database. 
+    For purposes of our current endeavor, everything here should already be handled, but note usage in case of errors
+    mysql database has two important user types, "root" (administration, passcode is set as "VfX!565WW!t552") intended to be set with all permissions,
+    and "siteuser" (average access to database, passcode set as "edcvfr43edcvfr4") intended to be set with permissions to DELETE, INSERT. SELECT, and UPDATE records
+    Finally, intended servername should be at "127.0.0.1", for testing, Machine Local Network IP (usually 198.68.0.*) Or webserver IP ,subject to change based on 
+    webserver settings
 
-Conclusion: The Fraction Runner game is a simple yet addictive game that is also educational. By following the steps outlined in this guide, you can program your own version of the game using HTML, CSS, and JavaScript.
+Conclusion: The Fraction Runner game is a simple yet addictive game that is also educational. By following the steps outlined in this guide, you can implement and troubleshoot/test the game using HTML, CSS, PHP, MySQL, and JavaScript.
 
 Thank you for playing Fraction Runner!
 
