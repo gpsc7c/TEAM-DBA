@@ -1,0 +1,32 @@
+Programmer's guide for Fraction Runner game:
+
+Introduction: The Fraction Runner game is a side-scrolling game based on Math logic.  The game is designed to be simple and addictive, with the goal of avoiding obstacles while running as far as possible.  It is also an educational game enjoyed by students.
+
+Gameplay: The gameplay in the Fraction Runner game is straightforward. The player gets to pick a character that is running along a side-scrolling terrain.  Because this is an educational game, the terrain is actually made up of numbers. The character is constantly running forward, and the player's goal is to avoid obstacles and enemies by jumping, attacking, or ducking.
+
+Control: The game is controlled using the space bar to jump, up arrow to attack, and the down arrow key to duck. Only by selecting the correct action, the character stays alive.
+
+Programming the Fraction Runner game: The game is built using HTML, CSS, and JavaScript. The  uses a simple game loop to update the game state and render the graphics.
+
+To program the Fraction Runner game, you will need a basic understanding of HTML, CSS, and JavaScript. It is recommended to use an integrated development environment (IDE) to write and test your code.
+
+Here are the basic steps to programming the Fraction Runner game:
+
+1.	Create the HTML structure for the game. This includes the game canvas and any necessary elements, such as the score display.
+2.	Style the game using CSS. This includes setting the dimensions of the game canvas, styling the characters, and adding any necessary background images or colors.
+3.	Use JavaScript to create the game loop. This loop should update the game state (the position of the characters and the obstacles) and redraw the game graphics.
+4.	Implement the game logic. This includes detecting collisions between the character and the obstacles, updating the score, and ending the game when the character collides with an obstacle.
+5. 	Add keyboard controls for the character. This includes detecting when the space bar or down arrow key is pressed and updating the character’s position accordingly.
+6.	Taking a user input to create a repeating decimal.  These numbers are displayed on the ground as the character runs.
+
+Pro Tips: Here are some tips and tricks to keep in mind when programming the Fraction Runner game.
+
+1.	Use requestAnimationFrame() to create a smooth game loop that runs at a consistent frame rate.  It is the best choice because ____________
+2.	Use collision detection algorithms, such as AABB or SAT, to detect collisions between character and the obstacles.  We have decided to go with ______ because…
+3.	Use a sprite sheet / Free Texture Packer  to animate the character and obstacles. 
+4.	Create a Database by the use of localStorage to store the high score between game sessions.  We choose this _____________ because …
+
+Conclusion: The Fraction Runner game is a simple yet addictive game that is also educational. By following the steps outlined in this guide, you can program your own version of the game using HTML, CSS, and JavaScript.
+
+Thank you for playing Fraction Runner!
+
