@@ -532,3 +532,9 @@ We Thank you for playing Fraction Runner.
 
 
 Appendix C: Test Plan
+
+Our test plan involves testing for the following:
+*MySQL database 
+*JavaScript
+*CSS
+*HTML
