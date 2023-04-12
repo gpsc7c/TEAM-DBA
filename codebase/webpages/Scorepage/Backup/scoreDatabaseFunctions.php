@@ -1,5 +1,28 @@
 <?php
-
+//This sets the connection up, also has the password included
+$servername = "127.0.0.1";
+////////////////////REMOVE THISv
+#$sqlusername = "root";
+#$sqlpassword = "VfX!565WW!t552";
+////////////////////REMOVE THIS^
+$sqlusername = "siteuser";
+$sqlpassword = "edcvfr43edcvfr4";
+$dbname = "scoreboard_dba";
+//these variables are for status reporting
+$connectionstatus = "Connection not attempted.";
+$connectbool = false;
+try {
+    // Create connection, username and pw here are for the sql server
+    $dbconn = $mysqli = new mysqli($servername, $sqlusername, $sqlpassword, $dbname);
+// Check connection and report errors
+    error_reporting(E_ALL);
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $connectionstatus = "Connection Successful.";
+    $connectbool = true;
+} catch (Exception $e){
+    $connectionstatus = "Connection to server failed";
+    echo $connectionstatus;
+}
 
 #echo "Connection successful.";
 # So what the following does is effectively makes a second table where there is a counter column called score_rank
@@ -30,12 +53,10 @@ class scoreDatabaseFunctions
     public $ranking;
     public $currentDigits;
     public $currentScore;
-    public $dbconn;
     //constructor for a ranking board
-    function __construct(){
+    function __construct(mysqli $dbconn){
         try {
-            $this->makeConnection();
-            $this->ranking = mysqli_query($this->dbconn, "SELECT users.user_name, users.user_score, users.digits, count(t2.user_name) score_rank
+            $this->ranking = mysqli_query($dbconn, "SELECT users.user_name, users.user_score, users.digits, count(t2.user_name) score_rank
                 FROM users
                 LEFT JOIN users t2 ON t2.user_score >= users.user_score
                 GROUP BY user_name, user_score, digits
@@ -43,51 +64,33 @@ class scoreDatabaseFunctions
         } catch (PDOException $e){
             echo "ERROR: Incorrect database permissions or disconnection.";
         }
-
-    }
-    function makeConnection(){
-        //This sets the connection up, also has the password included
-        $servername = "127.0.0.1";
-        ////////////////////REMOVE THISv
-        #$sqlusername = "root";
-        #$sqlpassword = "VfX!565WW!t552";
-        ////////////////////REMOVE THIS^
-        $sqlusername = "siteuser";
-        $sqlpassword = "edcvfr43edcvfr4";
-        $dbname = "scoreboard_dba";
-        //these variables are for status reporting
-        $connectionstatus = "Connection not attempted.";
-        $connectbool = false;
-        try {
-            // Create connection, username and pw here are for the sql server
-            $this->dbconn = mysqli_connect($servername, $sqlusername, $sqlpassword, $dbname);
-            // Check connection and report errors
-            error_reporting(E_ALL);
-            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-            $connectionstatus = "Connection Successful.";
-            $connectbool = true;
-        } catch (Exception $e){
-            $connectionstatus = "Connection to server failed";
-            echo $connectionstatus;
-        }
     }
     //function to retrieve pre-existing digits strings, it returns a string as a status note, and changes public variables
     function retrieveDigits(mysqli $dbconn, $digits){
-        //This is basic security to prevent code injection
-        $digits = mysqli_real_escape_string($dbconn, $digits);
         try {
-            //we turn currentDigits into a mysqli_query that the information can be pulled from
-            $this->currentDigits = mysqli_query($dbconn, "SELECT divisor, fraction 
-                    FROM scoreboard_dba.fractions 
-                    WHERE digits = $digits;");
-            //return status codes
-            if($this->currentDigits->num_rows <= 0){
+            //Note: If( Exists is relatively slow, but other implementations are more complex. If this was built to exist
+            //      on a well-trafficked site with a more complex database, I would change it to that
+            //What this actually does is check if, within the fractions table in scoreboard_dba database, a row exists
+            //where digits are equal to the input digits and returns 1/0 as a true or false
+            $result = mysqli_query($dbconn, "SELECT IF( EXISTS( 
+                SELECT divisor, fraction 
+                FROM scoreboard_dba.fractions 
+                WHERE digits = $digits), 
+                1, 0) as RESULT;");
+            //if false, we use currentDigits as a string array to avoid misoutputs and
+            //return a positive on the function working, but negative on digits being retrieved
+            if(mysqli_fetch_array($result) == 0){
+                $this->currentDigits[0] = "Not Found.";
+                $this->currentDigits[1] = "This is the first time these digits have been generated!";
                 return "Successful check. Digits did not previously exist.";
             }
+            //if true, we turn currentDigits into a mysqli_query that the information can be pulled from
             else{
-                return "Successful retrieval.";
+                $this->currentDigits = mysqli_query($dbconn, "SELECT divisor, fraction 
+                    FROM scoreboard_dba.fractions 
+                    WHERE digits = $digits;");
             }
-            return "ERROR: Unknown Error";
+            return "Successful retrieval.";
         }catch (PDOException $e){
             return "ERROR: Incorrect database permissions or disconnection.";
         }
@@ -95,20 +98,22 @@ class scoreDatabaseFunctions
     //function to retrieve a specific user's score, it returns a string as a status note, and changes public variables
     function retrieveUserScore(mysqli $dbconn, $username){
         try {
-            //this is security to prevent code injection
-            $username = mysqli_real_escape_string($dbconn, $username);
-            //we turn currentScore into a mysqli_query that the information can be pulled from
-            $this->currentScore = mysqli_query($dbconn, "SELECT user_score 
-                    FROM scoreboard_dba.users 
-                    WHERE user_name = '$username';");
-            //return status codes
-            if($this->currentScore->num_rows <= 0){
+            $result = mysqli_query($dbconn, "SELECT IF( EXISTS( 
+                SELECT user_score, digits 
+                FROM scoreboard_dba.users 
+                WHERE user_name = $username), 
+                1, 0) as RESULT;");
+            if(mysqli_fetch_array($result) == 0){
+                $this->currentScore[0] = "Not Found.";
+                $this->currentScore[1] = "User does not exist.";
                 return "Successful check. User does not exist.";
             }
             else{
-                return "Successful retrieval.";
+                $this->currentScore = mysqli_query($dbconn, "SELECT user_score, digits
+                    FROM scoreboard_dba.users 
+                    WHERE user_name = $username;");
             }
-            return "ERROR: Unknown Error";
+            return "Successful retrieval";
         }catch (PDOException $e){
             return "ERROR: Incorrect database permissions or disconnection.";
         }
@@ -116,13 +121,9 @@ class scoreDatabaseFunctions
     //function to add a new user, dbconn must be mysqli,
     function addNewUser(mysqli $dbconn, string $newname, string $newpass){
         try {
-            //this is security to prevent code injection
-            $newname = mysqli_real_escape_string($dbconn, $newname);
-            $newpass = mysqli_real_escape_string($dbconn, $newpass);
-            mysqli_query($dbconn, "INSERT INTO scoreboard_dba.users VALUES (0,'$newname', 0, '$newpass', '0')");
+            mysqli_query($dbconn, "INSERT INTO scoreboard_dba.users VALUES (0,$newname, 0, $newpass, '0')");
             return "Successful new user insertion.";
-        }catch (mysqli_sql_exception $e){
-            return "ERROR";
+        }catch (PDOException $e){
             if ($e->errorInfo[1]==1062)
                 return "ERROR: Username already exists.";
             else{
@@ -137,7 +138,7 @@ class scoreDatabaseFunctions
             SET user_score = $userscore,
                 digits = $digits
                 WHERE user_name = $name AND $userscore > user_score;");
-        }catch(mys $e){
+        }catch(PDOException $e){
             return "ERROR: Incorrect database permissions or disconnection.";
         }
     }

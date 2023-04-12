@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <?php
-$servername = "127.0.0.1";
-$sqlusername = "root";
-$sqlpassword = "VfX!565WW!t552";
-$dbname = "scoreboard_dba";
-// Create connection
-// username and password here are for the sql server
-$dbconn = $mysqli = new mysqli($servername, $sqlusername, $sqlpassword, $dbname);
-# Check connection
-error_reporting(E_ALL);
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-#echo "Connection successful.";
+include './ScoreServerConnect.php';
 ?>
-
 <html lang="en">
  <head>
     <meta charset="UTF-8" />
@@ -33,9 +22,9 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     <div>
         <a href="../Scorepage/ScorePage.php"><button>Extended Scoreboard</button></a>
     </div>
- <?php/*
+ <?php /*
  #This is test code for later insertion of data
- $username = 'Alan';
+ $username = 'test';
  $password = 'password';
 
  #this line creates the instruction to be sent
@@ -50,5 +39,9 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
  $sql = "SELECT * FROM  scoreboard_dba.users"
  $dbconn->close();*/
  ?>
+<?php
+#SET @r=0;
+#UPDATE table SET Ranking= @r:= (@r+1) ORDER BY Score DESC;
+?>
  </body>
 </html>

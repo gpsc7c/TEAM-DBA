@@ -11,11 +11,11 @@ SET character_set_client = utf8mb4 ;
 CREATE TABLE `users` (
 #Variable/column name/ids and rules
 #NOT NULL
-  `user_id` int NOT NULL UNIQUE AUTO_INCREMENT,
-  `user_name` varchar(50) UNIQUE NOT NULL,
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(50) NOT NULL,
   `user_score` bigint,
   `password` varchar(50) NOT NULL,
-  `digits` bigint,
+  `digits` varchar(9),
   #`time_set` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -23,7 +23,7 @@ CREATE TABLE `users` (
 CREATE TABLE `fractions` (
 #Variable/column name/ids and rules
 #NOT NULL
-  `digits` varchar(9) UNIQUE,
+  `digits` varchar(9),
   `fraction` decimal(10,9) CHECK(fraction>0) CHECK(fraction<1),
   `divisor` int, 
   PRIMARY KEY (`digits`)
