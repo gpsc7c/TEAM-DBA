@@ -1,3 +1,4 @@
+Programmer’s Guide
 
 Project Name:  Fraction Runner
 Team Name: Team DBA
@@ -59,10 +60,11 @@ Here are the basic steps to programming the Fraction Runner game:
 
 Pro Tips: Here are some tips and tricks to keep in mind when programming the Fraction Runner game.
 
-1.	Use requestAnimationFrame() to create a smooth game loop that runs at a consistent frame rate.  It is the best choice because ____________
-2.	Use collision detection algorithms, such as AABB or SAT, to detect collisions between character and the obstacles.  We have decided to go with ______ because…
-3.	Use a sprite sheet / Free Texture Packer  to animate the character and obstacles. 
-4.	Create 2 Databases by the use of MySQL to store the high score, fractions and user information database between game sessions.  We choose this method because       
+1.	Use requestAnimationFrame() to create a smooth game loop that runs at a consistent frame rate.  It is the best choice because it can optimize system and browser resources.
+2.	Implemet collision detection algorithms, such as AABB or SAT.  They can detect collisions between the character and obstacles.  
+3.	Use a sprite sheet / Free Texture Packer  to animate the character and obstacles.
+4.	Be prepared to buy a hosting service from a provider like hostgator.
+5.	Create 2 Databases by the use of MySQL to store the high score, fractions and user information database between game sessions.  We choose this method because       
     locally hosting the database off-server is not a valid option in this case, and the numbers and user data need to be stored on separate tables to 
     prevent column bloat. We are using mysqli within php to access the server.
     [IMPORTANT]
@@ -113,6 +115,23 @@ Section 2: High Level Design
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Section 3: More Detailed Designs
 
  
@@ -122,6 +141,20 @@ Fraction Runner game runs in a web browser.  The installation instructions are q
 Please navigate to our site:  https://fractionrunnerpro.com
 
 You will then be brought to our homepage where you will have several options including to start the game.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -243,8 +276,6 @@ class Enemy {
       // Code to remove the enemy from the canvas and update the game state
     }
   }
-
-
 
 
 
@@ -538,3 +569,5 @@ Our test plan involves testing for the following:
 *JavaScript
 *CSS
 *HTML
+
+* Fraction Runner is still in development.  The Programmer’s Guide will be updated accordingly. 
