@@ -35,7 +35,7 @@ class scoreDatabaseFunctions
     function makeConnection(){
         //This sets the connection up, also has the password included
         $servername = "127.0.0.1";
-        $sqlusername = "siteuser";
+        $sqlusername = "user";
         $sqlpassword = "edcvfr43edcvfr4";
         $dbname = "scoreboard_dba";
         //these variables are for status reporting
