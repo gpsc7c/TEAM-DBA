@@ -1,7 +1,8 @@
 #initial creation of database, drop is delete in this case, use states we're using it as the base database going forwards
-#DROP DATABASE IF EXISTS `scoreboard_dba`;
-#CREATE DATABASE `scoreboard_dba`;
-#USE `scoreboard_dba`;
+# IMPORTANT: change database name to what the webserver gives you or comment the following 3 lines out if using on a webserver.
+DROP DATABASE IF EXISTS `fractio3_dba`;
+CREATE DATABASE `fractio3_dba`;
+USE `fractio3_dba`;
 
 #character sets
 SET NAMES utf8mb4 ;

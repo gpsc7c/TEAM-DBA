@@ -17,47 +17,31 @@
 # 5) finally order the thing by the score_rank. but we can't SELECT by the score rank because that would be too easy.
 
 
-########unfinished pull of digits table
-/*$simdigits = mysqli_query($mysqli, "SELECT digits.user_name, users.user_score, users.digits, count(t2.user_name) score_rank
-FROM users
-LEFT JOIN users t2 ON t2.user_score >= users.user_score
-/*WHERE users.user_name='test2'*/
-/*GROUP BY user_name, user_score, digits
-ORDER BY score_rank;");*/
+#######################################################################################################################
+## This class offers all functions for the user database and fraction database, despite the name. oops.
+## Common user error checking can be accomplished by checking the types of dynamically
+#######################################################################################################################
 class scoreDatabaseFunctions
 {
     //constructor for a ranking board
     public $ranking;
-    public $currentDigits;
-    public $currentScore;
     public $dbconn;
-    //constructor for a ranking board
+    //constructor for a ranking board, sets values of $this->dbconn and $this->ranking, for use in scoreboards
     function __construct(){
-        try {
-            $this->makeConnection();
-            $this->ranking = mysqli_query($this->dbconn, "SELECT users.user_name, users.user_score, users.digits, count(t2.user_name) score_rank
-                FROM users
-                LEFT JOIN users t2 ON t2.user_score >= users.user_score
-                GROUP BY user_name, user_score, digits
-                ORDER BY score_rank;");
-        } catch (PDOException $e){
-            echo "ERROR: Incorrect database permissions or disconnection.";
-        }
-
+        $this->makeConnection();
+        $this->rankingTable();
     }
+    //Connects to the database
     function makeConnection(){
         //This sets the connection up, also has the password included
         $servername = "127.0.0.1";
-        ////////////////////REMOVE THISv
-        #$sqlusername = "root";
-        #$sqlpassword = "VfX!565WW!t552";
-        ////////////////////REMOVE THIS^
-        $sqlusername = "siteuser";
+        $sqlusername = "user";
         $sqlpassword = "edcvfr43edcvfr4";
         $dbname = "scoreboard_dba";
         //these variables are for status reporting
         $connectionstatus = "Connection not attempted.";
         $connectbool = false;
+        mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ALL);
         try {
             // Create connection, username and pw here are for the sql server
             $this->dbconn = mysqli_connect($servername, $sqlusername, $sqlpassword, $dbname);
@@ -66,114 +50,165 @@ class scoreDatabaseFunctions
             mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
             $connectionstatus = "Connection Successful.";
             $connectbool = true;
-        } catch (Exception $e){
+        } catch (mysqli_sql_exception $e){
             $connectionstatus = "Connection to server failed";
             echo $connectionstatus;
         }
+    }
+    //function to make an initial ranking table.
+    function rankingTable(){
+        $this->ranking = mysqli_query($this->dbconn, "SELECT users.user_name, users.user_score, users.digits, count(t2.user_name) score_rank
+                FROM users
+                LEFT JOIN users t2 ON t2.user_score >= users.user_score
+                GROUP BY user_name, user_score, digits
+                ORDER BY score_rank;");
     }
     //function to retrieve pre-existing digits strings, it returns a string as a status note, and changes public variables
     function retrieveDigits(mysqli $dbconn, $digits){
         //This is basic security to prevent code injection
         $digits = mysqli_real_escape_string($dbconn, $digits);
-        try {
-            //we turn currentDigits into a mysqli_query that the information can be pulled from
-            $this->currentDigits = mysqli_query($dbconn, "SELECT divisor, fraction 
-                    FROM scoreboard_dba.fractions 
-                    WHERE digits = $digits;");
-            //return status codes
-            if($this->currentDigits->num_rows <= 0){
-                return "Successful check. Digits did not previously exist.";
-            }
-            else{
-                return "Successful retrieval.";
-            }
-            return "ERROR: Unknown Error";
-        }catch (PDOException $e){
-            return "ERROR: Incorrect database permissions or disconnection.";
+
+        //we turn currentDigits into a mysqli_query that the information can be pulled from
+        $currentDigits = mysqli_query($dbconn, "SELECT divisor, fraction 
+                FROM scoreboard_dba.fractions 
+                WHERE digits = ('$digits');");
+        //return status code or score
+        if($currentDigits->num_rows < 1){
+            return " This is the first time these digits have been generated. ";
         }
+        else{
+            return $currentDigits;
+        }
+        return "ERROR: Incorrect database permissions or disconnection.";
     }
     //function to retrieve a specific user's score, it returns a string as a status note, and changes public variables
+    //check if is_string (Not !is_string) for error message
     function retrieveUserScore(mysqli $dbconn, $username){
-        try {
-            //this is security to prevent code injection
-            $username = mysqli_real_escape_string($dbconn, $username);
-            //we turn currentScore into a mysqli_query that the information can be pulled from
-            $this->currentScore = mysqli_query($dbconn, "SELECT user_score 
-                    FROM scoreboard_dba.users 
-                    WHERE user_name = '$username';");
-            //return status codes
-            if($this->currentScore->num_rows <= 0){
-                return "Successful check. User does not exist.";
-            }
-            else{
-                return "Successful retrieval.";
-            }
-            return "ERROR: Unknown Error";
-        }catch (PDOException $e){
-            return "ERROR: Incorrect database permissions or disconnection.";
+        //this is security to prevent code injection
+        $username = mysqli_real_escape_string($dbconn, $username);
+        //we turn currentScore into a mysqli_query that the information can be pulled from
+        $currentScore = mysqli_query($dbconn, "SELECT user_score 
+                FROM scoreboard_dba.users 
+                WHERE user_name = ('$username');");
+        //return status codes
+        if($currentScore->num_rows < 1){
+            return " User does not exist. ";
+        }
+        else{
+            return $currentScore;
         }
     }
-    //function to add a new user, dbconn must be mysqli,
+    //function to add a new user, dbconn must be mysqli, Additionally, error checking for pre-existing user is
+    //carried out by checking if !is_string($this->addNewUser)
     function addNewUser(mysqli $dbconn, string $newname, string $newpass){
-        try {
-            //this is security to prevent code injection
-            $newname = mysqli_real_escape_string($dbconn, $newname);
-            $newpass = mysqli_real_escape_string($dbconn, $newpass);
-            mysqli_query($dbconn, "INSERT INTO scoreboard_dba.users VALUES (0,'$newname', 0, '$newpass', '0')");
+        //this is security to prevent code injection
+        $newname = mysqli_real_escape_string($dbconn, $newname);
+        $newpass = mysqli_real_escape_string($dbconn, $newpass);
+        $userChecker = mysqli_query($dbconn, "SELECT * FROM scoreboard_dba.users WHERE user_name = ('$newname')");
+        if($userChecker->num_rows > 0){
+            return $userChecker;
+        }
+        else{
+            $newuser = mysqli_query($dbconn, "INSERT INTO scoreboard_dba.users VALUES (0,('$newname'), 0, ('$newpass'), '0')");
             return "Successful new user insertion.";
-        }catch (mysqli_sql_exception $e){
-            return "ERROR";
-            if ($e->errorInfo[1]==1062)
-                return "ERROR: Username already exists.";
-            else{
-                return "ERROR: Incorrect database permissions or disconnection.";
-            }
         }
     }
-    //Function to change user score and most recent input digits
-    function setUserScore(mysqli $dbconn, string $name, int $userscore, string $digits){
-        try {
-            mysqli_query($dbconn, "UPDATE scoreboard_dba.users 
-            SET user_score = $userscore,
-                digits = $digits
-                WHERE user_name = $name AND $userscore > user_score;");
-        }catch(mys $e){
-            return "ERROR: Incorrect database permissions or disconnection.";
+    function addNewDigits(mysqli $dbconn, string $newDigits, float $newFrac, int $newDivisor){
+        //this is security to prevent code injection
+        $newDigits = mysqli_real_escape_string($dbconn, $newDigits);
+        if ((int)$newDigits > 999999999 || (int)$newDigits < 0){
+            return "digits out of bounds";
         }
+        if ($newFrac > 1 || $newFrac < 0){
+            return "Fraction out of bounds, math implemented incorrectly.";
+        }
+        $digitsChecker = mysqli_query($dbconn, "SELECT * FROM scoreboard_dba.fractions WHERE digits = ('$newDigits')");
+        if($digitsChecker->num_rows > 0){
+            return "Digits already exist";
+        }
+        else{
+            $newDigits = mysqli_query($dbconn, "INSERT INTO scoreboard_dba.fractions VALUES (('$newDigits'), $newFrac, $newDivisor)");
+            return "Successful new digits insertion";
+        }
+    }
+    //Function to change user score and most recent input digits, digits should START as an int, and then be cast to
+    //A string before being put into this.
+    function setUserScore(mysqli $dbconn, string $name, int $userscore, string $digits){
+        $name = mysqli_real_escape_string($dbconn, $name);
+        $digits = mysqli_real_escape_string($dbconn, $digits);
+        $scoreCheck = mysqli_query($dbconn, "SELECT user_score 
+                FROM scoreboard_dba.users 
+                WHERE user_name = ('$name');");
+        //return status codes
+        if($scoreCheck->num_rows < 1){
+            return " User does not exist. ";
+        }
+        $scoreCheck = mysqli_query($dbconn, "SELECT user_score 
+                FROM scoreboard_dba.users 
+                WHERE user_name = ('$name') AND ('$userscore') > user_score;");
+        if($scoreCheck->num_rows < 1){
+            return " Not higher than your current highest score, too bad! ";
+        }
+        $scoreUpdate = mysqli_query($dbconn, "UPDATE scoreboard_dba.users 
+        SET user_score = ('$userscore'),
+            digits = ('$digits')
+            WHERE user_name = ('$name') AND ('$userscore') > user_score;");
+        return $userscore;
     }
     //function to change user's password
     function changePass(mysqli $dbconn, string $name, string $oldpass, string $newpass){
-        try {
-            $passfinder = mysqli_query($dbconn, "UPDATE scoreboard_dba.users 
-            SET password = $newpass,
-            WHERE user_name = $name AND password = $oldpass;");
-        } catch (PDOException $e){
-            return "ERROR: Incorrect database permissions or disconnection.";
+        //input sanitization
+        $name = mysqli_real_escape_string($dbconn, $name);
+        $oldpass = mysqli_real_escape_string($dbconn, $oldpass);
+        $newpass = mysqli_real_escape_string($dbconn, $newpass);
+        //check for user existence
+        $passfinder = mysqli_query($dbconn, "SELECT user_score 
+                FROM scoreboard_dba.users 
+                WHERE user_name = ('$name');");
+        //return status codes
+        if($passfinder->num_rows < 1){
+            return " User does not exist. ";
         }
+        //check for old password being correct
+        $passfinder = mysqli_query($dbconn, "SELECT user_score 
+                FROM scoreboard_dba.users 
+                WHERE user_name = ('$name') AND password = ('$oldpass');");
+        if($passfinder->num_rows < 1){
+            return " Incorrect Password ";
+        }
+        //check if it's the same password
+        $passfinder2 = mysqli_query($dbconn, "SELECT user_score 
+                FROM scoreboard_dba.users 
+                WHERE user_name = ('$name') AND password = ('$newpass');");
+        if($passfinder2->num_rows > 0){
+            return " This is already your Password ";
+        }
+        //finally, change the password
+        $passfinder = mysqli_query($dbconn, "UPDATE scoreboard_dba.users 
+        SET password = ('$newpass')
+        WHERE user_name = ('$name') AND password = ('$oldpass');");
+        return $passfinder;
     }
     //Function to delete a user
     function deleteUser(mysqli $dbconn, $name, $pass){
         //First query to find the entry password for this user and check for correct permissions
-        try {
-            $passfinder = mysqli_query($dbconn, "SELECT users.password
+        $name = mysqli_real_escape_string($name);
+        $pass = mysqli_real_escape_string($pass);
+        $passfinder = mysqli_query($dbconn, "SELECT users.password
             FROM users
-            WHERE users.user_name='$name'
+            WHERE users.user_name=('$name')
             ");
-        } catch(PDOException $e){
-            return "Error in permissions or connection to database.";
+        if ($passfinder->num_rows != 1){
+            return $passfinder;
+        }
+        $row = mysqli_fetch_array($passfinder);
+        if ($row["password"] != $pass) {
+            return $row;
         }
         //the second block is to find out if the user exists with the if statement, then check if the password is correct
-        if ($passfinder->num_rows > 0) {
-            try{
-                mysqli_query($dbconn, "DELETE FROM scoreboard_dba.users
-                        WHERE user_name = $name AND password = $pass;");
-                return "Successfully deleted";
-            } catch(PDOException $e){
-                return "ERROR: incorrect password";
-            }
-        } else {
-            return "ERROR: user does not exist";
-        }
+        mysqli_query($dbconn, "DELETE FROM scoreboard_dba.users
+            WHERE user_name = ('$name') AND password = ('$pass');");
+        return "Successfully deleted";
     }
 
 }

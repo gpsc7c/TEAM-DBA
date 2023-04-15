@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 include './scoreDatabaseFunctions.php';
-$ranks = new scoreDatabaseFunctions($dbconn)
+$ranks = new scoreDatabaseFunctions();
 ?>
 
 <html>
@@ -18,10 +18,10 @@ $ranks = new scoreDatabaseFunctions($dbconn)
             <h1>FRACTION RUNNER</h1>
         </header>
         <div>
-            <a href="../Homepage/GroupIntroPage.php"><button>Front Page</button></a>
+            <a href="../index.php"><button>Front Page</button></a>
         </div>
         <div>
-            <a href="../Scorepage/ScorePage.php"><button>Extended Scoreboard</button></a>
+            <a href="../Gamepage/game.php"><button>Play Game</button></a>
         </div>
         <table class="scoretable">
             <thead>
@@ -47,17 +47,15 @@ $ranks = new scoreDatabaseFunctions($dbconn)
             </tbody>
         </table>
         <div>
-            <a href="../Homepage/GroupIntroPage.php"><button>Front Page</button></a>
+            <a href="../index.php"><button>Front Page</button></a>
         </div>
         <div>
-            <a href="../Gamepage/index.php"><button>Play Game</button></a>
+            <a href="../Gamepage/game.php"><button>Play Game</button></a>
         </div>
         <footer>
             <p>
                 All rights reserved
             </p>
         </footer>
-
     </body>
-
 </html>
