@@ -21,7 +21,7 @@ $ranks = new scoreDatabaseFunctions();
             <a href="../index.php"><button>Front Page</button></a>
         </div>
         <div>
-            <a href="../Gamepage/game.php"><button>Play Game</button></a>
+            <a href="../Gamepage/game.php"><button>Extended Scoreboard</button></a>
         </div>
         <table class="scoretable">
             <thead>

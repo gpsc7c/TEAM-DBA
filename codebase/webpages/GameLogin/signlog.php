@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>SignUp and Login</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="./style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -21,8 +21,7 @@
 		<a href="#" class="social"><i class="fa fa-linkedin"></i></a>
 	</div>
 	<span>or use your email for registration</span>
-	<input type="text" name="name" placeholder="Name">
-	<input type="email" name="email" placeholder="Email">
+	<input type="text" name="name" placeholder="Username">
 	<input type="password" name="password" placeholder="Password">
 	<button type="submit" name="signup">SignUp</button>
 </form>
@@ -36,7 +35,7 @@
 		<a href="#" class="social"><i class="fa fa-linkedin"></i></a>
 	</div>
 	<span>or use your account</span>
-	<input type="email" name="email" placeholder="Email">
+	<input type="text" name="name" placeholder="Username">
 	<input type="password" name="password" placeholder="Password">
 	<a href="#">Forgot Your Password</a>
 

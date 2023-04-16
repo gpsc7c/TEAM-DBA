@@ -1,9 +1,10 @@
 <?php  
-
-$servername ="localhost";
-$username = "root";
-$password = "";
-$dbname = "myDB";
+include '../Scorepage/scoreDatabaseFunctions.php';
+$ranks = new scoreDatabaseFunctions();
+$servername ="127.0.0.1";
+$username = "fractio3_user";
+$password = "edcvfr43edcvfr4";
+$dbname = "fractio3_dba";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -12,31 +13,24 @@ if($conn->connect_error){
 }
 
 $name = $_POST["name"];
-$email = $_POST["email"];
-$password = $_POST["password"];
-$salt = "myDB";
-$password_encrypted = sha1($password.$salt);
+$pass = $_POST["password"];
+#$salt = "fractio3_dba";
+#$password_encrypted = sha1($password.$salt);
 
-
-$sql = "INSERT INTO signup (name, email, password) 
-VALUES ('$name', '$email', '$password_encrypted')";
-
-if($conn->query($sql) === TRUE){
-	?>
-	<script>
-		alert('Values have been inserted');
-	</script>
-	<?php
+try {
+        $insertUser = $ranks->addNewUser($ranks->dbconn, $name, $pass);
+        if (!is_String($insertUser)){
+        echo "<script>alert('ERROR: Username already exists');</script>";
+        }
+        
+        else{
+        echo "<script>alert('Successful new user addition! Welcome!');</script>";
+    }
+    
+    //error states
+    } catch(mysqli_sql_exception $e2){
+    echo "<script>alert('ERROR: Incorrect database permissions or disconnection. ');</script>";
 }
-else{
-	?>
-	<script>
-		alert('Values did not insert');
-	</script>
-	<?php
-}
-
-
 ?>
 
 
