@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 #canvas1 {
     border: 5px solid black;
     position: absolute;
@@ -6,7 +12,7 @@
     transform: translate(-50%, -50%);
     width: 960px;
     height: 540px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .gameImg {
