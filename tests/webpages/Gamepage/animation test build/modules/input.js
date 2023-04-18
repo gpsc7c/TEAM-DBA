@@ -20,7 +20,7 @@ export class InputHandler {
                 //add key in matched variable to keys array
                 this.keys.push(e.key);
             }
-            console.log(e.key, this.keys);
+            //console.log(e.key, this.keys);
         });
         //remove key pressed from keys array on keyup event
         window.addEventListener("keyup", e => {
@@ -32,7 +32,7 @@ export class InputHandler {
                 //splice(i, num) takes index i of element to be removed and how many elements to remove; i.e. splice(2, 3) would remove 3 elements starting at index 2
                 this.keys.splice(this.keys.indexOf(e.key), 1);
             }
-            console.log(e.key, this.keys);
+            //console.log(e.key, this.keys);
         });
     }
 }

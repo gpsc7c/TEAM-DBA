@@ -9,22 +9,42 @@
 </head>
 <body>
     <!-- HTML canvas element -->
-    <canvas id="canvas1"></canvas>
+    <div id="canvas-container" class="game-container hide">
+        <canvas id="canvas1"></canvas>
 
-    <!-- game assets to be handled with load function to avoid image errors -->
-    <img id="cactusImage" class="gameImg" src="../img/cactus.png">
-    <img id="dinoLose0" class="gameImg" src="../img/dino-lose-0.png">
-    <img id="dinoRun0" class="gameImg" src="../img/dino-run-0.png">
-    <img id="dinoRun1" class="gameImg" src="../img/dino-run-1.png">
-    <img id="dinoStationary0" class="gameImg" src="../img/dino-stationary-0.png">
-    <img id="dinoDuck0" class="gameImg" src="../img/dino-duck-0.png">
-    <img id="dinoDuck1" class="gameImg" src="../img/dino-duck-1.png">
-    <img id="ground" class="gameImg" src="../img/ground.png">
+        <!-- game assets to be handled with load function to avoid image errors -->
+        <img id="cactusImage" class="gameImg" src="../img/cactus.png">
+        <img id="dinoLose0" class="gameImg" src="../img/dino-lose-0.png">
+        <img id="dinoRun0" class="gameImg" src="../img/dino-run-0.png">
+        <img id="dinoRun1" class="gameImg" src="../img/dino-run-1.png">
+        <img id="dinoStationary0" class="gameImg" src="../img/dino-stationary-0.png">
+        <img id="dinoDuck0" class="gameImg" src="../img/dino-duck-0.png">
+        <img id="dinoDuck1" class="gameImg" src="../img/dino-duck-1.png">
+        <img id="ground" class="gameImg" src="../img/ground.png">
+    </div>
 
     <!-- input for number string -->
-    <!-- input for number string will probably have to be implemented as a popup window before game start, hidden after game start -->
-    <!-- div for number string containing input prompts for character select, number input, and start button -->
-    <!-- after options are selected and number is entered (does this need a confirmation before starting?), start game, hide game start div -->
+    <div id="start-container" class="popup options">
+        <h3>Select Character</h3>
+        <div class="character-select">
+        </br>
+            <div class="char-image"></div>
+            <div class="char-image"></div>
+            <div class="char-image"></div>
+            <div class="char-image"></div>
+        </br>
+        </div>
+    </br>
+        <div class="num-input">
+            <label for="rep-digits" class="num-input">
+                <h3>Input your repeating digits:</h3>
+            </label>
+                <input type="number" name="rep-digits" id="user-num" class="user-num-input">
+                <p id="invalid-num" class="invisible">Please enter a nonzero number with 1 to 9 digits.</p>
+        </br>
+                <button id="game-start">START GAME</button>
+        </div>
+    </div>
 
     <script type= "module" src="modules/main.js"></script>
 </body>

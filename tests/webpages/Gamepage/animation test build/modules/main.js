@@ -1,11 +1,16 @@
 import { Player } from './player.js';
 import { InputHandler } from './input.js';
-import { Background } from './background.js';
+import { Background, NumberString } from './background.js';
 
 //waits for webpage to fully load before executing function
 window.addEventListener("load", function() {
-    //get canvas element
+    //get HTML page elements
+    const gameContainer = document.getElementById("canvas-container");
+    const optContainer = this.document.getElementById("start-container");
     const canvas = document.getElementById("canvas1");
+    const startBtn = document.getElementById("game-start");
+    const inputBar = document.getElementById("user-num");
+    const numMessage = document.getElementById("invalid-num");
 
     //canvas mode set to 2d
     const ctx = canvas.getContext("2d");
@@ -56,65 +61,6 @@ window.addEventListener("load", function() {
 
     // }
 
-    //class for input string scroll
-    /*NOTE: anything that needs to be input or selected has to be done BEFORE first call to animate function*/
-    // class NumberString{
-    //     constructor(cnvWidth, cnvHeight) {
-    //         //saves canvas width and height as object properties
-    //         this.cnvWidth = cnvWidth;
-    //         this.cnvHeight = cnvHeight;
-    //         //setting up strings for number scroll
-    //         this.numPrefix = "0.";
-    //         this.scrollNum = "";
-    //         //setting up width properties for scrolling
-    //         this.prefixWidth = 0;
-    //         this.scrollWidth = 0;
-    //         this.totalWidth = 0;
-    //         //x and y position for number string obj
-    //         this.x = 0;
-    //         //accounting for ground height and a bit of extra space
-    //         this.y = cnvHeight-20;
-    //         //speed for number string scroll
-    //         this.speed = SPEED;
-    //         this.firstScroll;
-    //         //get repeating number string; validate that it's within bounds
-    //         let num = prompt("Please enter your repeating digits.\nMust be between 1-9 digits.");
-    //         while (num.length < 1 || num.length > 9) {
-    //             num = prompt("Please enter your repeating digits.\nMust be between 1-9 digits.");
-    //         }
-    //         //fill scrollNum to hopefully fill canvas
-    //         while (this.scrollNum.length < 30) {
-    //             this.scrollNum += num;
-    //         }
-    //         //console.log(this.scrollNum);
-    //     }
-    //     draw(context) {
-    //         //set font properties
-    //         context.font = "68px Courier New";
-    //         //draw the text
-    //         //context.fillText(this.numPrefix + this.scrollNum, this.x, this.y);
-    //         //set width property to draw second (and maybe third?) scroll text element
-    //         //this.prefixWidth = ctx.measureText(this.numPrefix).width;
-    //         //this.scrollWidth = ctx.measureText(this.scrollNum).width;
-    //         //this.totalWidth = this.prefixWidth + this.scrollWidth;
-    //         //console.log(this.prefixWidth);
-    //         //console.log(this.scrollWidth);
-    //         //draw second text element at the end previous element
-    //         context.fillText(this.scrollNum, this.x, this.y);
-    //         this.scrollWidth = context.measureText(this.scrollNum).width;
-    //         context.fillText(this.scrollNum, (this.x + this.scrollWidth), this.y);
-    //         //context.fillText(this.scrollNum, (this.x + this.totalWidth + this.scrollWidth), this.y)
-    //     }
-    //     update() {
-    //         //moving text to the left for scrolling
-    //         this.x -= this.speed;
-    //         //resets string for endless scroll
-    //         if (this.x < 0 - this.scrollWidth) {
-    //             this.x = 0;
-    //         }
-    //     }
-    // }
-
     //REFACTORING FOR BETTER ORGANIZATION
     //GAME CLASS: instantiates objects required for game to function
     class Game {
@@ -122,6 +68,8 @@ window.addEventListener("load", function() {
             this.width = width;
             this.height = height;
             this.speed = 3;
+            this.scroll;
+            this.userNum = inputBar.value;
             this.bg = new Background(this);
             this.player = new Player(this);
             this.input = new InputHandler();
@@ -181,12 +129,10 @@ window.addEventListener("load", function() {
     // canvas.addEventListener("click", ()=> {
     //     animate();
     // });
-
     const g = new Game(CANVAS_WIDTH, CANVAS_HEIGHT);
-    console.log(g);
-    //calculating delta time for frame rate
+    //console.log(g);
+    //value needed to calculate delta time for frame rate delta time for frame rate
     let prevTime = 0;
-
 
     function animate(newTime) {
         const dt = newTime - prevTime;
@@ -196,5 +142,27 @@ window.addEventListener("load", function() {
         g.draw(ctx);
         requestAnimationFrame(animate);
     }
-    animate(0);
+
+    //validate user input from button click
+    startBtn.addEventListener("click", () => {
+        if (inputBar.value < 1 || inputBar.value > 999999999 || inputBar.value == "") {
+            //invalid input, reveals error messaging, will not allow game start
+            numMessage.classList.remove("invisible");
+            inputBar.classList.add("error");
+        }
+        else {
+            //complete setup before hiding game start options and starting game
+            g.scroll = new NumberString(g, inputBar.value, 1);
+            numMessage.classList.add("invisible");
+            inputBar.classList.remove("error");
+            optContainer.classList.add("hide");
+            gameContainer.classList.remove("hide");
+            //put any and all prerequisites to game play BEFORE first call to animate() in an event listener (maybe also a start message)
+            animate(0);
+        }
+        //console.log(inputBar.value);
+    });
+
+
+    
 });
