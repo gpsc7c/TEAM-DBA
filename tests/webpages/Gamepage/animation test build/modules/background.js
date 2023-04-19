@@ -49,6 +49,8 @@ export class NumberString {
         //draw scroll num
         //get prefix width
         //let pWidth = context.measureText(this.numPrefix).width;
+        //reset fill style to draw text in black
+        context.fillStyle = 'black';
         context.fillText(this.scrollNum, this.x, this.y);
         //get width of repeating digits
         this.scrollWidth = context.measureText(this.scrollNum).width;
@@ -62,7 +64,7 @@ export class NumberString {
         if (this.x < 0 - this.scrollWidth) {
             this.x = 0;
             }
-            console.log(this.scrollWidth);
+            //console.log(this.scrollWidth);
         }
 }
 

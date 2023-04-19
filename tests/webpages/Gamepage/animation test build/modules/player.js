@@ -2,24 +2,12 @@
 
  //class for functions relating to player
  export class Player {
-    // constructor(cnvWidth, cnvHeight) {
-    //     //save height and width of canvas as class properties
-    //     this.cnvWidth = cnvWidth;
-    //     this.cnvHeight = cnvHeight;
-    //     //height and width of sprites
-    //     this.width = 88;
-    //     this.height = 94;
-    //     //x and y position of character
-    //     this.x = 0;
-    //     this.y = this.cnvHeight - this.height-72;
-    //     this.image = document.getElementById("dinoStationary");
-    // }
     //updated constructor method?
     constructor(game) {
         this.game = game;
         this.width = 88; //width and height based on pixel sheet; base size is 32x32 but can be scaled up in aseprite
         this.height = 94;
-        this.ground = this.game.height - this.height - 72; //variable to store "ground" plane that player will stand on
+        this.ground = this.game.height - this.height - this.game.groundHeight; //variable to store "ground" plane that player will stand on
         this.x = 100; //screen position x
         this.y = this.ground; //sets current y to ground
         this.velY = 0; //velocity for jump
