@@ -1,0 +1,249 @@
+Test Plan
+
+Project Name:  Fraction Runner
+Team Name: Team DBA
+Team Members: (we are all involved with the testing procress)
+•	Gregory Shelton   gpsc7c@umsl.edu
+•	Maija Garson   mmgzzn@umsl.edu
+•	Kayla Thurman  kethurman@mail.umsl.edu
+•	Sedaf Shakeel   ssmkh@missouri.edu
+•	James Platt   jbpkcd@mail.umsl.edu
+
+Revision History:
+04/18/2023 – 1st Draft
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Section 1: Introduction 
+
+Welcome to Fraction Runner, an educational running game!
+
+In this game, the object is to see how long you can stay alive.
+Upon start, the player is asked to write a number.  
+The game puts player’s number in a fraction as the numerator over the same number of 9s in denominator. 
+(Example: 443 becomes 443/999)
+The division produces a string of repeating decimals which will be displayed as the ground.
+(From our earlier example: 443/999 becomes 0.443443443...)
+The player runs on top of the numbers using Jump, Duck, or Attack to stay alive.  
+The player that stays alive the longest time is the winner.
+
+To encourage replay, players can choose between 3 different characters.
+Players can play against themselves and also others to get the high score on the scoreboard.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Section 2: Items to be tested
+
+2.1 Scope - includes testing the functionality and performance of the game on various browsers and devices.
+
+2.2 Test cases  - Verify that the game starts when the space bar is pressed
+- Verify that the character jumps when the space bar is pressed
+- Verify that the game ends when the character collides with an obstacle
+- Verify that the score is displayed correctly
+   		- Verify that the game can be played on different browsers 
+- Verify that the game can be played on different devices 
+- Verify scoreboard is keeping track of high scores
+
+2.3 Prioritize Test Cases - Once the test cases have been identified, prioritize them based on their criticality. This will help in determining which test cases should be executed first. 
+
+2.4 Create Test Scenarios - After prioritizing the test cases, create test scenarios that describe how the test cases will be executed.  Test cases can be created for different aspects of the game, such as the game's start screen, game play, sound effects, and graphics. 
+
+2.5 Establish Test Criteria - Need to establish the criteria for evaluating the game's performance. This may include defining acceptable levels of performance, such as the game's loading time, graphics quality, and sound effects quality.
+
+2.6 Execute Test Cases - Execute the test cases according to the test scenarios.
+
+2.7 Record Results - Record the results of each test case, including any issues that are identified.
+
+2.8 Report and Track Issues - Report any issues that are identified and track them until they are resolved.
+
+2.9 Retest - Once the issues have been resolved, retest the affected areas to ensure that the issues have been fixed.
+
+2.10 Sign Off: Finally, sign off on the test plan to indicate that all test cases have been executed and that the game is ready for release.
+
+
+Additional testing steps based on game internals:
+
+
+2.11 MySQL database – make sure insert, delete, update actions work from login and gamepage. Make sure Select actions work from score page and the gamepage.
+
+2.12 JavaScript – make sure character actions match the buttons.
+
+2.13 CSS – make sure the site loads correctly from the intro page.  Check the loading, colors, size, etc, of the game during each step of input.  
+
+2.14 HTML – make sure site loads and structure is intact.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Section 3: Test team - signatures
+
+•	Gregory Shelton - 
+•	Maija Garson -    
+•	Kayla Thurman - 
+•	Sedaf Shakeel -   
+•	James Platt -  James B. Platt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Appendix: User Manual
+
+User Manual   
+
+Welcome to Fraction Runner, an educational running game!
+
+In this game, the object is to see how long you can stay alive.
+Upon start, the player is asked to write a number.  
+The game puts player’s number in a fraction as the numerator over the same number of 9s in denominator. 
+(Example: 443 becomes 443/999)
+The division produces a string of repeating decimals which will be displayed as the ground.
+(From our earlier example: 443/999 becomes 0.443443443...)
+The player runs on top of the numbers using Jump, Duck, or Attack to stay alive.  
+The player that stays alive the longest time is the winner.
+When running, check out the repeating decimals.
+
+On the Home Screen you will see three choices:
+Fraction Runner – select when you are ready to begin the game
+Introduction Page – click to learn more about the game and its developers
+Top 100 Scoreboard – pick this to see who has the high score
+
+Controls: 
+Each character can perform three different actions:
+*Jump – spacebar or click jump
+*Attack – enter or click attack
+*Duck – down or click duck
+
+Gameplay:
+At the start, the player is asked to select a character.
+There is no skill difference between the characters.  
+When starting the game, the player must pick a number up to 999,999,999.
+After entering the number, the running game begins.
+
+The object of the game is to see how long the player can stay alive.
+The timer starts at the beginning of the game.
+Once the player has been hit by an object, the game is over.  
+The time is calculated and added to the Scoreboard.
+
+Tips and Tricks:
+*There are three different obstacles.  Each one can only be defeated by the correct action.
+*Use Jump when a hole appears
+*Use Duck when a bat is flying
+*Use Attack to break a wall
+*The runner will speed up as time continues.  Stay alert!
+
+We Thank you for playing Fraction Runner.
+
