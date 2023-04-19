@@ -1,5 +1,5 @@
 <?php
-//NOTE! This is the database I used for the old project, shouldn't be necessary here
+//NOTE! This is the connection to the database I used for the old project,
     session_start();
     $servername = "localhost";
     $dbname = "project";

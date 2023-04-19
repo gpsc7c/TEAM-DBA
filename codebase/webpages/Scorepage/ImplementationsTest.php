@@ -38,10 +38,12 @@ $ranks = new scoreDatabaseFunctions();
                 /* Put a # in front of this line to test retrieveDigits in all forms, ensure that "Database Insert Test File" mysql query has been fired first
                 //This variable is the test digits from the mysql example query
                 try{
-                    #$retDig = "0011100";
+                    $retDig = "0011100";
                     //the following pulls a nonexistant number, if this number exists, find one that doesn't or create a dummy copy of the database
-                    $retDig = '7777';
+                    
+                    #$retDig = '7777';
                     //This line fires the retrieveDigits function which sets ranks->currentDigits rdtestvar stands for "retrieve digits test variable"
+                    
                     $rdtestvar = $ranks->retrieveDigits($ranks->dbconn, $retDig);
                     //this line echoes the status message
                     if (is_string($rdtestvar)) {
@@ -57,6 +59,7 @@ $ranks = new scoreDatabaseFunctions();
                         echo " " . $rdtestarr["fraction"] . " " . $rdtestarr["divisor"];
                     }
                 }catch(mysqli_sql_exception $e){
+                    echo mysqli_error($ranks->dbconn);
                     echo " ERROR: Incorrect database permissions or disconnection. ";
                 }
                 #*/
@@ -64,20 +67,25 @@ $ranks = new scoreDatabaseFunctions();
                 ##############
                 /* Put a # in front of this line to test retrieveScore in all forms, ensure that "Database Insert Test File" mysql query has been fired first
                 //This variable is the test username from the mysql example query. the double quotes + single quotes are necessary both for security and for
-                $retScore ="test7";
-                //uncomment to test a pull on a nonexistant name, if this name exists, find one that doesn't or create a dummy copy of the database
-                #$retScore = 'zyuyuiuyi';
-                //this line retrieves the now set currentDigits rstestvar stands for "retrieve score test variable"
-                $rstestvar = $ranks->retrieveUserScore($ranks->dbconn, $retScore);
-                //this line echoes the status message if necessary
-                if (is_string($rstestvar))
-                {
-                    echo $rstestvar;
-                }
-                //this if statement fires if the digits have been inserted into the table previously "retrieve digits test array"
-                else{
-                    $rstestarr=mysqli_fetch_array($rstestvar);
-                    echo " Score of ".$retScore." is ".$rstestarr["user_score"];
+                try{
+                    $retScore ="test";
+                    //uncomment to test a pull on a nonexistant name, if this name exists, find one that doesn't or create a dummy copy of the database
+                    #$retScore = 'zyuyuiuyi';
+                    //this line retrieves the now set currentDigits rstestvar stands for "retrieve score test variable"
+                    $rstestvar = $ranks->retrieveUserScore($ranks->dbconn, $retScore);
+                    //this line echoes the status message if necessary
+                    if (is_string($rstestvar))
+                    {
+                        echo $rstestvar;
+                    }
+                    //this if statement fires if the digits have been inserted into the table previously "retrieve digits test array"
+                    else{
+                        $rstestarr=mysqli_fetch_array($rstestvar);
+                        echo " Score of ".$retScore." is ".$rstestarr["user_score"];
+                    }
+                }catch(mysqli_sql_exception $e){
+                    echo mysqli_error($ranks->dbconn);
+                    echo " ERROR: Incorrect database permissions or disconnection. ";
                 }
                 #*/
                 ##############
@@ -85,7 +93,7 @@ $ranks = new scoreDatabaseFunctions();
                 /* Put a # in front of this line to test addNewUser
                 //Test for prevention of existing user input, dynamically cast variables for
                 try {
-                    $newuser = "test1";
+                    $newuser = "test";
                     $newpw = "password";
                     $insertTester = $ranks->addNewUser($ranks->dbconn, $newuser, $newpw);
                     if (!is_String($insertTester)){
@@ -111,7 +119,7 @@ $ranks = new scoreDatabaseFunctions();
                 ##############
                 /* Put a # in front of this line to test deleteUser
                 try {
-                    $deluser = "test30";
+                    $deluser = "test31";
                     $delpw = "V1t7pY";
                     $deleteTester = $ranks->deleteUser($ranks->dbconn, $deluser, $delpw);
                     if(is_string($deleteTester)){
@@ -132,7 +140,7 @@ $ranks = new scoreDatabaseFunctions();
                 ##############
                 /* put a # before this line to test setUserScore
                 try {
-                    $scorename = "test1";
+                    $scorename = "test";
                     $newscore = "502";
                     $scoredigits = "115115";
                     $setTester = $ranks->setUserScore($ranks->dbconn, $scorename, $newscore, $scoredigits);
@@ -147,10 +155,10 @@ $ranks = new scoreDatabaseFunctions();
                     echo "ERROR: Incorrect database permissions or disconnection.";
                 }
                 #*/
-                /*put a # before this line to test setUserScore
+                /*put a # before this line to test changePass
                 try {
-                    $scorename = "test1";
-                    $oldpass = "115115";
+                    $scorename = "test";
+                    $oldpass = "password";
                     $newpass = "115115";
                     $changeTester = $ranks->changePass($ranks->dbconn, $scorename, $oldpass, $newpass);
                     if (is_string($changeTester)){

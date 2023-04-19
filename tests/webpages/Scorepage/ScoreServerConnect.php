@@ -19,7 +19,7 @@ try {
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $connectionstatus = "Connection Successful.";
     $connectbool = true;
-} catch (Exception $e){
+} catch (mysqli_sql_exception $e){
     $connectionstatus = "Connection to server failed";
     echo $connectionstatus;
 }
