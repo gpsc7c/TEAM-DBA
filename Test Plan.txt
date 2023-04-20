@@ -2,7 +2,7 @@ Test Plan
 
 Project Name:  Fraction Runner
 Team Name: Team DBA
-Team Members: (we are all involved with the testing procress)
+Team Members: (we are all involved with the testing process)
 •	Gregory Shelton   gpsc7c@umsl.edu
 •	Maija Garson   mmgzzn@umsl.edu
 •	Kayla Thurman  kethurman@mail.umsl.edu
@@ -11,8 +11,7 @@ Team Members: (we are all involved with the testing procress)
 
 Revision History:
 04/18/2023 – 1st Draft
-
-
+04/20/2023 – Revision after group discussion
 
 
 
@@ -45,19 +44,18 @@ Revision History:
 
 Section 1: Introduction 
 
-Welcome to Fraction Runner, an educational running game!
-
 In this game, the object is to see how long you can stay alive.
 Upon start, the player is asked to write a number.  
-The game puts player’s number in a fraction as the numerator over the same number of 9s in denominator. 
-(Example: 443 becomes 443/999)
-The division produces a string of repeating decimals which will be displayed as the ground.
-(From our earlier example: 443/999 becomes 0.443443443...)
+The game uses players number to create a repeating decimal that is the ground for the player to run upon.
+As the player runs, there will be various obstacles the character must avoid or attack. 
 The player runs on top of the numbers using Jump, Duck, or Attack to stay alive.  
+When player collides with an obstacle, the game is over.
 The player that stays alive the longest time is the winner.
 
 To encourage replay, players can choose between 3 different characters.
+Different number entries will create a different environment for character to run on.
 Players can play against themselves and also others to get the high score on the scoreboard.
+The educational purpose of the game is to introduce a mathematical process.  The players will learn how it works and functions.
 
 
 
@@ -86,45 +84,54 @@ Players can play against themselves and also others to get the high score on the
 
 
 
-Section 2: Items to be tested
+Section 2: Items to be tested  (Database)
 
-2.1 Scope - includes testing the functionality and performance of the game on various browsers and devices.
+2.1 Connect to Database (DB) – connect with no errors
 
-2.2 Test cases  - Verify that the game starts when the space bar is pressed
-- Verify that the character jumps when the space bar is pressed
-- Verify that the game ends when the character collides with an obstacle
-- Verify that the score is displayed correctly
-   		- Verify that the game can be played on different browsers 
-- Verify that the game can be played on different devices 
-- Verify scoreboard is keeping track of high scores
+2.2 Ensure lack of access to DB is reported – only those with access are allowed in
 
-2.3 Prioritize Test Cases - Once the test cases have been identified, prioritize them based on their criticality. This will help in determining which test cases should be executed first. 
+2.3 Ensure user can input digit string and DB can store it in a fraction 
 
-2.4 Create Test Scenarios - After prioritizing the test cases, create test scenarios that describe how the test cases will be executed.  Test cases can be created for different aspects of the game, such as the game's start screen, game play, sound effects, and graphics. 
+2.4 Ensure non-new strings have never been entered before – game should say if string has    
+previously been used.
 
-2.5 Establish Test Criteria - Need to establish the criteria for evaluating the game's performance. This may include defining acceptable levels of performance, such as the game's loading time, graphics quality, and sound effects quality.
+2.5 Insert a new user with blank points and digits into DB – testing sign up functionality
 
-2.6 Execute Test Cases - Execute the test cases according to the test scenarios.
+2.6 Report if user name is already taken – must have error message
 
-2.7 Record Results - Record the results of each test case, including any issues that are identified.
+2.7 Change a user’s points and digit string – DB keeps user score and history / high scores
 
-2.8 Report and Track Issues - Report any issues that are identified and track them until they are resolved.
+2.8 Delete user – make sure user can’t be deleted without correct password 
 
-2.9 Retest - Once the issues have been resolved, retest the affected areas to ensure that the issues have been fixed.
+2.9 Password / user verification – ensure correct password acceptance
 
-2.10 Sign Off: Finally, sign off on the test plan to indicate that all test cases have been executed and that the game is ready for release.
+2.10 Scoreboard functionality – saving highest 100 ranked users
 
+2.11 Test log out functionality – ensure session ends after log out / user is logged out if 30 min of no activity
 
-Additional testing steps based on game internals:
+2.12 Ensure session does not break or crash between web pages / long running sessions
 
+2.13 Ensure user can’t access log in page while already logged in
 
-2.11 MySQL database – make sure insert, delete, update actions work from login and gamepage. Make sure Select actions work from score page and the gamepage.
+2.14 Check HTML and DB, site displays intended while moving between pages.
 
-2.12 JavaScript – make sure character actions match the buttons.
+Items to be tested (Gameplay)
+2.15 Verify when player chooses character, that character image is set to the correct character
+2.16 Restrict player input for digit string to a 1-9 digit sequence
+2.17 Start game when player presses start button
+2.18 Display the number string that player entered correctly
+2.19 Verify that character performs correct action on pressing the associated button (i.e. character jumps when jump button is pressed, ducks when duck button is pressed, Etc.)
+2.20 Character sprite animates appropriately as it moves
+2.21 Background and number string scroll correctly throughout gameplay
+2.22 Objects spawn and move across the screen from the right and respawn as they leave the screen on the left
+2.23 When player collides with an object, triggers lose state
+2.24 When player collides with destructible object while character is in the attacking state, object is destroyed
+2.25 Score increases as expected while game is playing and stops when player dies
+2.26 Displays screen with option to restart game and option to go to scoreboard or return to homepage
+2.27 Each button on game over screen takes player to correct webpage
+	
 
-2.13 CSS – make sure the site loads correctly from the intro page.  Check the loading, colors, size, etc, of the game during each step of input.  
 
-2.14 HTML – make sure site loads and structure is intact.
 
 
 
@@ -147,22 +154,13 @@ Additional testing steps based on game internals:
 
 
 
-
-
-
-
-
-
-
-
-
-Section 3: Test team - signatures
+Section 3: Test team – Signatures (Sign off with tester’s initials)
 
 •	Gregory Shelton - 
 •	Maija Garson -    
 •	Kayla Thurman - 
 •	Sedaf Shakeel -   
-•	James Platt -  James B. Platt
+•	James Platt -  JBP
 
 
 
