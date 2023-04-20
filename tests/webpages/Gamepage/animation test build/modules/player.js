@@ -2,28 +2,16 @@
 
  //class for functions relating to player
  export class Player {
-    // constructor(cnvWidth, cnvHeight) {
-    //     //save height and width of canvas as class properties
-    //     this.cnvWidth = cnvWidth;
-    //     this.cnvHeight = cnvHeight;
-    //     //height and width of sprites
-    //     this.width = 88;
-    //     this.height = 94;
-    //     //x and y position of character
-    //     this.x = 0;
-    //     this.y = this.cnvHeight - this.height-72;
-    //     this.image = document.getElementById("dinoStationary");
-    // }
     //updated constructor method?
     constructor(game) {
         this.game = game;
-        this.width = 88; //width and height based on pixel sheet; base size is 32x32 but can be scaled up in aseprite
-        this.height = 94;
-        this.ground = this.game.height - this.height - 72; //variable to store "ground" plane that player will stand on
+        this.width = 96; //width and height based on pixel sheet; base size is 32x32 but can be scaled up in aseprite
+        this.height = 96;
+        this.ground = this.game.height - this.height - this.game.groundHeight; //variable to store "ground" plane that player will stand on
         this.x = 100; //screen position x
         this.y = this.ground; //sets current y to ground
         this.velY = 0; //velocity for jump
-        this.gravity = 1.7; //counterbalance to velY variable; will allow character to fall after reaching peak of jump
+        this.gravity = 1.1; //counterbalance to velY variable; will allow character to fall after reaching peak of jump
         //add in spritesheet info here
         this.stateImage = "Stationary";
         this.animFrame = 0; //tracks current frame in sprite animation
@@ -42,7 +30,7 @@
     draw(context) {
         //context.fillStyle = 'red';
         //context.fillRect(this.x, this.y, this.width, this.height);
-        this.image = document.getElementById("dino" + this.stateImage + this.animFrame);
+        this.image = document.getElementById("base" + this.stateImage + this.animFrame);
         //console.log(this.image);
         context.drawImage(this.image, this.x, this.y);
     }

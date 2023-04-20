@@ -41,8 +41,8 @@ export class Running extends State {
     enter() {
         this.player.stateImage = "Run"
         this.player.animFrame = 0;
-        this.player.maxFrame = 1;
-        this.player.image = document.getElementById("dino" + this.player.stateImage + this.player.animFrame);
+        this.player.maxFrame = 3;
+        this.player.image = document.getElementById("base" + this.player.stateImage + this.player.animFrame);
     }
     handleInput(input) {
         if (input.includes(window.JUMP)) {
@@ -63,11 +63,11 @@ export class Jumping extends State {
     enter() {
         //will need to change jump image later
         if (this.player.grounded())
-            this.player.velY -= 26;
-        this.player.stateImage = "Stationary"
+            this.player.velY -= 20;
+        this.player.stateImage = "Jump"
         this.player.animFrame = 0;
         this.player.maxFrame = 0;
-        this.player.image = document.getElementById("dino" + this.player.stateImage + this.player.animFrame);
+        this.player.image = document.getElementById("base" + this.player.stateImage + this.player.animFrame);
     }
     handleInput(input) {
         //logic for handling falling animation
@@ -85,10 +85,10 @@ export class Falling extends State {
     }
     enter() {
         //will need to change fall image later
-        this.player.stateImage = "Stationary"
+        this.player.stateImage = "Fall"
         this.player.animFrame = 0;
         this.player.maxFrame = 0;
-        this.image = document.getElementById("dino" + this.stateImage + this.animFrame);
+        this.image = document.getElementById("base" + this.stateImage + this.animFrame);
     }
     handleInput(input) {
         //logic for handling falling animation
@@ -109,8 +109,8 @@ export class Ducking extends State {
     enter() {
         this.player.stateImage = "Duck"
         this.player.animFrame = 0;
-        this.player.maxFrame = 1;
-        this.player.image = document.getElementById("dino" + this.player.stateImage + this.player.animFrame);
+        this.player.maxFrame = 3;
+        this.player.image = document.getElementById("base" + this.player.stateImage + this.player.animFrame);
     }
     handleInput(input) {
         if (!input.includes(window.DUCK)) {
