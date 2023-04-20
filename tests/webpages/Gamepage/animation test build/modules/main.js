@@ -72,7 +72,7 @@ window.addEventListener("load", function() {
             });
         }
         addObstacle() {
-            let getRandom = Math.random();
+            let getRandom = Math.random(); //gets a random value to determine type of object to spawn
             if (getRandom < 0.3) {
                 this.obstacles.push(new JumpObstacle(this));
             }
@@ -82,7 +82,7 @@ window.addEventListener("load", function() {
             else {
                 this.obstacles.push(new DuckObstacle(this));
             }
-            console.log(this.obtacles);
+            //console.log(this.obtacles);
         }
     }
 
