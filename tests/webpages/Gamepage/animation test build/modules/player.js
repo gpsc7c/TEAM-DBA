@@ -25,6 +25,7 @@
         this.states = [new Running(this), new Jumping(this), new Falling(this), new Ducking(this)];
         this.currentState = this.states[0];
         this.currentState.enter();
+        console.log(this.ground);
     }
     //draw method for player sprite
     draw(context) {
