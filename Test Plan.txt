@@ -87,28 +87,36 @@ The educational purpose of the game is to introduce a mathematical process.  The
 Section 2: Items to be tested  (Database)
 
 2.1 Connect to Database (DB) – connect with no errors
-Date clear box tested:           Result:             Tester:   
-
+Date clear box tested: 04/12/2023         Result: Success          Tester: GS
 
 2.2 Ensure lack of access to DB is reported – only those with access are allowed in.  
 Error message is given if user doesn’t have access.
+Date clear box tested: 04/13/2023         Result: Success             Tester: GS
 
 2.3 Ensure user can input digit string and DB can store it in a fraction 
+Date clear box tested: 04/13/2023         Result: Success             Tester: GS
 
 2.4 DB keeps track of previous player’s numbers – game will show if the string has    
 previously been used.
+Date clear box tested: 04/13/2023         Result: Success             Tester: GS
 
 2.5 Correctly insert a new user with blank points and digits into DB – testing sign up functionality
+Date clear box tested: 04/14/2023         Result: Success             Tester: GS
 
 2.6 Report if a user name is already taken – must have an error message
+Date clear box tested: 04/14/2023         Result: Success             Tester: GS
 
 2.7 DB keeps user high scores and number string history
+Date clear box tested: 04/12/2023         Result: Success             Tester: GS
 
 2.8 Delete user – make sure user can’t be deleted without correct password 
+Date clear box tested: 04/15/2023         Result: Success             Tester: GS
 
 2.9 Password / user verification – ensure correct password acceptance
+Date clear box tested: 04/16/2023         Result: Success             Tester: GS
 
 2.10 Scoreboard functionality – saving highest 100 ranked users, player history, etc.
+100 ranked users CB test: 04/19/2023   Result: Success             Tester: GS
 
 2.11 Test log out functionality – ensure session ends after log out 
 
@@ -117,6 +125,8 @@ previously been used.
 2.13 Ensure user can’t access log in page while already logged in
 
 2.14 Check HTML and CSS on site displays correct data and visuals while moving between pages.
+Initial CB Test: 04/12/2023                                 Result: Failure            Tester :GS
+Reimplementation CB Test: 04/16/2023  Result: Success(of implemented)            Tester :GS
 
 Items to be tested (Gameplay)
 2.15 Verify when player chooses a character, the character image is correct
