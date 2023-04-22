@@ -1,66 +1,98 @@
-.game {
-    width: 600px;
-    height: 200px;
-    border: 1px solid black;
-    margin: auto;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 30px;
 }
 
-#dino {
-    width: 50px;
-    height: 50px;
-    background-image: url(img/trex.png);
-    background-size: 50px 50px; 
-    position: relative;
-    top: 150px; 
-
+button {
+    padding: 10px;
+    border-radius: 5px;
+    background: skyblue;
+    border: none;
+    outline: none;
+    transition: 0.1s;
+    cursor: pointer;
 }
 
-.jump {
-    animation: jump 0.3s linear;
+button:hover {
+    transform: scale(1.1);
+    background: navy;
+    color: white;
 }
 
-@keyframes jump {
-    0% {
-        top: 150px;
-    }
-
-    30% {
-        top: 130px;
-    }
-
-    50% {
-        top: 80px;
-    }
-    
-    80% {
-        top: 130px;
-    }
-    100% {
-        top: 150px;
-    }
+#canvas1 {
+    border: 5px solid black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 960px;
+    height: 540px;
+    /* cursor: pointer; */
 }
 
-
-#cactus {
-    width: 20px;
-    height: 40px;
-    position: relative;
-    top: 110px;
-    left: 580px;
-   
-    background-image: url("img/cactus.png");
-    background-size: 20px 40px;
-
-    animation: block 1s infinite linear;
+.gameImg {
+    display: none;
 }
 
-@keyframes block {
-    0% {
-        left: 580 px;
-    }
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    border: 3px black solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
-    100% {
-        left: -20px;
-    }
+.character-select {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
 
+.char-image {
+    width: 96px;
+    height: 96px;
+    padding: 1px;
+    border: 5px solid black;
+    flex-direction: row;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.num-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#invalid-num {
+    color: red;
+    font-size: 24px;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.error {
+    outline: none;
+    border: 2px solid red;
+}
+
+.hide { /*can be toggled on and off; gameImg should NOT be toggled, will be displayed using JS*/
+    display: none;
 }
