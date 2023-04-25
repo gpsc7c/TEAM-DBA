@@ -2,6 +2,7 @@ import { Player } from './player.js';
 import { InputHandler } from './input.js';
 import { Background, NumberString } from './background.js';
 import { JumpObstacle, DuckObstacle, AttackObstacle } from './obstacle.js';
+import { UI } from './UI.js';
 
 //waits for webpage to fully load before executing function
 window.addEventListener("load", function() {
@@ -36,12 +37,16 @@ window.addEventListener("load", function() {
             this.userNum = inputBar.value;
             this.bg = new Background(this);
             this.player = new Player(this);
-            this.input = new InputHandler();
+            this.input = new InputHandler(this);
+            this.UI = new UI(this);
             //implement a pause options/menu later
             this.pause = false;
             this.obstacles = []; //array to hold existing game obstacles
             this.spawnTimer = 0; //when timer reaches value in interval, spawn new obstacle
             this.spawnInterval = 1000; //initialize time to new obstacle to one second (measure in ms)
+            this.testMode = true;   //set test mode to true; hitboxes will be visible
+            this.score = 0; //initialize game score
+            this.fontColor = 'black';   //color for UI text
         }
         update(dt) {
             //call bg update function
@@ -69,6 +74,7 @@ window.addEventListener("load", function() {
                 if (obstacle.offScreen) {
                     this.obstacles.splice(this.obstacles.indexOf(obstacle), 1); //splice method causes jittering in obstacles :/, research an alternative
                 }
+                this.UI.draw(context);
             });
         }
         addObstacle() {

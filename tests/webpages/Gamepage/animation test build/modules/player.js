@@ -10,6 +10,13 @@
         this.ground = this.game.height - this.height - this.game.groundHeight; //variable to store "ground" plane that player will stand on
         this.x = 100; //screen position x
         this.y = this.ground; //sets current y to ground
+        //hitbox variables
+        this.hitWidth = this.width * 0.3;
+        this.hitHeight = this.height * 0.6;
+        this.hitX = this.x + this.hitWidth;
+        this.hitY = this.y + 30;
+        this.duckYOffset = 20;
+        this.jumpYOffset = -5;
         this.velY = 0; //velocity for jump
         this.gravity = 1.1; //counterbalance to velY variable; will allow character to fall after reaching peak of jump
         //add in spritesheet info here
@@ -29,17 +36,22 @@
     }
     //draw method for player sprite
     draw(context) {
-        //context.fillStyle = 'red';
-        //context.fillRect(this.x, this.y, this.width, this.height);
+        //draw hitbox when debug mode is on
+        if (this.game.testMode == true) {
+            context.strokeRect(this.hitX, this.hitY, this.hitWidth, this.hitHeight);
+        }
         this.image = document.getElementById("base" + this.stateImage + this.animFrame);
         //console.log(this.image);
         context.drawImage(this.image, this.x, this.y);
     }
     update(input, dt) {
+        //check for collisions
+        this.checkCollision();
         //call handleInput function in state manager
         this.currentState.handleInput(input);
         //updating player actions based on received input
         this.y += this.velY; //update player y position based on velY variable
+        this.hitY += this.velY; //update hitbox y pos
         if (!this.grounded())
             this.velY += this.gravity; //adds gravity to velY to make player fall after jumping
         else {
@@ -75,5 +87,25 @@
         this.currentState = this.states[state];
         //call enter method for passed state
         this.currentState.enter();
+    }
+    checkCollision() {
+        this.game.obstacles.forEach(obstacle => {
+            //STANDING COLLISION CHECK
+            if (
+                obstacle.x < this.hitX + this.hitWidth &&
+                obstacle.x + obstacle.width > this.hitX &&
+                obstacle.y < this.hitY + this.hitHeight &&
+                obstacle.y + obstacle.height > this.hitY
+            ) {
+                obstacle.offScreen = true; //remove obstacle on collision?
+                //play a death animation and then game over probably
+            }
+            //DUCKING COLLISION CHECK
+            // if (
+
+            // ) {
+
+            // }
+        });
     }
 }

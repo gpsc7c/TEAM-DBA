@@ -5,7 +5,8 @@ const playerStates = {
     JUMPING: 1,
     FALLING: 2,
     DUCKING: 3,
-    ATTACKING: 4
+    ATTACKING: 4, 
+    DEAD: 5
 }
 
 class State {
@@ -43,6 +44,8 @@ export class Running extends State {
         this.player.animFrame = 0;
         this.player.maxFrame = 3;
         this.player.image = document.getElementById("base" + this.player.stateImage + this.player.animFrame);
+        //reset hitbox radius
+        this.player.hitY = this.player.y + 30;
     }
     handleInput(input) {
         if (input.includes(window.JUMP)) {
@@ -68,6 +71,8 @@ export class Jumping extends State {
         this.player.animFrame = 0;
         this.player.maxFrame = 0;
         this.player.image = document.getElementById("base" + this.player.stateImage + this.player.animFrame);
+        //move hitbox up just a bit
+        this.player.hitY = this.player.hitY + this.player.jumpYOffset;
     }
     handleInput(input) {
         //logic for handling falling animation
@@ -111,6 +116,8 @@ export class Ducking extends State {
         this.player.animFrame = 0;
         this.player.maxFrame = 3;
         this.player.image = document.getElementById("base" + this.player.stateImage + this.player.animFrame);
+        //change hitbox y coordinate on entering ducking state
+        this.player.hitY = this.player.hitY + this.player.duckYOffset;
     }
     handleInput(input) {
         if (!input.includes(window.DUCK)) {
