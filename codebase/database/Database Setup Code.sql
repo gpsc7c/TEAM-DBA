@@ -24,5 +24,6 @@ DROP TABLE IF EXISTS `fractions`;
 CREATE TABLE `fractions` (
 #Variable/column name/ids and rules
   `digits` varchar(9) PRIMARY KEY,
+  `times_generated` bigint,
   `fraction` decimal(10,9) CHECK(fraction<1 && fraction>0),
   `divisor` int) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

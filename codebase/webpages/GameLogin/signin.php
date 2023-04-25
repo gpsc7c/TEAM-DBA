@@ -14,28 +14,33 @@ if($conn->connect_error){
 
 $name = $_POST["name"];
 $pass = $_POST["password"];
-#$salt = "fractio3_dba";
-#$password_encrypted = sha1($password.$salt);
+$salt = "fractio3_dba";
+$password_encrypted = sha1($password.$salt);
 
 try{
-    //fire login function
-    $sql = $ranks->logIn($ranks->dbconn, $name,$pass);
     
-    //in cases where login successful and no error out
-    if(!is_string($sql)){
-        $_SESSION['user_name'] = $name;
-        $_SESSION['password'] = $pass;
-    	echo "<script>alert('Login successful');</script>";
-    
-    }
-    
-    //failure states
-    else{
-    	echo "<script>alert('ERROR:".$sql."');</script>";
-    }
+        //fire login function
+        #$sql = $ranks->logIn($ranks->dbconn, $name,$pass);
+        $sql = $ranks->logIn($ranks->dbconn, $name,$password_encrypted);
+        //in cases where login successful and no error out
+        if(!is_string($sql)){
+            session_start();
+            $_SESSION['username'] = $name;
+            $_SESSION['loggedin'] = true;
+            
+        	echo '<script>alert("Login successful");</script>';
+            echo "<script type='text/javascript'>location.assign('../index.php');</script>";
+        }
+        
+        //failure states
+        else{
+        	echo "<script>alert('ERROR:".$sql."');</script>";
+        	echo "<script type='text/javascript'>location.assign('./signlog.php');</script>";
+        }
     
     //error states
 }catch(mysqli_sql_exception $e2){
     echo "<script>alert('ERROR: Incorrect database permissions or disconnection. ');</script>";
+    echo "<script type='text/javascript'>location.assign('./signlog.php');</script>";
 }
 ?>

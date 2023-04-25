@@ -13,6 +13,7 @@ class scoreDatabaseFunctions
         $this->makeConnection();
         $this->rankingTable();
     }
+    
     //Connects to the database
     function makeConnection(){
         //This sets the connection up, also has the password included
@@ -36,8 +37,9 @@ class scoreDatabaseFunctions
             $connectionstatus = "Connection to server failed";
             echo $connectionstatus;
         }
-    
+
     }
+    
     //function to make an initial ranking table.
     function rankingTable(){
         $this->ranking = mysqli_query($this->dbconn, "SELECT users.user_name, users.user_score, users.digits, count(t2.user_name) score_rank
@@ -46,13 +48,14 @@ class scoreDatabaseFunctions
                 GROUP BY user_name, user_score, digits
                 ORDER BY score_rank;");
     }
+    
     //function to retrieve pre-existing digits strings, it returns a string as a status note, and changes public variables
     function retrieveDigits(mysqli $dbconn, $digits){
         //This is basic security to prevent code injection
         $digits = mysqli_real_escape_string($dbconn, $digits);
 
         //we turn currentDigits into a mysqli_query that the information can be pulled from
-        $currentDigits = mysqli_query($dbconn, "SELECT divisor, fraction 
+        $currentDigits = mysqli_query($dbconn, "SELECT * 
                 FROM fractio3_dba.fractions 
                 WHERE digits = ('$digits');");
         //return status code or score
@@ -60,10 +63,13 @@ class scoreDatabaseFunctions
             return " This is the first time these digits have been generated. ";
         }
         else{
+            $incrementOne = digitsUpdate();
             return $currentDigits;
         }
         return "ERROR: Incorrect database permissions or disconnection.";
     }
+    
+    
     //function to retrieve a specific user's score, it returns a string as a status note, and changes public variables
     //check if is_string (Not !is_string) for error message
     function retrieveUserScore(mysqli $dbconn, $username){
@@ -81,6 +87,7 @@ class scoreDatabaseFunctions
             return $currentScore;
         }
     }
+    
     //function to add a new user, dbconn must be mysqli, Additionally, error checking for pre-existing user is
     //carried out by checking if !is_string($this->addNewUser)
     function addNewUser(mysqli $dbconn, string $newname, string $newpass){
@@ -96,6 +103,7 @@ class scoreDatabaseFunctions
             return "Successful new user insertion.";
         }
     }
+    
     function addNewDigits(mysqli $dbconn, string $newDigits, float $newFrac, int $newDivisor){
         //this is security to prevent code injection
         $newDigits = mysqli_real_escape_string($dbconn, $newDigits);
@@ -108,12 +116,16 @@ class scoreDatabaseFunctions
         $digitsChecker = mysqli_query($dbconn, "SELECT * FROM fractio3_dba.fractions WHERE digits = ('$newDigits')");
         if($digitsChecker->num_rows > 0){
             return "Digits already exist";
+            $incrementor = mysqli_query($dbconn, "UPDATE fractio3_dba.fractions 
+                SET times_generated = (times_generated + 1)
+                WHERE user_name = ('$digits');");
         }
         else{
-            $newDigits = mysqli_query($dbconn, "INSERT INTO fractio3_dba.fractions VALUES (('$newDigits'), $newFrac, $newDivisor)");
+            $newDigits = mysqli_query($dbconn, "INSERT INTO fractio3_dba.fractions VALUES (('$newDigits'), 0, $newFrac, $newDivisor)");
             return "Successful new digits insertion";
         }
     }
+    
     //Function to change user score and most recent input digits, digits should START as an int, and then be cast to
     //A string before being put into this.
     function setUserScore(mysqli $dbconn, string $name, int $userscore, string $digits){
@@ -138,6 +150,7 @@ class scoreDatabaseFunctions
             WHERE user_name = ('$name') AND ('$userscore') > user_score;");
         return $userscore;
     }
+    
     //function to change user's password
     function changePass(mysqli $dbconn, string $name, string $oldpass, string $newpass){
         //input sanitization
@@ -172,6 +185,7 @@ class scoreDatabaseFunctions
         WHERE user_name = ('$name') AND password = ('$oldpass');");
         return $passfinder;
     }
+    
     //Function to delete a user
     function deleteUser(mysqli $dbconn, $name, $pass){
         //First query to find the entry password for this user and check for correct permissions
@@ -193,6 +207,8 @@ class scoreDatabaseFunctions
             WHERE user_name = ('$name') AND password = ('$pass');");
         return "Successfully deleted";
     }
+    
+    //checks user against login database
     function logIn(mysqli $dbconn, $name, $pass){
         $name = mysqli_real_escape_string($dbconn, $name);
         $pass = mysqli_real_escape_string($dbconn, $pass);
