@@ -1,4 +1,4 @@
- import { Running, Jumping, Falling, Ducking } from './states.js';
+ import { Running, Jumping, Falling, Ducking, Attacking, Lose } from './states.js';
 
  //class for functions relating to player
  export class Player {
@@ -27,12 +27,13 @@
         this.fps = 10;
         this.animInterval = 1000/this.fps;
         this.frameTimer = 0;
+        this.attackTimer = 0;   //timer for how long attack action is active
+        this.loseTimer = 0;     //timer for lose animation, will be replaced later with just frame management from lose state
+        this.dead = false;
         //this.image = document.getElementById("dinoStationary0");
         //state management
-        this.states = [new Running(this), new Jumping(this), new Falling(this), new Ducking(this)];
-        this.currentState = this.states[0];
-        this.currentState.enter();
-        console.log(this.ground);
+        this.states = [new Running(this.game), new Jumping(this.game), new Falling(this.game), new Ducking(this.game), new Attacking(this.game), new Lose(this.game)];
+        //console.log(this.ground);
     }
     //draw method for player sprite
     draw(context) {
@@ -45,6 +46,8 @@
         context.drawImage(this.image, this.x, this.y);
     }
     update(input, dt) {
+        if (!this.dead)
+            this.game.gameTimer += dt;
         //check for collisions
         this.checkCollision();
         //call handleInput function in state manager
@@ -64,48 +67,62 @@
             //change animation frame number
             if (this.animFrame < this.maxFrame) {
                 this.animFrame++;
-                //this.image = document.getElementById("dino" + this.stateImage + this.animFrame);
             }
             else {
                 this.animFrame = 0;
-                //this.image = document.getElementById("dino" + this.stateImage + this.animFrame);
             }
         }
         else {
             this.frameTimer += dt;
         }
-        //change image based on state
-        //this.image = document.getElementById("dino" + this.stateImage + this.animFrame);
+
+        //attack timer
+        if (this.currentState === this.states[4] && this.attackTimer > 0) { //if player is in attacking state and attack timer is not at zero
+            this.attackTimer -= dt;
+        }
+        if (this.currentState === this.states[5] && this.loseTimer > 0) //replace later with frame management from states
+            this.loseTimer -= dt;
     }
     grounded() {
         //will return true or false; true if player is on ground, false if player is not on ground
         return this.y >= this.ground;
     }
     //switch between player states
-    setState(state) {
+    setState(state, speed) {
         //set current state
         this.currentState = this.states[state];
+        //set game speed for current state (slightly faster during attack, normal during run)
+        this.game.speed = this.game.maxSpeed * speed;
         //call enter method for passed state
         this.currentState.enter();
     }
     checkCollision() {
         this.game.obstacles.forEach(obstacle => {
             //STANDING COLLISION CHECK
-            if (
+            if ( //checks for collision between player hitbox and obstacle (may need refactoring for obstacle hitbox later)
                 obstacle.x < this.hitX + this.hitWidth &&
                 obstacle.x + obstacle.width > this.hitX &&
                 obstacle.y < this.hitY + this.hitHeight &&
                 obstacle.y + obstacle.height > this.hitY
             ) {
-                obstacle.offScreen = true; //remove obstacle on collision?
-                //play a death animation and then game over probably
+                //obstacle.offScreen = true; //always remove obstacle on collision? may change that later
+                //if player is in attacking state and object is a wall, destroy obstacle
+                if (this.currentState === this.states[4] && obstacle.type === "Attack") {
+                    obstacle.offScreen = true;  //destroy obstacle
+                    this.game.score++;
+                }
+                else {
+                    obstacle.offScreen = true;
+                    this.setState(5, 0);
+                }
+
             }
-            //DUCKING COLLISION CHECK
-            // if (
-
-            // ) {
-
-            // }
         });
+    }
+    reset() {
+        this.y = this.ground;   //reset so player starts out on the ground again
+        this.hitY = this.y + 30;    //reset player hitbox position
+        this.dead = false;
+        this.setState(0, 1);
     }
 }

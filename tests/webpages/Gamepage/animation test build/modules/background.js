@@ -7,7 +7,7 @@ class Layer {
         this.speedModifier = speedModifier;
         this.image = image;
         this.x = 0;
-        this.y = 0; //temporarily setting manually; for finalized art assets, RESET TO 0
+        this.y = 0;
     }
     update(){
         if (this.x < -this.width)
@@ -38,7 +38,7 @@ export class NumberString {
         while (this.scrollNum.length < 25) {
             this.scrollNum += this.baseNum;
         }
-        console.log(this.scrollNum);
+        //console.log(this.scrollNum);
     }
     draw(context) {
         //set font properties
@@ -65,7 +65,7 @@ export class NumberString {
             this.x = 0 - this.game.speed;
             }
             //console.log(this.scrollWidth);
-        }
+    }
 }
 
 //for refactoring numstring class: probably wrap it up in along with layers in bg class?
@@ -97,5 +97,10 @@ export class Background {
             layer.draw(context);
         });
         this.game.scroll.draw(context);
+    }
+    reset() {
+        this.backgroundLayers.forEach(layer => {
+            layer.x = 0;
+        });
     }
 }

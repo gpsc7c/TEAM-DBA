@@ -1,3 +1,5 @@
+import { Dust, Burst } from './effects.js';
+
 //enum to track player states for readability and better control of spritesheet animation
 const playerStates = {
     // STILL: 0,
@@ -6,12 +8,14 @@ const playerStates = {
     FALLING: 2,
     DUCKING: 3,
     ATTACKING: 4, 
-    DEAD: 5
+    LOSE: 5,
+    RESTART: 6
 }
 
 class State {
-    constructor(state) {
+    constructor(state, game) {
         this.state = state;
+        this.game = game;
     }
 }
 
@@ -34,71 +38,74 @@ class State {
 // }
 
 export class Running extends State {
-    constructor(player) {
+    constructor(game) {
         //call constructor for parent class State
-        super('RUNNING');
-        this.player = player;
+        super('RUNNING', game);
     }
     enter() {
-        this.player.stateImage = "Run"
-        this.player.animFrame = 0;
-        this.player.maxFrame = 3;
-        this.player.image = document.getElementById("base" + this.player.stateImage + this.player.animFrame);
+        this.game.player.stateImage = "Run"
+        this.game.player.animFrame = 0;
+        this.game.player.maxFrame = 3;
+        this.game.player.image = document.getElementById("base" + this.game.player.stateImage + this.game.player.animFrame);
         //reset hitbox radius
-        this.player.hitY = this.player.y + 30;
+        this.game.player.hitY = this.game.player.y + 30;
     }
     handleInput(input) {
+        //add dust particles while player is running
+        this.game.particles.unshift(new Dust(this.game, this.game.player.x + this.game.player.width/2 - 15, this.game.player.y + this.game.player.height - 20));
+
         if (input.includes(window.JUMP)) {
-            this.player.setState(playerStates.JUMPING);
+            this.game.player.setState(playerStates.JUMPING, 1);
         }
         else if (input.includes(window.DUCK)) {
-            this.player.setState(playerStates.DUCKING);
+            this.game.player.setState(playerStates.DUCKING, 1);
+        }
+        else if (input.includes(window.ATTACK)) {
+            this.game.player.setState(playerStates.ATTACKING, 1.6);
         }
     }
 }
 
 export class Jumping extends State {
-    constructor(player) {
+    constructor(game) {
         //call constructor for parent class State
-        super('JUMPING');
-        this.player = player;
+        super('JUMPING', game);
     }
     enter() {
         //will need to change jump image later
-        if (this.player.grounded())
-            this.player.velY -= 20;
-        this.player.stateImage = "Jump"
-        this.player.animFrame = 0;
-        this.player.maxFrame = 0;
-        this.player.image = document.getElementById("base" + this.player.stateImage + this.player.animFrame);
+        if (this.game.player.grounded())
+            this.game.player.velY -= 20;
+        this.game.player.stateImage = "Jump"
+        this.game.player.animFrame = 0;
+        this.game.player.maxFrame = 0;
+        this.game.player.image = document.getElementById("base" + this.game.player.stateImage + this.game.player.animFrame);
         //move hitbox up just a bit
-        this.player.hitY = this.player.hitY + this.player.jumpYOffset;
+        this.game.player.hitY = this.game.player.hitY + this.game.player.jumpYOffset;
     }
     handleInput(input) {
         //logic for handling falling animation
-        if (this.player.velY > this.player.gravity) { //once player hits peak of jump and starts to fall, switches to falling state
-            this.player.setState(playerStates.FALLING);
+        if (this.game.player.velY > this.game.player.gravity) { //once player hits peak of jump and starts to fall, switches to falling state
+            this.game.player.setState(playerStates.FALLING, 1);
         }
     }
 }
 
 export class Falling extends State {
-    constructor(player) {
+    constructor(game) {
         //call constructor for parent class State
-        super('FALLING');
-        this.player = player;
+        super('FALLING', game);
     }
     enter() {
         //will need to change fall image later
-        this.player.stateImage = "Fall"
-        this.player.animFrame = 0;
-        this.player.maxFrame = 0;
+        this.game.player.stateImage = "Fall"
+        this.game.player.animFrame = 0;
+        this.game.player.maxFrame = 0;
         this.image = document.getElementById("base" + this.stateImage + this.animFrame);
     }
     handleInput(input) {
         //logic for handling falling animation
-        if (this.player.grounded()) { //changes state once player is on ground again
-            this.player.setState(playerStates.RUNNING);
+        if (this.game.player.grounded()) { //changes state once player is on ground again
+            this.game.player.setState(playerStates.RUNNING, 1);
         }
     }
 }
@@ -106,25 +113,72 @@ export class Falling extends State {
 //NOTE: seeing some odd -y offset with ducking state; test with character base sprites to see if y-offset issue
 //persists and if adjustment needs to be made with some kind of +y offset in enter method
 export class Ducking extends State {
-    constructor(player) {
+    constructor(game) {
         //call constructor for parent class State
-        super('DUCKING');
-        this.player = player;
+        super('DUCKING', game);
     }
     enter() {
-        this.player.stateImage = "Duck"
-        this.player.animFrame = 0;
-        this.player.maxFrame = 3;
-        this.player.image = document.getElementById("base" + this.player.stateImage + this.player.animFrame);
+        this.game.player.stateImage = "Duck"
+        this.game.player.animFrame = 0;
+        this.game.player.maxFrame = 3;
+        this.game.player.image = document.getElementById("base" + this.game.player.stateImage + this.game.player.animFrame);
         //change hitbox y coordinate on entering ducking state
-        this.player.hitY = this.player.hitY + this.player.duckYOffset;
+        this.game.player.hitY = this.game.player.hitY + this.game.player.duckYOffset;
     }
     handleInput(input) {
+        //add dust particles while player is running
+        this.game.particles.unshift(new Dust(this.game, this.game.player.x + this.game.player.width/2 - 15, this.game.player.y + this.game.player.height - 20));
+
         if (!input.includes(window.DUCK)) {
-            this.player.setState(playerStates.RUNNING);
+            this.game.player.setState(playerStates.RUNNING, 1);
         }
         // else if (input.includes(window.JUMP)) {
-        //     this.player.setState(playerStates.JUMPING);
+        //     this.game.player.setState(playerStates.JUMPING);
         // }
+    }
+}
+
+export class Attacking extends State {
+    constructor(game) {
+        //call constructor for parent class State
+        super('ATTACKING', game);
+    }
+    enter() { //attacking can be entered from running only for the time being
+        this.game.player.stateImage = "Run"  //temporarily setting attack frame to run-0 until art done
+        this.game.player.animFrame = 0;
+        this.game.player.maxFrame = 0;
+        this.game.player.image = document.getElementById("base" + this.game.player.stateImage + this.game.player.animFrame);
+        //maybe an attack timer of some sort? attack frame plays for x frames then stops?
+        this.game.player.attackTimer = 500; //set attack timer to 0.5 second
+    }
+    handleInput(input) {
+        //add dust particles while player is running
+        this.game.particles.unshift(new Burst(this.game, this.game.player.x + this.game.player.width/2 - 15, this.game.player.y + this.game.player.height - 25));
+
+        if (this.game.player.attackTimer <= 0) { //when attack timer expires, switch back to running state
+            this.game.player.setState(playerStates.RUNNING, 1);
+        }
+    }
+}
+
+export class Lose extends State {
+    constructor(game) {
+        //call constructor for parent class State
+        super('LOSE', game);
+    }
+    enter() {
+        //will need to change fall image later
+        this.game.player.stateImage = "Stationary"
+        this.game.player.animFrame = 0;
+        this.game.player.maxFrame = 0;
+        this.image = document.getElementById("base" + this.stateImage + this.animFrame);
+        this.game.player.dead = true;
+        this.game.player.loseTimer = 500;
+    }
+    handleInput(input) {
+        //play a dying animation and when it's over change to game over state
+        if (this.game.player.loseTimer <= 0) { //changes state once player is on ground again
+            this.game.gameOver = true;
+        }
     }
 }

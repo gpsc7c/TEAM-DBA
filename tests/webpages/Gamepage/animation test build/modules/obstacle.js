@@ -9,6 +9,7 @@ class Obstacle {
         this.offScreen = false;
     }
     update(dt) {
+        this.speedX = this.game.speed;
         this.x -= this.speedX;
         this.y += this.speedY;
         //same handler as player for movement/animation fps
@@ -43,12 +44,13 @@ export class JumpObstacle extends Obstacle {
     constructor(game) {
         super();
         this.game = game;
+        this.type = "Jump";
         this.width = 45; //will need to be updated based on final sprite size
         this.height = 60;
         this.x = this.game.width;
         this.y = this.game.height - this.height - this.game.groundHeight;
         //this.image = document.getElementByID('filename'); //when we are ready to pass in images for ground obstacles
-        this.speedX = this.game.speed;
+        this.speedX = 0;
         this.speedY = 0;
         //this.maxFrame = 0; //in case this obstacle is animated
     }
@@ -63,12 +65,13 @@ export class AttackObstacle extends Obstacle {
     constructor(game) {
         super();
         this.game = game;
+        this.type = "Attack";
         this.width = 60;
         this.height = 100;
         this.x = this.game.width;
         this.y = this.game.height - this.height - this.game.groundHeight;
         //this.image = document.getElementByID('filename'); //placeholder for when we are ready for images for destructible obstacle
-        this.speedX = this.game.speed;
+        this.speedX = 0;
         this.speedY = 0;
         //this.maxFrame = 0;    //in case this obstacle is animated
     }
@@ -83,11 +86,12 @@ export class DuckObstacle extends Obstacle {
     constructor(game) {
         super();
         this.game = game;
+        this.type = "Duck";
         this.width = 60; //will be based on whatever sprite size is (hitbox will be separate)
         this.height = 60;
         this.x = this.game.width; //will need to start off screen
         this.y = this.game.height - 195; //since player MUST duck this obstacle, should be about the height of standing sprite but too tall to jump over
-        this.speedX = 3; //speed of movement on x-axis
+        this.speedX = 0; //speed of movement on x-axis
         this.speedY = 0; //speed of movement on y-axis (maybe not needed unless we're doing some sine wave type movement or something)
         //this.maxFrame; //sets up total number of frames on obstacle's spritesheet
         //this.image = document.getElementById();   //get first image frame, or entire spritesheet
