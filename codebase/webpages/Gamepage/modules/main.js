@@ -2,6 +2,7 @@ import { Player } from './player.js';
 import { InputHandler } from './input.js';
 import { Background, NumberString } from './background.js';
 import { JumpObstacle, DuckObstacle, AttackObstacle } from './obstacle.js';
+import { UI } from './UI.js';
 
 //waits for webpage to fully load before executing function
 window.addEventListener("load", function() {
@@ -16,8 +17,10 @@ window.addEventListener("load", function() {
     //canvas mode set to 2d
     const ctx = canvas.getContext("2d");
 
-    // //global speed variable
-    // let SPEED = 8;
+    //value needed to calculate delta time for frame rate delta time for frame rate
+    let dt = 0;
+    let prevTime = 0;
+
 
     //manually setting canvas width and height for correct image scaling
     //please come back and adjust aspect ratios at some point :')
@@ -30,46 +33,64 @@ window.addEventListener("load", function() {
         constructor(width, height) {
             this.width = width;
             this.height = height;
-            this.speed = 3;
+            this.speed = 3; //set initial game speed
+            this.maxSpeed = 3;
             this.groundHeight = 72; //height of ground that player/obstacles needs to stand on top of
             this.scroll;
             this.userNum = inputBar.value;
             this.bg = new Background(this);
             this.player = new Player(this);
-            this.input = new InputHandler();
-            //implement a pause options/menu later
+            this.input = new InputHandler(this);
+            this.UI = new UI(this);
             this.pause = false;
             this.obstacles = []; //array to hold existing game obstacles
+            this.particles = []; //array to hold particle effects
             this.spawnTimer = 0; //when timer reaches value in interval, spawn new obstacle
             this.spawnInterval = 1000; //initialize time to new obstacle to one second (measure in ms)
+            this.testMode = false;   //set test mode to true; hitboxes will be visible
+            this.gameTimer = 0;          //initialize game timer
+            this.gameOver = false;
+            this.score = 0; //initialize game score
+            this.fontColor = 'black';   //color for UI text
+            this.player.currentState = this.player.states[0];
+            this.player.currentState.enter();
         }
         update(dt) {
-            //call bg update function
-            this.bg.update();
-            //call player update function
-            this.player.update(this.input.keys, dt);
-            //handle obstacle update here
-            if (this.spawnTimer > this.spawnInterval) {
-                this.addObstacle();
-                this.spawnTimer = 0; //reset timer back to zero
-                this.spawnInterval = Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000; //randomize spawn interval to between 1-3s
-            }
-            else {
-                this.spawnTimer += dt; //add delta time to spawn timer
-            }
-            this.obstacles.forEach(obstacle => {
-                obstacle.update(dt);
-            });
+            if (!this.pause && !this.gameOver) {  //calls update function if game is not paused or game over
+                //call bg update function
+                this.bg.update();
+                //call player update function
+                this.player.update(this.input.keys, dt);
+                //handle obstacle update here
+                if (this.spawnTimer > this.spawnInterval) {
+                    this.addObstacle();
+                    this.spawnTimer = 0; //reset timer back to zero
+                    this.spawnInterval = Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000; //randomize spawn interval to between 1-3s
+                }
+                else {
+                    this.spawnTimer += dt; //add delta time to spawn timer
+                }
+                this.obstacles.forEach(obstacle => {
+                    obstacle.update(dt);
+                });
+                //updating particle effects
+                this.particles.forEach((particle, index) => {
+                    particle.update();
+                });
+                this.particles = this.particles.filter(particle => !particle.offScreen);
+                this.obstacles = this.obstacles.filter(obstacle => !obstacle.offScreen);
+                }
         }
         draw(context) {
             this.bg.draw(context);
             this.player.draw(context);
             this.obstacles.forEach(obstacle => {
                 obstacle.draw(context);
-                if (obstacle.offScreen) {
-                    this.obstacles.splice(this.obstacles.indexOf(obstacle), 1); //splice method causes jittering in obstacles :/, research an alternative
-                }
             });
+            this.particles.forEach((particle) => {
+                particle.draw(context);
+            });
+            this.UI.draw(context);
         }
         addObstacle() {
             let getRandom = Math.random(); //gets a random value to determine type of object to spawn
@@ -84,20 +105,49 @@ window.addEventListener("load", function() {
             }
             //console.log(this.obtacles);
         }
+        togglePause() {       //pause menu will need to draw some things to the canvas on top of player and enemy and stuff, may need to look into a way to do that WITHOUT stopping requestAnimationFrame
+            this.pause = !this.pause;   //sets whatever pause boolean is to the opposite
+        }
+        showInitMenu() {
+            //hide game container
+            gameContainer.classList.add("hide");
+
+            //empty input bar variable in preparation for more input
+            inputBar.value = "";
+
+            //pull up game options window again, since it has the first call to animate() shouldn't need to put that in manually?
+            optContainer.classList.remove("hide");
+        }
+        reset() {   //reset all game data
+            this.gameTimer = 0;
+            this.score = 0;
+            this.obstacles = [];    //empty the obstacle array
+            this.speed = 3;         //reset initial game speed
+            this.spawnTimer = 0;
+            this.spawnInterval = 1000; //reset spawn interval
+            this.gameOver = false; //reset game over and pause to false only before game start
+            this.pause = false;
+        }
+        restart() {     //function to restart game, should be able to be called either from game over screen or generally from a pause menu
+            //call object reset functions
+            this.player.reset();
+            this.bg.reset();
+            this.reset();
+        }
     }
 
     const g = new Game(CANVAS_WIDTH, CANVAS_HEIGHT);
     //console.log(g);
-    //value needed to calculate delta time for frame rate delta time for frame rate
-    let prevTime = 0;
 
     function animate(newTime) {
-        const dt = newTime - prevTime;
-        prevTime = newTime;
-        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        g.update(dt);
-        g.draw(ctx);
-        requestAnimationFrame(animate);
+        if (!g.gameOver) {
+            dt = newTime - prevTime;
+            prevTime = newTime;
+            ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            g.update(dt);
+            g.draw(ctx);
+            requestAnimationFrame(animate);
+        }
     }
 
     //validate user input from button click
@@ -115,6 +165,7 @@ window.addEventListener("load", function() {
             optContainer.classList.add("hide");
             gameContainer.classList.remove("hide");
             //put any and all prerequisites to game play BEFORE first call to animate() in an event listener (maybe also a start message)
+            g.restart();
             animate(0);
         }
         //console.log(inputBar.value);
