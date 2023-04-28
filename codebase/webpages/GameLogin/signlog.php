@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-
 <?php
     session_start();
     include 'connection.php';
-    $_SESSION['test'] = "Hello";
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
         echo "hey";
-        header("Location: ../index.php");
+        echo "<script type='text/javascript'>location.assign('../index.php');</script>";
     }
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>SignUp and Login</title>

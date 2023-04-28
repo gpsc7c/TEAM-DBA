@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,7 +14,9 @@
       <h1>Welcome to our Game</h1>
     </header>
     <section>
-      <p>Here you can learn about the concept of our game and also watch a video to see how it works. We have included some static images as well as an animated gif to give you a better idea of what the game is like. If you're interested in playing, click the button below to start the game. And if you want to see the extended scoreboard, click the other button.</p>
+      <p>Here you can learn about the concept of our game and also watch a video to see how it works. We have included some static images as well as an animated gif to give you a better idea of what the game is like. If you're interested in playing, click the button below to start the game. And if you want to see the extended scoreboard, click the other button.  
+      <!-- SESSION USAGE -->
+      <?php echo $_SESSION['username']; echo ', Hello there!';?></p>
       <a href=https://www.youtube.com/watch?v=daro6K6mym8>Watch video</a>
       <img src="static_image_1.jpg" alt="Static Image 1">
       <img src="static_image_2.jpg" alt="Static Image 2">

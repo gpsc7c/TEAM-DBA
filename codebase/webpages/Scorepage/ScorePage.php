@@ -1,3 +1,4 @@
+<?php session_start ?>
 <!DOCTYPE html>
 <?php
 include './scoreDatabaseFunctions.php';
@@ -8,8 +9,8 @@ $ranks = new scoreDatabaseFunctions();
     <head>
         <meta charset="UTF-8">
         <title>FRACTION RUNNER Scoreboard</title>
-        <link rel="stylesheet" href="ScoreStyle.css" type="text/css">
-        <script src="js/scoretable.js"></script>
+        <link rel="stylesheet" href="./scorestyle.css" type="text/css">
+        <!--COMMENTED OUT DUE TO NO LONGER BEING NECESSARY <script src="js/scoretable.js"></script>-->
     </head>
 
     <script><!--Javascript hole goes here--></script>

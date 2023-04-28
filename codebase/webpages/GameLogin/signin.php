@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../Scorepage/scoreDatabaseFunctions.php';
 $ranks = new scoreDatabaseFunctions();
 $servername ="127.0.0.1";
@@ -24,7 +25,7 @@ try{
         $sql = $ranks->logIn($ranks->dbconn, $name,$password_encrypted);
         //in cases where login successful and no error out
         if(!is_string($sql)){
-            session_start();
+            
             $_SESSION['username'] = $name;
             $_SESSION['loggedin'] = true;
             
