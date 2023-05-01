@@ -15,7 +15,7 @@ if($conn->connect_error){
 $name = $_POST["name"];
 $pass = $_POST["password"];
 $salt = "fractio3_dba";
-$password_encrypted = sha1($password.$salt);
+$pass_encrypted = sha1($pass.$salt);
 
 try {
         if (strlen($name) < 4 || strlen($name) > 50){
@@ -26,7 +26,7 @@ try {
         }
         else{
             #$insertUser = $ranks->addNewUser($ranks->dbconn, $name, $pass);
-            $insertUser = $ranks->addNewUser($ranks->dbconn, $name, $password_encrypted);
+            $insertUser = $ranks->addNewUser($ranks->dbconn, $name, $pass_encrypted);
             if (!is_String($insertUser)){
                 echo "<script>alert('ERROR: Username already exists');</script>";
                echo "<script type='text/javascript'>location.assign('./signlog.php');</script>";

@@ -2,7 +2,6 @@
     session_start();
     include 'connection.php';
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-        echo "hey";
         echo "<script type='text/javascript'>location.assign('../index.php');</script>";
     }
 ?>
@@ -31,7 +30,7 @@
 	<span>or use your account</span>
 	<input type="text" name="name" placeholder="Username">
 	<input type="password" name="password" placeholder="Password">
-	<a href="#">Forgot Your Password</a>
+	<!-- Cut because we do not have high enough level encryption to take email addresses <a href="#">Forgot Your Password</a>-->
 
 	<button type="submit" name="signIn">Sign In</button>
 	</form>

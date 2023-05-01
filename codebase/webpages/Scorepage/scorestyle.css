@@ -1,12 +1,19 @@
 body{
-    background-color: silver;
+    background-color: lightgrey;
     color: blue;
-    alignment: center;
     font-family: Calibri;
 }
-h1{
-    alignment: center;
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
+
+h1{
+    text-align: center;
+}
+
 .scoretable {
     border-collapse: collapse;
     margin: 25px 0;
@@ -15,14 +22,17 @@ h1{
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
+
 .scoretable thead tr {
     background-color: Grey;
     color: #ffffff;
     text-align: left;
 }
+
 .scoretable th, html .scoretable td {
     padding: 12px 15px;
 }
+
 .scoretable tbody tr {
     border-bottom: 1px solid midnightblue;
 }
@@ -30,10 +40,25 @@ h1{
 .scoretable tbody tr:nth-of-type(even) {
     background-color: silver;
 }
+
 .scoretable tbody tr:nth-of-type(odd) {
     background-color: darkgrey;
 }
 
 .scoretable tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
+}
+
+button {
+    background-color: green;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkgreen;
 }

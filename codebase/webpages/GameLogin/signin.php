@@ -16,13 +16,13 @@ if($conn->connect_error){
 $name = $_POST["name"];
 $pass = $_POST["password"];
 $salt = "fractio3_dba";
-$password_encrypted = sha1($password.$salt);
+$pass_encrypted = sha1($pass.$salt);
 
 try{
     
         //fire login function
         #$sql = $ranks->logIn($ranks->dbconn, $name,$pass);
-        $sql = $ranks->logIn($ranks->dbconn, $name,$password_encrypted);
+        $sql = $ranks->logIn($ranks->dbconn, $name,$pass_encrypted);
         //in cases where login successful and no error out
         if(!is_string($sql)){
             
@@ -38,10 +38,10 @@ try{
         	echo "<script>alert('ERROR:".$sql."');</script>";
         	echo "<script type='text/javascript'>location.assign('./signlog.php');</script>";
         }
-    
     //error states
 }catch(mysqli_sql_exception $e2){
     echo "<script>alert('ERROR: Incorrect database permissions or disconnection. ');</script>";
     echo "<script type='text/javascript'>location.assign('./signlog.php');</script>";
 }
+
 ?>
