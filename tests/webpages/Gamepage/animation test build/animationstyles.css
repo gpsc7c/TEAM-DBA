@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 30px;
+    color: midnightblue;
 }
 
 button {
@@ -37,6 +38,7 @@ button:hover {
 }
 
 .popup {
+    background-color: silver;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -53,23 +55,38 @@ button:hover {
     padding-bottom: 20px;
 }
 
+h3 {
+    position: relative;
+    margin-top: 10px;
+}
+
 .character-select {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     text-align: center;
     justify-content: center;
     align-items: center;
+}
+
+.characters {
+    flex-direction: row;
 }
 
 .char-image {
     width: 96px;
     height: 96px;
     padding: 1px;
-    border: 5px solid black;
+    border: 2px solid midnightblue;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     margin: 5px;
     cursor: pointer;
+}
+
+.selected {
+    border: 4px solid white;
 }
 
 .num-input {
@@ -79,7 +96,7 @@ button:hover {
     align-items: center;
 }
 
-#invalid-num {
+#invalid-num, #no-char-selected {
     color: red;
     font-size: 24px;
 }

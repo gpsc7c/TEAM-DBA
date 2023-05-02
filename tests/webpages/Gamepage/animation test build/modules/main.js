@@ -13,6 +13,11 @@ window.addEventListener("load", function() {
     const startBtn = document.getElementById("game-start");
     const inputBar = document.getElementById("user-num");
     const numMessage = document.getElementById("invalid-num");
+    const charMessage = this.document.getElementById("no-char-selected");
+    const charRed = document.getElementById("charred");
+    const charBlue = this.document.getElementById("charblue");
+    const charVio = this.document.getElementById("charvio");
+    let selectedChar = "";  //variable to pass selected character to game
 
     //canvas mode set to 2d
     const ctx = canvas.getContext("2d");
@@ -39,7 +44,7 @@ window.addEventListener("load", function() {
             this.scroll;
             this.userNum = inputBar.value;
             this.bg = new Background(this);
-            this.player = new Player(this);
+            this.player = new Player(this, "charB");
             this.input = new InputHandler(this);
             this.UI = new UI(this);
             this.pause = false;
@@ -150,9 +155,37 @@ window.addEventListener("load", function() {
         }
     }
 
+    //EVENT LISTENERS FOR CHARACTER SELECT
+    charBlue.addEventListener("click", ()=> {
+        selectedChar = "charB";
+        charBlue.classList.add("selected");
+        charRed.classList.remove("selected");
+        charVio.classList.remove("selected");
+        charMessage.classList.add("invisible");
+    });
+
+    charRed.addEventListener("click", () => {
+        selectedChar = "charR";
+        charRed.classList.add("selected");
+        charBlue.classList.remove("selected");
+        charVio.classList.remove("selected");
+        charMessage.classList.add("invisible");
+    });
+
+    charVio.addEventListener("click", () => {
+        selectedChar = "charV";
+        charVio.classList.add("selected");
+        charBlue.classList.remove("selected");
+        charRed.classList.remove("selected");
+        charMessage.classList.add("invisible");
+    });
+
     //validate user input from button click
     startBtn.addEventListener("click", () => {
-        if (inputBar.value < 1 || inputBar.value > 999999999 || inputBar.value == "") {
+        if (selectedChar == "") {
+            charMessage.classList.remove("invisible");
+        }
+        else if (inputBar.value < 1 || inputBar.value > 999999999 || inputBar.value == "") {
             //invalid input, reveals error messaging, will not allow game start
             numMessage.classList.remove("invisible");
             inputBar.classList.add("error");
@@ -160,7 +193,9 @@ window.addEventListener("load", function() {
         else {
             //complete setup before hiding game start options and starting game
             g.scroll = new NumberString(g, inputBar.value, 1);
+            g.player.character = selectedChar;
             numMessage.classList.add("invisible");
+            charMessage.classList.add("invisible");
             inputBar.classList.remove("error");
             optContainer.classList.add("hide");
             gameContainer.classList.remove("hide");

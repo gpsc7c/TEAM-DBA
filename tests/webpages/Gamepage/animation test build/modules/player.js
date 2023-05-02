@@ -3,10 +3,10 @@
  //class for functions relating to player
  export class Player {
     //updated constructor method?
-    constructor(game) {
+    constructor(game, character) {
         this.game = game;
-        this.width = 96; //width and height based on pixel sheet; base size is 32x32 but can be scaled up in aseprite
-        this.height = 96;
+        this.width = 128; //width and height based on pixel sheet; base size is 32x32 but can be scaled up in aseprite
+        this.height = 128;
         this.ground = this.game.height - this.height - this.game.groundHeight; //variable to store "ground" plane that player will stand on
         this.x = 100; //screen position x
         this.y = this.ground; //sets current y to ground
@@ -20,7 +20,8 @@
         this.velY = 0; //velocity for jump
         this.gravity = 1.1; //counterbalance to velY variable; will allow character to fall after reaching peak of jump
         //add in spritesheet info here
-        this.stateImage = "Stationary";
+        this.character = character;
+        this.stateImage = "Static";
         this.animFrame = 0; //tracks current frame in sprite animation
         //this.image = document.getElementById("dino" + this.stateImage + this.animFrame);
         this.maxFrame; //tracks total number of frames in each animation
@@ -41,7 +42,7 @@
         if (this.game.testMode == true) {
             context.strokeRect(this.hitX, this.hitY, this.hitWidth, this.hitHeight);
         }
-        this.image = document.getElementById("base" + this.stateImage + this.animFrame);
+        this.image = document.getElementById(this.character + this.stateImage + this.animFrame);
         //console.log(this.image);
         context.drawImage(this.image, this.x, this.y);
     }

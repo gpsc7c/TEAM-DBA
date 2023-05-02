@@ -9,7 +9,10 @@ export class UI {
         context.textAlign = 'left';
         context.fillStyle = this.game.fontColor;
         //score text
-        context.fillText('Score: ' + this.game.score, 20, 50);   
+        context.fillText('Score: ' + this.game.score, 20, 40);
+        //number of players who generated same number string
+        context.font = this.fontSize * 0.75 + 'px ' + this.fontFamily;
+        context.fillText('Players have generated your number string ' + 'placeholder' + ' times', 20, 70);  //placeholder is where actual # will go
         //timer text
         // context.font = this.fontSize * 0.9 + 'px ' + this.fontFamily;
         // context.fillText('Time: ' + (this.game.gameTimer/1000).toFixed(1), 20, 90);

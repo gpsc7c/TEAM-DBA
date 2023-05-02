@@ -15,10 +15,10 @@ class Particle {
 export class Dust extends Particle {
     constructor(game, x, y) {
         super(game);
-        this.size = Math.random() * 10 + 7;  //generate particle size between 5 to 10 px
+        this.size = Math.random() * 10 + 7;  //generate particle size between 10 to 17 px
         this.x = x;
         this.y = y;
-        this.speedX = Math.random();    //x and y movement speeds random number between 0 to 1
+        this.speedX = Math.random();    //x and y movement speeds: random number between 0 to 1
         this.speedY = Math.random();
         this.color = 'rgba(230, 230, 230, 0.2)';
     }
@@ -32,10 +32,10 @@ export class Dust extends Particle {
 export class Burst extends Particle {
     constructor(game, x, y) {
         super(game);
-        this.size = Math.random() * 20 + 7;  //generate particle size between 5 to 10 px
+        this.size = Math.random() * 20 + 7;  //generate particle size between 20 to 27 px for bigger dust cloud
         this.x = x;
         this.y = y;
-        this.speedX = Math.random();    //x and y movement speeds random number between 0 to 1
+        this.speedX = Math.random();    //x and y movement speeds: random number between 0 to 1
         this.speedY = Math.random();
         this.color = 'rgba(230, 230, 230, 0.2)';
     }

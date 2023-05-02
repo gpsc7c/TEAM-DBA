@@ -3,7 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <?php
-include './ScoreServerConnect.php';
+include '../Scorepage/ScoreServerConnect.php';
 ?>
 <html lang="en">
  <head>
