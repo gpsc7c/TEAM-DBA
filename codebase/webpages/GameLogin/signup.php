@@ -1,4 +1,5 @@
 <?php  
+session_start();
 include '../Scorepage/scoreDatabaseFunctions.php';
 $ranks = new scoreDatabaseFunctions();
 $servername ="127.0.0.1";
@@ -18,10 +19,10 @@ $salt = "fractio3_dba";
 $pass_encrypted = sha1($pass.$salt);
 
 try {
-        if (strlen($name) < 4 || strlen($name) > 50){
+        if (strlen($name) < 4 || strlen($name) > 49){
             echo "<script>alert('ERROR: Username must be longer than 3 characters and less than 50');</script>";
         }
-        else if (strlen($pass) < 4 || strlen($pass) > 50){
+        else if (strlen($pass) < 4 || strlen($pass) > 49){
             echo "<script>alert('ERROR: Password must be longer than 3 characters and less than 50');</script>";
         }
         else{
@@ -33,8 +34,10 @@ try {
             }
             
             else{
+                
+                $_SESSION['username'] = $name;
                 $_SESSION['loggedin'] = true;
-                $_SESSION['user_name'] = $name;
+                
                 echo "<script>alert('Successful new user addition! Welcome!');</script>";
                echo "<script type='text/javascript'>location.assign('../index.php');</script>";
             }   

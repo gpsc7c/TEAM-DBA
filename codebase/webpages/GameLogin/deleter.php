@@ -19,7 +19,7 @@ try{
         else if(is_array($sql)){
             echo "<script>alert('ERROR: Incorrect Password');</script>";
         	echo "<script type='text/javascript'>location.assign('./signout.php');</script>";}
-        //failure states
+        //Success State
         else{
         	echo "<script>alert('Account deleted.');</script>";
         	session_destroy();

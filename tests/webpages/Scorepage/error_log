@@ -1,0 +1,196 @@
+[15-Apr-2023 14:13:17 America/Chicago] PHP Warning:  include(../ScorePage/scoreDatabaseFunctions.php): failed to open stream: No such file or directory in /home4/fractio3/public_html/GameLogin/signin.php on line 2
+[15-Apr-2023 14:13:17 America/Chicago] PHP Warning:  include(../ScorePage/scoreDatabaseFunctions.php): failed to open stream: No such file or directory in /home4/fractio3/public_html/GameLogin/signin.php on line 2
+[15-Apr-2023 14:13:17 America/Chicago] PHP Warning:  include(): Failed opening '../ScorePage/scoreDatabaseFunctions.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home4/fractio3/public_html/GameLogin/signin.php on line 2
+[15-Apr-2023 14:13:17 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'scoreDatabaseFunctions' not found in /home4/fractio3/public_html/GameLogin/signin.php:3
+Stack trace:
+#0 {main}
+  thrown in /home4/fractio3/public_html/GameLogin/signin.php on line 3
+[15-Apr-2023 14:14:47 America/Chicago] PHP Warning:  include(../Scoreoage/scoreDatabaseFunctions.php): failed to open stream: No such file or directory in /home4/fractio3/public_html/GameLogin/signin.php on line 2
+[15-Apr-2023 14:14:47 America/Chicago] PHP Warning:  include(../Scoreoage/scoreDatabaseFunctions.php): failed to open stream: No such file or directory in /home4/fractio3/public_html/GameLogin/signin.php on line 2
+[15-Apr-2023 14:14:47 America/Chicago] PHP Warning:  include(): Failed opening '../Scoreoage/scoreDatabaseFunctions.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home4/fractio3/public_html/GameLogin/signin.php on line 2
+[15-Apr-2023 14:14:47 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'scoreDatabaseFunctions' not found in /home4/fractio3/public_html/GameLogin/signin.php:3
+Stack trace:
+#0 {main}
+  thrown in /home4/fractio3/public_html/GameLogin/signin.php on line 3
+[15-Apr-2023 14:15:35 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 14:15:35 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 14:29:07 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[15-Apr-2023 14:29:07 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 14:29:07 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 14:29:07 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signup.php on line 14
+[15-Apr-2023 14:29:07 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signup.php on line 15
+[15-Apr-2023 14:29:07 America/Chicago] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to scoreDatabaseFunctions::addNewUser() must be of the type string, null given, called in /home4/fractio3/public_html/GameLogin/signup.php on line 20 and defined in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php:86
+Stack trace:
+#0 /home4/fractio3/public_html/GameLogin/signup.php(20): scoreDatabaseFunctions->addNewUser(Object(mysqli), NULL, NULL)
+#1 /home4/fractio3/public_html/GameLogin/signlog.php(62): include('/home4/fractio3...')
+#2 {main}
+  thrown in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 86
+[15-Apr-2023 15:14:39 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 15:14:39 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 15:22:17 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[15-Apr-2023 15:22:17 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 15:22:17 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 15:22:17 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[15-Apr-2023 15:22:26 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[15-Apr-2023 15:22:26 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 15:22:26 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 15:22:26 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[15-Apr-2023 15:22:38 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[15-Apr-2023 15:22:38 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 15:22:38 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 15:22:38 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[15-Apr-2023 23:23:50 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[15-Apr-2023 23:23:50 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 23:23:50 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 23:23:50 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[15-Apr-2023 23:23:53 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[15-Apr-2023 23:23:53 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 23:23:53 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 23:23:53 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[15-Apr-2023 23:27:23 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[15-Apr-2023 23:27:23 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 23:27:23 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 23:27:23 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[15-Apr-2023 23:34:17 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[15-Apr-2023 23:34:17 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 23:34:17 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 23:34:17 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[15-Apr-2023 23:34:28 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 23:34:29 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 23:35:07 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[15-Apr-2023 23:35:07 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[15-Apr-2023 23:35:07 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[15-Apr-2023 23:35:07 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[15-Apr-2023 23:35:20 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signup.php on line 15
+[15-Apr-2023 23:35:20 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signup.php on line 16
+[15-Apr-2023 23:35:20 America/Chicago] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to scoreDatabaseFunctions::addNewUser() must be of the type string, null given, called in /home4/fractio3/public_html/GameLogin/signup.php on line 21 and defined in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php:86
+Stack trace:
+#0 /home4/fractio3/public_html/GameLogin/signup.php(21): scoreDatabaseFunctions->addNewUser(Object(mysqli), NULL, NULL)
+#1 {main}
+  thrown in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 86
+[15-Apr-2023 23:35:30 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signup.php on line 15
+[15-Apr-2023 23:35:30 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signup.php on line 16
+[15-Apr-2023 23:35:30 America/Chicago] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to scoreDatabaseFunctions::addNewUser() must be of the type string, null given, called in /home4/fractio3/public_html/GameLogin/signup.php on line 21 and defined in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php:86
+Stack trace:
+#0 /home4/fractio3/public_html/GameLogin/signup.php(21): scoreDatabaseFunctions->addNewUser(Object(mysqli), NULL, NULL)
+#1 {main}
+  thrown in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 86
+[16-Apr-2023 11:25:05 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[16-Apr-2023 11:25:05 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[16-Apr-2023 11:25:05 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[16-Apr-2023 11:25:05 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[16-Apr-2023 11:26:28 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[16-Apr-2023 11:26:28 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[16-Apr-2023 11:26:28 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[16-Apr-2023 11:26:28 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[16-Apr-2023 11:26:45 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signup.php on line 15
+[16-Apr-2023 11:26:45 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signup.php on line 16
+[16-Apr-2023 11:26:45 America/Chicago] PHP Fatal error:  Uncaught TypeError: Argument 2 passed to scoreDatabaseFunctions::addNewUser() must be of the type string, null given, called in /home4/fractio3/public_html/GameLogin/signup.php on line 22 and defined in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php:86
+Stack trace:
+#0 /home4/fractio3/public_html/GameLogin/signup.php(22): scoreDatabaseFunctions->addNewUser(Object(mysqli), NULL, '69458b2b170578d...')
+#1 {main}
+  thrown in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 86
+[16-Apr-2023 11:27:19 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[16-Apr-2023 11:27:20 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[16-Apr-2023 11:27:20 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[16-Apr-2023 11:27:20 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[16-Apr-2023 11:27:33 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[16-Apr-2023 11:27:33 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[16-Apr-2023 11:33:07 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[16-Apr-2023 11:33:07 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[16-Apr-2023 11:33:07 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[16-Apr-2023 11:33:07 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[16-Apr-2023 11:34:58 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[16-Apr-2023 11:37:18 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[20-Apr-2023 15:19:24 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[20-Apr-2023 15:19:40 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[20-Apr-2023 15:19:40 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[20-Apr-2023 15:19:51 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[20-Apr-2023 15:19:52 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[20-Apr-2023 17:12:58 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signup.php on line 15
+[20-Apr-2023 17:12:58 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signup.php on line 16
+[20-Apr-2023 17:13:42 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[20-Apr-2023 17:44:33 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[20-Apr-2023 17:44:39 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home4/fractio3/public_html/GameLogin/signin.php:35) in /home4/fractio3/public_html/GameLogin/signin.php on line 36
+[20-Apr-2023 17:44:43 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[20-Apr-2023 17:44:43 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[20-Apr-2023 17:46:28 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home4/fractio3/public_html/GameLogin/signin.php:35) in /home4/fractio3/public_html/GameLogin/signin.php on line 36
+[21-Apr-2023 13:42:30 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 13:31:27 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 13:31:27 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 4
+[22-Apr-2023 13:50:30 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 3
+[22-Apr-2023 13:50:31 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 13:50:31 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 3
+[22-Apr-2023 13:50:31 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 13:50:32 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 3
+[22-Apr-2023 13:50:32 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 13:50:32 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 3
+[22-Apr-2023 13:50:32 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 13:51:02 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 3
+[22-Apr-2023 13:51:02 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 13:51:02 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 3
+[22-Apr-2023 13:51:02 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 13:51:03 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 3
+[22-Apr-2023 13:51:03 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 14:01:02 America/Chicago] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting '-' or identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home4/fractio3/public_html/GameLogin/signin.php on line 30
+[22-Apr-2023 14:13:20 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 3
+[22-Apr-2023 14:13:20 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 14:38:58 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[22-Apr-2023 14:38:58 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[22-Apr-2023 14:39:23 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 4
+[22-Apr-2023 14:39:23 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 14:39:23 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signup.php on line 15
+[22-Apr-2023 14:39:23 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signup.php on line 16
+[22-Apr-2023 14:41:58 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 4
+[22-Apr-2023 14:41:58 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[22-Apr-2023 14:41:58 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[22-Apr-2023 14:41:58 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[22-Apr-2023 14:41:58 America/Chicago] PHP Fatal error:  Cannot declare class scoreDatabaseFunctions, because the name is already in use in /home4/fractio3/public_html/Scorepage/scoreDatabaseFunctions.php on line 6
+[22-Apr-2023 14:42:27 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 4
+[22-Apr-2023 14:42:27 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[23-Apr-2023 11:14:08 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 15
+[23-Apr-2023 11:14:08 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[23-Apr-2023 11:14:11 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 4
+[23-Apr-2023 11:14:11 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[23-Apr-2023 11:14:12 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 4
+[23-Apr-2023 11:14:12 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[25-Apr-2023 15:55:05 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/signlog.php on line 4
+[25-Apr-2023 15:55:05 America/Chicago] PHP Warning:  session_start(): Cannot start session when headers already sent in /home4/fractio3/public_html/GameLogin/connection.php on line 2
+[25-Apr-2023 20:15:18 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home4/fractio3/public_html/GameLogin/signlog.php:6) in /home4/fractio3/public_html/GameLogin/signlog.php on line 7
+[25-Apr-2023 20:15:18 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home4/fractio3/public_html/GameLogin/signlog.php:6) in /home4/fractio3/public_html/GameLogin/signlog.php on line 7
+[25-Apr-2023 20:15:42 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home4/fractio3/public_html/GameLogin/signlog.php:6) in /home4/fractio3/public_html/GameLogin/signlog.php on line 7
+[25-Apr-2023 20:15:42 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home4/fractio3/public_html/GameLogin/signlog.php:6) in /home4/fractio3/public_html/GameLogin/signlog.php on line 7
+[25-Apr-2023 20:15:50 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home4/fractio3/public_html/GameLogin/signlog.php:6) in /home4/fractio3/public_html/GameLogin/signlog.php on line 7
+[25-Apr-2023 20:15:50 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home4/fractio3/public_html/GameLogin/signlog.php:6) in /home4/fractio3/public_html/GameLogin/signlog.php on line 7
+[28-Apr-2023 21:57:21 America/Chicago] PHP Notice:  Undefined index: username in /home4/fractio3/public_html/GameLogin/areyousure.php on line 4
+[28-Apr-2023 21:57:21 America/Chicago] PHP Notice:  Undefined index: username in /home4/fractio3/public_html/GameLogin/areyousure.php on line 7
+[28-Apr-2023 21:58:35 America/Chicago] PHP Notice:  Undefined index: username in /home4/fractio3/public_html/GameLogin/areyousure.php on line 4
+[28-Apr-2023 21:58:35 America/Chicago] PHP Notice:  Undefined index: username in /home4/fractio3/public_html/GameLogin/areyousure.php on line 7
+[28-Apr-2023 21:59:17 America/Chicago] PHP Notice:  Undefined index: username in /home4/fractio3/public_html/GameLogin/areyousure.php on line 4
+[28-Apr-2023 22:00:16 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[28-Apr-2023 22:00:16 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[28-Apr-2023 22:00:53 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[28-Apr-2023 22:00:53 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[28-Apr-2023 22:44:06 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[28-Apr-2023 22:44:42 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[28-Apr-2023 22:44:43 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[28-Apr-2023 22:44:49 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[28-Apr-2023 22:44:50 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[28-Apr-2023 22:44:53 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/deleter.php on line 5
+[28-Apr-2023 22:45:04 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[28-Apr-2023 22:45:04 America/Chicago] PHP Warning:  Use of undefined constant eee - assumed 'eee' (this will throw an Error in a future version of PHP) in /home4/fractio3/public_html/GameLogin/signout.php on line 4
+[01-May-2023 14:11:25 America/Chicago] PHP Notice:  Undefined variable: password in /home4/fractio3/public_html/GameLogin/deleter.php on line 7
+[01-May-2023 14:11:34 America/Chicago] PHP Notice:  Undefined variable: password in /home4/fractio3/public_html/GameLogin/deleter.php on line 7
+[01-May-2023 14:13:33 America/Chicago] PHP Notice:  Undefined index: oldpassword in /home4/fractio3/public_html/GameLogin/changepass.php on line 7
+[01-May-2023 14:13:33 America/Chicago] PHP Notice:  Undefined index: newpassword in /home4/fractio3/public_html/GameLogin/changepass.php on line 8
+[01-May-2023 14:13:47 America/Chicago] PHP Notice:  Undefined index: oldpassword in /home4/fractio3/public_html/GameLogin/changepass.php on line 7
+[01-May-2023 14:13:47 America/Chicago] PHP Notice:  Undefined index: newpassword in /home4/fractio3/public_html/GameLogin/changepass.php on line 8
+[01-May-2023 14:14:37 America/Chicago] PHP Notice:  Undefined index: oldpassword in /home4/fractio3/public_html/GameLogin/changepass.php on line 7
+[01-May-2023 14:14:37 America/Chicago] PHP Notice:  Undefined index: newpassword in /home4/fractio3/public_html/GameLogin/changepass.php on line 8
+[01-May-2023 14:16:45 America/Chicago] PHP Notice:  Undefined index: oldpassword in /home4/fractio3/public_html/GameLogin/changepass.php on line 7
+[01-May-2023 14:16:45 America/Chicago] PHP Notice:  Undefined index: newpassword in /home4/fractio3/public_html/GameLogin/changepass.php on line 8
+[01-May-2023 14:18:24 America/Chicago] PHP Notice:  Undefined index: name in /home4/fractio3/public_html/GameLogin/signin.php on line 16
+[01-May-2023 14:18:24 America/Chicago] PHP Notice:  Undefined index: password in /home4/fractio3/public_html/GameLogin/signin.php on line 17
+[01-May-2023 14:24:33 America/Chicago] PHP Notice:  Undefined variable: oldpassword_encrypted in /home4/fractio3/public_html/GameLogin/changepass.php on line 12
+[01-May-2023 14:24:54 America/Chicago] PHP Notice:  Undefined variable: oldpassword_encrypted in /home4/fractio3/public_html/GameLogin/changepass.php on line 12
+[01-May-2023 14:25:01 America/Chicago] PHP Notice:  Undefined variable: oldpassword_encrypted in /home4/fractio3/public_html/GameLogin/changepass.php on line 12

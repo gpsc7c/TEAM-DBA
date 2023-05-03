@@ -49,16 +49,13 @@ class scoreDatabaseFunctions
                 ORDER BY score_rank;");
     }
     //function to make ranking table for current singular user
-    function userRankingTable(string $rankedusername){
-        
-    
-        return mysqli_query($this->dbconn, "SELECT * from 
-                (SELECT users.user_name, users.user_score, users.digits, count(t2.user_name) score_rank
+    function userRankingTable($username){
+        $username = mysqli_real_escape_string($dbconn, $username);
+        return mysqli_query($this->dbconn, "SELECT users.user_name, users.user_score, users.digits, count(t2.user_name) score_rank
                 FROM users
-                LEFT JOIN users t2 ON t2.user_score >= users.user_score
+                LEFT JOIN (SELECT * FROM users WHERE user_name = ('$username')) t2 ON t2.user_score >= users.user_score
                 GROUP BY user_name, user_score, digits
-                ORDER BY score_rank) AS ranksubalias
-                WHERE user_name = ('$rankedusername');");
+                ORDER BY score_rank;");
     }
     //function to retrieve pre-existing digits strings, it returns a string as a status note, and changes public variables
     function retrieveDigits(mysqli $dbconn, $digits){

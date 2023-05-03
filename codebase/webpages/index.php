@@ -23,6 +23,16 @@
       <img src="static_image_3.jpg" alt="Static Image 3">
       <img src="animated_gif.gif" alt="Animated Gif of Game">
       <div>
+          <?php
+        if (isset($_SESSION["username"])){
+            echo '<a href="./GameLogin/signout.php"><button>Account Maintenance and Log Out</button></a>';
+        }
+        else{
+            echo '<a href="./GameLogin/signlog.php"><button>Log In and Sign Up</button></a>';
+        }
+        ?>
+      </div>
+      <div>
         <a href="./Gamepage/game.php"><button>Play Game</button></a>
       </div>
       <div>
