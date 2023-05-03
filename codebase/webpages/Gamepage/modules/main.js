@@ -193,11 +193,13 @@ window.addEventListener("load", function() {
     startBtn.addEventListener("click", () => {
         if (selectedChar == "") {
             charMessage.classList.remove("invisible");
+            return; //prevents game from firing any other code from this event listener until all options are selected
         }
         else if (inputBar.value < 1 || inputBar.value > 999999999 || inputBar.value == "") {
             //invalid input, reveals error messaging, will not allow game start
             numMessage.classList.remove("invisible");
             inputBar.classList.add("error");
+            return; //prevents game from firing any other code from this event listener until all options are selected
         }
         else {
             //complete setup before hiding game start options and starting game
