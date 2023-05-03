@@ -46,7 +46,7 @@ export class Running extends State {
         this.game.player.stateImage = "Run"
         this.game.player.animFrame = 0;
         this.game.player.maxFrame = 3;
-        this.game.player.image = document.getElementById("base" + this.game.player.stateImage + this.game.player.animFrame);
+        this.game.player.image = document.getElementById(this.game.player.character + this.game.player.stateImage + this.game.player.animFrame);
         //reset hitbox radius
         this.game.player.hitY = this.game.player.y + 30;
     }
@@ -74,11 +74,11 @@ export class Jumping extends State {
     enter() {
         //will need to change jump image later
         if (this.game.player.grounded())
-            this.game.player.velY -= 20;
+            this.game.player.velY -= 23;
         this.game.player.stateImage = "Jump"
         this.game.player.animFrame = 0;
         this.game.player.maxFrame = 0;
-        this.game.player.image = document.getElementById("base" + this.game.player.stateImage + this.game.player.animFrame);
+        this.game.player.image = document.getElementById(this.game.player.character + this.game.player.stateImage + this.game.player.animFrame);
         //move hitbox up just a bit
         this.game.player.hitY = this.game.player.hitY + this.game.player.jumpYOffset;
     }
@@ -100,7 +100,7 @@ export class Falling extends State {
         this.game.player.stateImage = "Fall"
         this.game.player.animFrame = 0;
         this.game.player.maxFrame = 0;
-        this.image = document.getElementById("base" + this.stateImage + this.animFrame);
+        this.image = document.getElementById(this.game.player.character + this.stateImage + this.animFrame);
     }
     handleInput(input) {
         //logic for handling falling animation
@@ -121,7 +121,7 @@ export class Ducking extends State {
         this.game.player.stateImage = "Duck"
         this.game.player.animFrame = 0;
         this.game.player.maxFrame = 3;
-        this.game.player.image = document.getElementById("base" + this.game.player.stateImage + this.game.player.animFrame);
+        this.game.player.image = document.getElementById(this.game.player.character + this.game.player.stateImage + this.game.player.animFrame);
         //change hitbox y coordinate on entering ducking state
         this.game.player.hitY = this.game.player.hitY + this.game.player.duckYOffset;
     }
@@ -144,10 +144,10 @@ export class Attacking extends State {
         super('ATTACKING', game);
     }
     enter() { //attacking can be entered from running only for the time being
-        this.game.player.stateImage = "Run"  //temporarily setting attack frame to run-0 until art done
+        this.game.player.stateImage = "Attack"
         this.game.player.animFrame = 0;
         this.game.player.maxFrame = 0;
-        this.game.player.image = document.getElementById("base" + this.game.player.stateImage + this.game.player.animFrame);
+        this.game.player.image = document.getElementById(this.game.player.character + this.game.player.stateImage + this.game.player.animFrame);
         //maybe an attack timer of some sort? attack frame plays for x frames then stops?
         this.game.player.attackTimer = 500; //set attack timer to 0.5 second
     }
@@ -166,18 +166,20 @@ export class Lose extends State {
         //call constructor for parent class State
         super('LOSE', game);
     }
-    enter() {
-        //will need to change fall image later
-        this.game.player.stateImage = "Stationary"
+    enter() {   
+        //GAME OVER STATE IS TRIGGERED HERE; THIS IS PROBABLY BEST PLACE TO OUTPUT SCORE TO DATABASE
+        console.log(this.game.score);
+        
+        this.game.player.stateImage = "Hurt"
         this.game.player.animFrame = 0;
         this.game.player.maxFrame = 0;
-        this.image = document.getElementById("base" + this.stateImage + this.animFrame);
+        this.image = document.getElementById(this.game.player.character + this.stateImage + this.animFrame);
         this.game.player.dead = true;
         this.game.player.loseTimer = 500;
     }
     handleInput(input) {
-        //play a dying animation and when it's over change to game over state
-        if (this.game.player.loseTimer <= 0) { //changes state once player is on ground again
+        //pause for a moment before displaying game over screen
+        if (this.game.player.loseTimer <= 0) {
             this.game.gameOver = true;
         }
     }

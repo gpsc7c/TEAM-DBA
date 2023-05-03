@@ -90,7 +90,7 @@ export class DuckObstacle extends Obstacle {
         this.width = 60; //will be based on whatever sprite size is (hitbox will be separate)
         this.height = 60;
         this.x = this.game.width; //will need to start off screen
-        this.y = this.game.height - 195; //since player MUST duck this obstacle, should be about the height of standing sprite but too tall to jump over
+        this.y = this.game.height - 220; //since player MUST duck this obstacle, should be about the height of standing sprite but too tall to jump over
         this.speedX = 0; //speed of movement on x-axis
         this.speedY = 0; //speed of movement on y-axis (maybe not needed unless we're doing some sine wave type movement or something)
         //this.maxFrame; //sets up total number of frames on obstacle's spritesheet

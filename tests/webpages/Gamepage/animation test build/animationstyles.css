@@ -43,8 +43,8 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 60%;
     border: 3px black solid;
     display: flex;
     flex-direction: column;
@@ -96,7 +96,7 @@ h3 {
     align-items: center;
 }
 
-#invalid-num, #no-char-selected {
+#invalid-num, #no-char-selected {  /*styling for error text on game option container*/
     color: red;
     font-size: 24px;
 }

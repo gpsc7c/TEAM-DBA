@@ -4,6 +4,7 @@ import { Background, NumberString } from './background.js';
 import { JumpObstacle, DuckObstacle, AttackObstacle } from './obstacle.js';
 import { UI } from './UI.js';
 
+
 //waits for webpage to fully load before executing function
 window.addEventListener("load", function() {
     //get HTML page elements
@@ -13,6 +14,15 @@ window.addEventListener("load", function() {
     const startBtn = document.getElementById("game-start");
     const inputBar = document.getElementById("user-num");
     const numMessage = document.getElementById("invalid-num");
+    const charMessage = this.document.getElementById("no-char-selected");
+    const charRed = document.getElementById("charred");
+    const charBlue = this.document.getElementById("charblue");
+    const charVio = this.document.getElementById("charvio");
+    let selectedChar = "";  //variable to pass selected character to game
+    //DB variables
+    let divisor = "";
+    let numerator;
+    let userDecimal;
 
     //canvas mode set to 2d
     const ctx = canvas.getContext("2d");
@@ -39,7 +49,7 @@ window.addEventListener("load", function() {
             this.scroll;
             this.userNum = inputBar.value;
             this.bg = new Background(this);
-            this.player = new Player(this);
+            this.player = new Player(this, "charB");
             this.input = new InputHandler(this);
             this.UI = new UI(this);
             this.pause = false;
@@ -50,6 +60,8 @@ window.addEventListener("load", function() {
             this.testMode = false;   //set test mode to true; hitboxes will be visible
             this.gameTimer = 0;          //initialize game timer
             this.gameOver = false;
+            this.intro = true;     //indicates whether or not game is in division intro
+            this.introActive = true;    //toggle whether or not game shows division intro
             this.score = 0; //initialize game score
             this.fontColor = 'black';   //color for UI text
             this.player.currentState = this.player.states[0];
@@ -77,6 +89,7 @@ window.addEventListener("load", function() {
                 this.particles.forEach((particle, index) => {
                     particle.update();
                 });
+                //use filter method to remove particles and obstacles that are off screen to avoid image jitter
                 this.particles = this.particles.filter(particle => !particle.offScreen);
                 this.obstacles = this.obstacles.filter(obstacle => !obstacle.offScreen);
                 }
@@ -112,8 +125,9 @@ window.addEventListener("load", function() {
             //hide game container
             gameContainer.classList.add("hide");
 
-            //empty input bar variable in preparation for more input
+            //empty input bar and divisor variables in preparation for more input
             inputBar.value = "";
+            divisor = "";
 
             //pull up game options window again, since it has the first call to animate() shouldn't need to put that in manually?
             optContainer.classList.remove("hide");
@@ -150,27 +164,73 @@ window.addEventListener("load", function() {
         }
     }
 
+    //EVENT LISTENERS FOR CHARACTER SELECT
+    charBlue.addEventListener("click", ()=> {
+        selectedChar = "charB";
+        charBlue.classList.add("selected");
+        charRed.classList.remove("selected");
+        charVio.classList.remove("selected");
+        charMessage.classList.add("invisible");
+    });
+
+    charRed.addEventListener("click", () => {
+        selectedChar = "charR";
+        charRed.classList.add("selected");
+        charBlue.classList.remove("selected");
+        charVio.classList.remove("selected");
+        charMessage.classList.add("invisible");
+    });
+
+    charVio.addEventListener("click", () => {
+        selectedChar = "charV";
+        charVio.classList.add("selected");
+        charBlue.classList.remove("selected");
+        charRed.classList.remove("selected");
+        charMessage.classList.add("invisible");
+    });
+
     //validate user input from button click
     startBtn.addEventListener("click", () => {
-        if (inputBar.value < 1 || inputBar.value > 999999999 || inputBar.value == "") {
+        if (selectedChar == "") {
+            charMessage.classList.remove("invisible");
+        }
+        else if (inputBar.value < 1 || inputBar.value > 999999999 || inputBar.value == "") {
             //invalid input, reveals error messaging, will not allow game start
             numMessage.classList.remove("invisible");
             inputBar.classList.add("error");
         }
         else {
             //complete setup before hiding game start options and starting game
-            g.scroll = new NumberString(g, inputBar.value, 1);
+            g.scroll = new NumberString(g, inputBar.value, 1);  //sets scrolling number string
+            g.player.character = selectedChar;  //sets player character
+
             numMessage.classList.add("invisible");
+            charMessage.classList.add("invisible");
             inputBar.classList.remove("error");
             optContainer.classList.add("hide");
             gameContainer.classList.remove("hide");
+            //call to math animation function here before game start (maybe include an option to turn it off)
             //put any and all prerequisites to game play BEFORE first call to animate() in an event listener (maybe also a start message)
-            g.restart();
-            animate(0);
+                g.restart();
+                animate(0);
         }
         //console.log(inputBar.value);
+
+        //gets numbers for database entry
+        while (divisor.length < inputBar.value.length) {
+            divisor += "9";
+        }
+        //setting up user decimal
+        userDecimal = inputBar.value + inputBar.value;
+
+        //these might be an issue for the PHP because js is a nightmare :/
+        divisor = Number(divisor);
+        numerator = Number(inputBar.value);
+        userDecimal = BigInt(userDecimal);
+        
+        console.log("user input: " + numerator);
+        console.log("divisor: " + divisor);
+        console.log("decimal: " + userDecimal);
+
     });
-
-
-    
 });
