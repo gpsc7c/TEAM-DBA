@@ -144,7 +144,7 @@ export class Attacking extends State {
         super('ATTACKING', game);
     }
     enter() { //attacking can be entered from running only for the time being
-        this.game.player.stateImage = "Attack"  //temporarily setting attack frame to run-0 until art done
+        this.game.player.stateImage = "Attack"
         this.game.player.animFrame = 0;
         this.game.player.maxFrame = 0;
         this.game.player.image = document.getElementById(this.game.player.character + this.game.player.stateImage + this.game.player.animFrame);
@@ -166,8 +166,8 @@ export class Lose extends State {
         //call constructor for parent class State
         super('LOSE', game);
     }
-    enter() {
-        //will need to change fall image later
+    enter() {   
+        //GAME OVER STATE IS TRIGGERED HERE; THIS IS PROBABLY BEST PLACE TO OUTPUT SCORE TO DATABASE
         this.game.player.stateImage = "Hurt"
         this.game.player.animFrame = 0;
         this.game.player.maxFrame = 0;
@@ -176,8 +176,8 @@ export class Lose extends State {
         this.game.player.loseTimer = 500;
     }
     handleInput(input) {
-        //play a dying animation and when it's over change to game over state
-        if (this.game.player.loseTimer <= 0) { //changes state once player is on ground again
+        //pause for a moment before displaying game over screen
+        if (this.game.player.loseTimer <= 0) {
             this.game.gameOver = true;
         }
     }

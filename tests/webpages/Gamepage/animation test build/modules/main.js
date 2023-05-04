@@ -55,6 +55,8 @@ window.addEventListener("load", function() {
             this.testMode = false;   //set test mode to true; hitboxes will be visible
             this.gameTimer = 0;          //initialize game timer
             this.gameOver = false;
+            this.intro = true;     //indicates whether or not game is in division intro
+            this.introActive = true;    //toggle whether or not game shows division intro
             this.score = 0; //initialize game score
             this.fontColor = 'black';   //color for UI text
             this.player.currentState = this.player.states[0];
@@ -82,6 +84,7 @@ window.addEventListener("load", function() {
                 this.particles.forEach((particle, index) => {
                     particle.update();
                 });
+                //use filter method to remove particles and obstacles that are off screen to avoid image jitter
                 this.particles = this.particles.filter(particle => !particle.offScreen);
                 this.obstacles = this.obstacles.filter(obstacle => !obstacle.offScreen);
                 }
@@ -192,16 +195,27 @@ window.addEventListener("load", function() {
         }
         else {
             //complete setup before hiding game start options and starting game
-            g.scroll = new NumberString(g, inputBar.value, 1);
-            g.player.character = selectedChar;
+            g.scroll = new NumberString(g, inputBar.value, 1);  //sets scrolling number string
+            g.player.character = selectedChar;  //sets player character
+            
+            //gets numbers for database entry
+            let divisor = "";
+            while (divisor <= g.userNum.length) {
+                divisor += "9";
+            }
+            divisor = Number(divisor);
+            console.log(g.userNum.length);
+            console.log(divisor);
+
             numMessage.classList.add("invisible");
             charMessage.classList.add("invisible");
             inputBar.classList.remove("error");
             optContainer.classList.add("hide");
             gameContainer.classList.remove("hide");
+            //call to math animation function here before game start (maybe include an option to turn it off)
             //put any and all prerequisites to game play BEFORE first call to animate() in an event listener (maybe also a start message)
-            g.restart();
-            animate(0);
+                g.restart();
+                animate(0);
         }
         //console.log(inputBar.value);
     });
