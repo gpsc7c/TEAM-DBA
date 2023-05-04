@@ -223,12 +223,11 @@ window.addEventListener("load", function() {
             divisor += "9";
         }
         //setting up user decimal
-        userDecimal = inputBar.value + inputBar.value;
+        userDecimal = "0." + inputBar.value + inputBar.value;
 
-        //these might be an issue for the PHP because js is a nightmare :/
-        divisor = Number(divisor);
-        numerator = Number(inputBar.value);
-        userDecimal = BigInt(userDecimal);
+        //variables for database are in string format because anything else causes rounding errors
+        divisor = divisor;
+        numerator = inputBar.value;
         
         console.log("user input: " + numerator);
         console.log("divisor: " + divisor);
