@@ -1,6 +1,13 @@
 <?php
 session_start();
+include '../Scorepage/scoreDatabaseFunctions.php';
+$ranks = new scoreDatabaseFunctions();
+if ($_SESSION['username'] = NULL){
+    $loggedoutmsg = "You are not currently logged in, your data will not be saved.";
+    echo $loggedoutmessage;
+}
 ?>
+
 <!DOCTYPE html>
 <?php
 include './ScoreServerConnect.php';
@@ -93,26 +100,6 @@ include './ScoreServerConnect.php';
     </div>
 
     <script type= "module" src="modules/main.js"></script>
- <?php /*
- #This is test code for later insertion of data
- $username = 'test';
- $password = 'password';
-
- #this line creates the instruction to be sent
- $sql = "INSERT INTO scoreboard_dba.users VALUES (0,2,$username,$password,2,'001001001');";
- #This line sends the instruction, success line can be changed, and sends the error otherwise
- if ($dbconn->query($sql) === TRUE) {
-     echo "New user entry created successfully";
- } else {
-     echo "Error: " . $sql . "<br>" . $dbconn->error;
- }
- #This id is a line that pulls information
- $sql = "SELECT * FROM  scoreboard_dba.users"
- $dbconn->close();*/
- ?>
-<?php
-#SET @r=0;
-#UPDATE table SET Ranking= @r:= (@r+1) ORDER BY Score DESC;
-?>
+ 
  </body>
 </html>
