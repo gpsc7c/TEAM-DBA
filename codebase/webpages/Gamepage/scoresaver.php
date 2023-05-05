@@ -5,6 +5,7 @@ $ranks = new scoreDatabaseFunctions();
 $userscore = $_COOKIE['userscore'];
 echo $userscore;
 $name = $_SESSION['username'];
+$digits = $_SESSION['digits'];
 
 try{
     $sql = $ranks->setUserScore($ranks->dbconn, "test", $userscore, "0909");
