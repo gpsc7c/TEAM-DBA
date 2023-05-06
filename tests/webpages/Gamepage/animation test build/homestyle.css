@@ -16,16 +16,29 @@
 }
 
 * {
-    margin: 0;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
-    font-size: 18px;
+    scroll-behavior: smooth;
+    /* put the font family in here later */
     font-family: sans-serif;
+    font-size: 18px;
     color: var(--text-main);
+    text-align: center;
 }
 
 body {
     background-color: var(--bg-main);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--text-main);
 }
 
 .navbar {
@@ -90,25 +103,19 @@ body {
 }
 
 button {
-    font-family: 'Press Start 2P', sans-serif;
     color: var(--nav-bg);
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    padding: 0.7rem 1rem;
+    padding: 1rem 2rem;
     border: none;
     outline: none;
     cursor: pointer;
     border-radius: 4px;
     background: var(--btn-main);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     transition: all 0.2s ease;
-}
-
-input {
-    padding: 10px 5px;
-    color: var(--nav-bg);
 }
 
 button:hover {
@@ -116,95 +123,93 @@ button:hover {
     color: var(--text-main);
 }
 
-#canvas1 {
-    border: 5px solid black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 960px;
-    height: 540px;
-    /* cursor: pointer; */
+h1 {
+    font-family: 'Press Start 2P', sans-serif;
 }
 
-.gameImg {
-    display: none;
+.navbar-link:hover {
+    color: var(--text-main);
+    transition: all 0.3s ease;
 }
 
-.popup {
+/* ABOUT */
+.main {
     background-color: var(--bg-main);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 60%;
-    border: 3px black solid;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 10rem 0;
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: top;
     justify-content: center;
-    font-size: 2rem;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-h3 {
-    position: relative;
-    margin-top: 10px;
-}
-
-.character-select {
+    margin: 0 auto;
+    height: 90%;
+    z-index: 1;
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    /* max-width: 1500px; */
+    padding: 0 50px;
+}
+
+.about-content {
+    color: var(--text-main);
+    width: 80%;
+}
+
+.about-content h1 {
+    font-size: 2rem;
+    margin-bottom: 32px;
     text-align: center;
-    justify-content: center;
-    align-items: center;
 }
 
-.characters {
+.about-content h2 {
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.about-content p {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.about-img-container {
+    text-align: center;
+}
+
+.-about-img {
+    margin: 10px;
+    height: 500px;
+    width: 500px;
+    display: flex;
     flex-direction: row;
-}
-
-.char-image {
-    width: 96px;
-    height: 96px;
-    padding: 1px;
-    border: 2px solid midnightblue;
-    flex-direction: row;
-    align-items: center;
     justify-content: center;
-    margin: 5px;
-    cursor: pointer;
 }
 
-.selected {
-    border: 4px solid white;
-}
-
-.num-input {
+.alt-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: 90%;
+    z-index: 1;
+    width: 90%;
+    /* max-width: 1500px; */
+    padding: 0 50px;
 }
 
-#invalid-num, #no-char-selected {  /*styling for error text on game option container*/
-    color: red;
-    font-size: 24px;
+.alt-content {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-main);
+    align-items: center;
+    justify-content: center;
 }
 
-.invisible {
-    visibility: hidden;
+.alt-content h1 {
+    font-size: 3rem;
+    margin-bottom: 32px;
 }
 
-.error {
-    outline: none;
-    border: 2px solid red;
-}
-
-.hide { /*can be toggled on and off; gameImg should NOT be toggled, will be displayed using JS*/
-    display: none;
-}

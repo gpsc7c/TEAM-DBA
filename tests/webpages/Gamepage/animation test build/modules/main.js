@@ -18,6 +18,10 @@ window.addEventListener("load", function() {
     const charBlue = this.document.getElementById("charblue");
     const charVio = this.document.getElementById("charvio");
     let selectedChar = "";  //variable to pass selected character to game
+    //DB variables
+    let divisor = "";
+    let numerator;
+    let userDecimal;
 
     //canvas mode set to 2d
     const ctx = canvas.getContext("2d");
@@ -120,8 +124,9 @@ window.addEventListener("load", function() {
             //hide game container
             gameContainer.classList.add("hide");
 
-            //empty input bar variable in preparation for more input
+            //empty input bar and divisor variables in preparation for more input
             inputBar.value = "";
+            divisor = "";
 
             //pull up game options window again, since it has the first call to animate() shouldn't need to put that in manually?
             optContainer.classList.remove("hide");
@@ -187,25 +192,18 @@ window.addEventListener("load", function() {
     startBtn.addEventListener("click", () => {
         if (selectedChar == "") {
             charMessage.classList.remove("invisible");
+            return; //prevents game from firing any other code from this event listener until all options are selected
         }
         else if (inputBar.value < 1 || inputBar.value > 999999999 || inputBar.value == "") {
             //invalid input, reveals error messaging, will not allow game start
             numMessage.classList.remove("invisible");
             inputBar.classList.add("error");
+            return; //prevents game from firing any other code from this event listener until all options are selected
         }
         else {
             //complete setup before hiding game start options and starting game
             g.scroll = new NumberString(g, inputBar.value, 1);  //sets scrolling number string
             g.player.character = selectedChar;  //sets player character
-            
-            //gets numbers for database entry
-            let divisor = "";
-            while (divisor <= g.userNum.length) {
-                divisor += "9";
-            }
-            divisor = Number(divisor);
-            console.log(g.userNum.length);
-            console.log(divisor);
 
             numMessage.classList.add("invisible");
             charMessage.classList.add("invisible");
@@ -218,8 +216,21 @@ window.addEventListener("load", function() {
                 animate(0);
         }
         //console.log(inputBar.value);
+
+        //gets numbers for database entry
+        while (divisor.length < inputBar.value.length) {
+            divisor += "9";
+        }
+        //setting up user decimal
+        userDecimal = "0." + inputBar.value + inputBar.value;
+
+        //variables for database are in string format because anything else causes rounding errors
+        divisor = divisor;
+        numerator = inputBar.value;
+        
+        console.log("user input: " + numerator);
+        console.log("divisor: " + divisor);
+        console.log("decimal: " + userDecimal);
+
     });
-
-
-    
 });
