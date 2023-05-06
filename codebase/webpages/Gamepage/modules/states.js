@@ -1,4 +1,7 @@
 import { Dust, Burst } from './effects.js';
+var script = document.createElement('script');
+script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'; // Check https://jquery.com/ for the current version
+document.getElementsByTagName('head')[0].appendChild(script);
 
 //enum to track player states for readability and better control of spritesheet animation
 const playerStates = {
@@ -169,6 +172,15 @@ export class Lose extends State {
     enter() {   
         //GAME OVER STATE IS TRIGGERED HERE; THIS IS PROBABLY BEST PLACE TO OUTPUT SCORE TO DATABASE
         console.log(this.game.score);
+        
+        $.ajax({
+        type:"POST",
+        data:{"score": this.game.score},
+        url:'./scoresaver.php', 
+        success: function (scoresuccess) {
+             console.log("successful score update");
+        }
+      });
         
         this.game.player.stateImage = "Hurt"
         this.game.player.animFrame = 0;

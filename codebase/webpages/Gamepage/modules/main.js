@@ -3,11 +3,15 @@ import { InputHandler } from './input.js';
 import { Background, NumberString } from './background.js';
 import { JumpObstacle, DuckObstacle, AttackObstacle } from './obstacle.js';
 import { UI } from './UI.js';
+var script = document.createElement('script');
+script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'; // Check https://jquery.com/ for the current version
+document.getElementsByTagName('head')[0].appendChild(script);
 
 
 //waits for webpage to fully load before executing function
 window.addEventListener("load", function() {
     //get HTML page elements
+    
     const gameContainer = document.getElementById("canvas-container");
     const optContainer = this.document.getElementById("start-container");
     const canvas = document.getElementById("canvas1");
@@ -23,6 +27,7 @@ window.addEventListener("load", function() {
     let divisor = "";
     let numerator;
     let userDecimal;
+    
 
     //canvas mode set to 2d
     const ctx = canvas.getContext("2d");
@@ -41,6 +46,7 @@ window.addEventListener("load", function() {
     //GAME CLASS: instantiates objects required for game to function
     class Game {
         constructor(width, height) {
+            
             this.width = width;
             this.height = height;
             this.speed = 3; //set initial game speed
@@ -232,6 +238,16 @@ window.addEventListener("load", function() {
         console.log("user input: " + numerator);
         console.log("divisor: " + divisor);
         console.log("decimal: " + userDecimal);
+        
+        
+        $.ajax({
+        type:"POST",
+        data:{"divisor": divisor, "decimal": userDecimal, "userInput": numerator},
+        url:'./fracsaver.php', 
+        success: function (timesgenned) {
+             console.log("success");
+        }
+      });
 
     });
 });

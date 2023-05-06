@@ -45,26 +45,29 @@ $ranks = new scoreDatabaseFunctions();
             </thead>
             <tbody id = "scoreboard">
             <?php
-            try{
-            $loggedranking = $ranks->userRankingTable("test");
-            if (is_string($loggedranking)){
-                echo $loggedranking;
-            }
-            else if (is_null($loggedranking)){
-                echo "irrecoverable error";
-            }
-            else if ($loggedranking->num_rows > 0) {
-                // output data of each row
-                $i = 1;
-                // do not swap the order of the checks in the while statement
-                while($i <= 100 && $row = mysqli_fetch_array($loggedranking)) {
-                    echo "<tr><td>".$row["score_rank"]."</td><td>".$row["user_name"]."</td><td>".$row["user_score"]."</td><td>".$row["digits"]."</td></tr>";
-                    $i++;
+            if (isset($_SESSION["username"])){
+                try{
+                    $loggedranking = $ranks->userRankingTable($_SESSION["username"]);
+                    if (is_string($loggedranking)){
+                        echo $loggedranking;
+                    }
+                    else if (is_null($loggedranking)){
+                        echo "irrecoverable error";
+                    }
+                    else if ($loggedranking->num_rows > 0) {
+                        // output data of each row
+                        $i = 1;
+                        // do not swap the order of the checks in the while statement
+                        while($i <= 100 && $row = mysqli_fetch_array($loggedranking)) {
+                            echo "<tr><td>".$row["score_rank"]."</td><td>".$row["user_name"]."</td><td>".$row["user_score"]."</td><td>".$row["digits"]."</td></tr>";
+                            $i++;
+                        }
+                    } else {echo "user does not exist";}
+                } catch(mysqli_sql_exception $e){
+                   echo $e;
                 }
-            } else {echo "user does not exist";}
-            } catch(mysqli_sql_exception $e){
-               echo $e;
             }
+            else{echo "<tr><td>user is not logged in</td></tr>";}
             ?>
             </tbody>
         </table>

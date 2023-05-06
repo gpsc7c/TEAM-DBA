@@ -2,16 +2,8 @@
 session_start();
 include '../Scorepage/scoreDatabaseFunctions.php';
 $ranks = new scoreDatabaseFunctions();
-$servername ="127.0.0.1";
-$username = "fractio3_user";
-$password = "edcvfr43edcvfr4";
-$dbname = "fractio3_dba";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-if($conn->connect_error){
-	die("connection failed");
-}
 
 $name = $_POST["name"];
 $pass = $_POST["password"];

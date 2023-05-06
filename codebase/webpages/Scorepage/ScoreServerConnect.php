@@ -1,10 +1,6 @@
 <?php
 //This sets the connection up, also has the password included
 $servername = "127.0.0.1";
-////////////////////REMOVE THISv
-#$sqlusername = "root";
-#$sqlpassword = "VfX!565WW!t552";
-////////////////////REMOVE THIS^
 $sqlusername = "siteuser";
 $sqlpassword = "edcvfr43edcvfr4";
 $dbname = "scoreboard_dba";

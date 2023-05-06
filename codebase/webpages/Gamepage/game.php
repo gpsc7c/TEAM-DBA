@@ -2,16 +2,14 @@
 session_start();
 include '../Scorepage/scoreDatabaseFunctions.php';
 $ranks = new scoreDatabaseFunctions();
-if ($_SESSION['username'] = NULL){
+if (!isset($_SESSION['username'])){
     $loggedoutmsg = "You are not currently logged in, your data will not be saved.";
-    echo $loggedoutmessage;
-}
+    echo $loggedoutmsg;
+}else{echo "logged in";}
 ?>
 
 <!DOCTYPE html>
-<?php
-include './ScoreServerConnect.php';
-?>
+
 <html lang="en">
  <head>
     <meta charset="UTF-8" />
@@ -19,6 +17,7 @@ include './ScoreServerConnect.php';
     <title>Document</title>
     <link rel="stylesheet" href="gamestyles.css" />
 </head>
+
  <body>
     <!-- HTML canvas element -->
     <div id="canvas-container" class="game-container hide">
