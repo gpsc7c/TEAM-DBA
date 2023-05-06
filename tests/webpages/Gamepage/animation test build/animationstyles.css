@@ -13,6 +13,7 @@
     --btn-main: #809b4c;
     --accent: #449489;
     --link-aft: #285763;
+    --errortxt: red;
 }
 
 * {
@@ -89,6 +90,11 @@ body {
     transition: all 0.3s ease;
 }
 
+.navbar-link:hover {
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
 button {
     font-family: 'Press Start 2P', sans-serif;
     color: var(--nav-bg);
@@ -96,19 +102,24 @@ button {
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    padding: 0.7rem 1rem;
+    padding: 1.5rem 1.5rem;
     border: none;
     outline: none;
     cursor: pointer;
     border-radius: 4px;
     background: var(--btn-main);
-    font-size: 1.3rem;
-    transition: all 0.2s ease;
+    font-size: 2rem;
+    transition: all 0.3s ease;
 }
 
 input {
-    padding: 10px 5px;
+    font-size: 1.5rem;
+    width: 60%;
+    padding: 12px 10px;
     color: var(--nav-bg);
+    border: none;
+    outline: none;
+    border-radius: 10px;
 }
 
 button:hover {
@@ -117,7 +128,7 @@ button:hover {
 }
 
 #canvas1 {
-    border: 5px solid black;
+    border: 5px solid var(--nav-bg);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -137,22 +148,23 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
+    width: 80%;
     height: 60%;
-    border: 3px black solid;
+    border: 3px var(--nav-bg) solid;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 h3 {
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 1.5rem;
     position: relative;
-    margin-top: 10px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .character-select {
@@ -165,14 +177,19 @@ h3 {
 }
 
 .characters {
+    display: flex;
     flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .char-image {
     width: 96px;
     height: 96px;
     padding: 1px;
-    border: 2px solid midnightblue;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -181,7 +198,8 @@ h3 {
 }
 
 .selected {
-    border: 4px solid white;
+    border: 4px solid var(--text-main);
+    border-radius: 4px;
 }
 
 .num-input {
@@ -192,8 +210,9 @@ h3 {
 }
 
 #invalid-num, #no-char-selected {  /*styling for error text on game option container*/
-    color: red;
-    font-size: 24px;
+    color: var(--errortxt);
+    font-size: 1.3rem;
+    margin: 10px 0;
 }
 
 .invisible {
@@ -202,7 +221,8 @@ h3 {
 
 .error {
     outline: none;
-    border: 2px solid red;
+    border: 2px solid var(--errortxt);
+    border-radius: 4px;
 }
 
 .hide { /*can be toggled on and off; gameImg should NOT be toggled, will be displayed using JS*/

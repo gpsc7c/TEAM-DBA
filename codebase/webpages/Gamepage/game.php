@@ -19,6 +19,43 @@ if (!isset($_SESSION['username'])){
 </head>
 
  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- home button/logo -->
+            <a href="./mainpage.html" id="home-button">Fraction Runner</a>
+
+            <!-- other navbar items -->
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <!-- SESSION USAGE -->
+                    <!-- line below displays username, put it in the navbar -->
+                    <p><?php
+                    if (isset($_SESSION["username"])){
+                      echo 'Hello, '; echo $_SESSION['username'];
+                    }
+                    ?></p>
+                </li>
+                <li class="navbar-item">
+                    <?php
+                    if (isset($_SESSION["username"])){
+                        echo '<a class="navbar-link" href="./GameLogin/signout.php">Account</a>';
+                    }
+                    else{
+                        echo '<a class="navbar-link" href="./GameLogin/signlog.php">Log In</a>';
+                    }
+                ?>
+                </li>
+                <li class="navbar-item">
+                    <a class="navbar-link" href="./Gamepage/game.php">Play</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="navbar-link" href="./Scorepage/ScorePage.php">Scoreboard</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
     <!-- HTML canvas element -->
     <div id="canvas-container" class="game-container hide">
         <canvas id="canvas1"></canvas>

@@ -20,19 +20,27 @@
                 <li class="navbar-item">
                     <!-- SESSION USAGE -->
                     <!-- line below displays username, put it in the navbar -->
-                    <?php echo $_SESSION['username'];?></p>
+                    <p><?php
+                    if (isset($_SESSION["username"])){
+                      echo 'Hello, '; echo $_SESSION['username'];
+                    }
+                    ?></p>
                 </li>
                 <li class="navbar-item">
-                    <a href="#about" class="navbar-link" id="about-section">About</a>
-                </li>
-                <li class="navbar-item"> <!-- this is where we put the php statement for login signup; update the link too -->
-                    <a href="#signlog" class="navbar-link" id="login-section">Login or Sign Up</a>
-                </li>
-                <li class="navbar-item"> <!-- already on this page, change the button to something else or remove-->
-                    <a href="#play" class="navbar-link" id="play-section">Play</a>
+                    <?php
+                    if (isset($_SESSION["username"])){
+                        echo '<a class="navbar-link" href="./GameLogin/signout.php">Account</a>';
+                    }
+                    else{
+                        echo '<a class="navbar-link" href="./GameLogin/signlog.php">Log In</a>';
+                    }
+                ?>
                 </li>
                 <li class="navbar-item">
-                    <a href="#scoreboard" class="navbar-link" id="scoreboard-section">Scoreboard</a>
+                    <a class="navbar-link" href="./Gamepage/game.php">Play</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="navbar-link" href="./Scorepage/ScorePage.php">Scoreboard</a>
                 </li>
             </ul>
         </div>
@@ -103,16 +111,13 @@
                 <img class="char-image" src="../img/charv-static-0.png" id="charvio">
             </div>
             <p id="no-char-selected" class="invisible">Please select your character.</p>
-        </br>
         </div>
-    </br>
         <div class="num-input">
             <label for="rep-digits" class="num-input">
                 <h3>Input your repeating digits:</h3>
             </label>
                 <input type="number" name="rep-digits" id="user-num" class="user-num-input">
                 <p id="invalid-num" class="invisible">Please enter a nonzero number with 1 to 9 digits.</p>
-        </br>
                 <button id="game-start">START GAME</button>
         </div>
     </div>

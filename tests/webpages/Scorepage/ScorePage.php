@@ -15,9 +15,35 @@ $ranks = new scoreDatabaseFunctions();
 
     <script><!--Javascript hole goes here--></script>
     <body>
-        <header>
-            <h1>FRACTION RUNNER</h1>
-        </header>
+        <!-- NAVBAR -->
+        <nav class="navbar">
+        <div class="navbar-container">
+            <!-- home button/logo -->
+            <a href="./mainpage.html" id="home-button">Fraction Runner</a>
+
+            <!-- other navbar items -->
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <!-- SESSION USAGE -->
+                    <!-- line below displays username, put it in the navbar -->
+                    <?php echo $_SESSION['username'];?></p>
+                </li>
+                <li class="navbar-item">
+                    <a href="#about" class="navbar-link" id="about-section">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#signlog" class="navbar-link" id="login-section">Login or Sign Up</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#play" class="navbar-link" id="play-section">Play</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#scoreboard" class="navbar-link" id="scoreboard-section">Scoreboard</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
         <div>
             <a href="../index.php"><button>Front Page</button></a>
         </div>

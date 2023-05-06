@@ -13,6 +13,7 @@
     --btn-main: #809b4c;
     --accent: #449489;
     --link-aft: #285763;
+    --errortxt: red;
 }
 
 * {
@@ -61,7 +62,7 @@ a:hover {
     z-index: 1;
     width: 100%;
     margin: 0 auto;
-    padding: 0 50px;
+    padding: 0 20px;
 }
 
 #home-button {  /*add text shadow later*/
@@ -78,28 +79,35 @@ a:hover {
     align-items: center;
     cursor: pointer;
     text-decoration: none;
-    font-size: 2.2rem;
+    font-size: 1.4rem;
+    width: 200px;
 }
 
 .navbar-menu {
+    width: 40%;
     display: flex;
     align-items: center;
     list-style: none;
+    justify-content: space-evenly;
 }
 
-.nav-bar-item {
-    width: 100%;
+.navbar-item {
+    display: flex;
+    width: 100px;
+    font-size: 1rem;
+    margin: 0 10px;
+    justify-content: space-evenly;
 }
 
 .navbar-link {
     color: var(--accent);
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 150px;
+    justify-content: space-evenly;
     text-decoration: none;
     height: 100%;
     transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
 button {
