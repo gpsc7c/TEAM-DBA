@@ -50,8 +50,6 @@ class scoreDatabaseFunctions
     }
     //function to make ranking table for current singular user
     function userRankingTable(string $rankedusername){
-        
-    
         return mysqli_query($this->dbconn, "SELECT * from 
                 (SELECT users.user_name, users.user_score, users.digits, count(t2.user_name) score_rank
                 FROM users
@@ -126,14 +124,17 @@ class scoreDatabaseFunctions
         }
         $digitsChecker = mysqli_query($dbconn, "SELECT * FROM fractio3_dba.fractions WHERE digits = ('$newDigits')");
         if($digitsChecker->num_rows > 0){
-            return "Digits already exist";
             $incrementor = mysqli_query($dbconn, "UPDATE fractio3_dba.fractions 
                 SET times_generated = (times_generated + 1)
-                WHERE user_name = ('$digits');");
+                WHERE digits = ('$newDigits');");
+            $returnTimesGenerated = mysqli_query($dbconn, "SELECT fractions.times_generated fractio3_dba.fractions 
+                WHERE digits = ('$newDigits');");
+            $row = mysqli_fetch_array($returnTimesGenerated);
+            return (int)($row["times_generated"]-1);
         }
         else{
-            $newDigits = mysqli_query($dbconn, "INSERT INTO fractio3_dba.fractions VALUES (('$newDigits'), 0, $newFrac, $newDivisor)");
-            return "Successful new digits insertion";
+            $newDigits = mysqli_query($dbconn, "INSERT INTO fractio3_dba.fractions VALUES (('$newDigits'), 1, $newFrac, $newDivisor)");
+            return "0";
         }
     }
     
