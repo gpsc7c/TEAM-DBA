@@ -127,7 +127,7 @@ class scoreDatabaseFunctions
             $incrementor = mysqli_query($dbconn, "UPDATE fractio3_dba.fractions 
                 SET times_generated = (times_generated + 1)
                 WHERE digits = ('$newDigits');");
-            $returnTimesGenerated = mysqli_query($dbconn, "SELECT fractions.times_generated fractio3_dba.fractions 
+            $returnTimesGenerated = mysqli_query($dbconn, "SELECT fractions.times_generated FROM fractio3_dba.fractions 
                 WHERE digits = ('$newDigits');");
             $row = mysqli_fetch_array($returnTimesGenerated);
             return (int)($row["times_generated"]-1);

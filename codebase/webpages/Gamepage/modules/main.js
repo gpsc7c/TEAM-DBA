@@ -27,6 +27,7 @@ window.addEventListener("load", function() {
     let divisor = "";
     let numerator;
     let userDecimal;
+    let timesnumgenned = "";
     
 
     //canvas mode set to 2d
@@ -201,7 +202,7 @@ window.addEventListener("load", function() {
             charMessage.classList.remove("invisible");
             return; //prevents game from firing any other code from this event listener until all options are selected
         }
-        else if (inputBar.value < 0 || inputBar.value > 999999999 || inputBar.value == "") {
+        else if (inputBar.value < 1 || inputBar.value > 999999999 || inputBar.value == "") {
             //invalid input, reveals error messaging, will not allow game start
             numMessage.classList.remove("invisible");
             inputBar.classList.add("error");
@@ -239,13 +240,16 @@ window.addEventListener("load", function() {
         console.log("divisor: " + divisor);
         console.log("decimal: " + userDecimal);
         
-        
+        //sends data to the database, returns amount of times the number was previously generated.
         $.ajax({
         type:"POST",
         data:{"divisor": divisor, "decimal": userDecimal, "userInput": numerator},
         url:'./fracsaver.php', 
         success: function (timesgenned) {
              console.log("success");
+             timesnumgenned = timesgenned;
+             console.log(timesnumgenned)
+             //USE TIMESNUMGENNED TO FILL PLACEHOLDER FOR TIMES NUMBER PREVIOUSLY GENERATED
         }
       });
 
