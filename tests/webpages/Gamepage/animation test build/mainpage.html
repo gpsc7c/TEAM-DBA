@@ -40,9 +40,29 @@
         <div class="main-container">
             <div class="about-content">
                 <h1>WHAT IS FRACTION RUNNER?</h1>
-                <h2>Let's learn about math and have some fun!</h2>
-                <p>Here you can learn about the concept of our game and also watch a video to see how it works. We have included some static images as well as an animated gif to give you a better idea of what the game is like. If you're interested in playing, click the button below to start the game. And if you want to see the extended scoreboard, click the other button.</p>
-                <a href=https://www.youtube.com/watch?v=daro6K6mym8>Watch video</a>
+                <h2>Did you know?</h2>
+                <p>If you divide any number by the same number of 9s...</p>
+                <!-- <a href=https://www.youtube.com/watch?v=daro6K6mym8>Watch video</a> -->
+                <div class="about-img-container">
+                    <img class="concept-gif" src="./division1.gif" alt="123/999">
+                </div>
+                <p>You'll get a repeating decimal with the same digits as the numerator!</p>
+                <div class="about-img-container">
+                    <img class="concept-gif" src="./division2.gif" alt="21693/99999">
+                </div>
+                <p>
+                    Fraction Runner is an endless runner game based on this mathematical idea. Select your character, input a series of up to 9 digits, and increase your score by avoiding obstacles as they approach!
+                </p>
+                <div class="about-img-container">
+                    <img class="concept-img" src="./game-options.png" alt="Character select and number input options">
+                </div>
+                <!-- put the youtube link on the word "here" in a tag that opens new tab -->
+                <p>If you're interested in learning more about the math behind Fraction Runner and the link between the number 9 and recurring decimals, click here to watch a video on the topic.
+                </p>
+                <!-- add a tag to scroll to controls and one for login/scoreboard sections -->
+                <p>If you're itching to jump in, scroll to our controls section to learn how to play!</p>
+                <!-- add a tag to scroll to login/scoreboard section -->
+                <p>Interested in the scoreboard? Scroll down to learn how to get your name at the top of the rankings!</p>
             </div>
             <div class="about-img-container">
                 <img class="-about-img" src="static_image_1.jpg" alt="Static Image 1">
@@ -54,10 +74,10 @@
     </div>
 
     <!-- CONTROLS SECTION -->
-      <div class="main" id="signlog">
+      <div class="main" id="controls">
         <div class="alt-container">
             <div class="alt-content">
-                <h1>Log In or Sign Up</h1>
+                <h1>CONTROLS</h1>
                 <?php
                     if (isset($_SESSION["username"])){
                         echo '<a href="./GameLogin/signout.php"><button>Account Maintenance and Log Out</button></a>';
@@ -70,22 +90,11 @@
         </div>
       </div>
 
-      <!-- GET STARTED SECTION -->
-      <!-- some info about the game, scores only saved when user is logged in, etc -->
-      <div class="main" id="play">
+      <!-- LOGIN/SCOREBOARD SECTION -->
+      <div class="main" id="log-and-score">
         <div class="alt-container">
             <div class="alt-content">
-                <h1>Start Playing!</h1>
-                <a href="./Gamepage/game.php"><button>Play</button></a>
-            </div>
-        </div>
-      </div>
-
-      <!-- SCOREBOARD SECTION -->
-      <div class="main" id="scoreboard">
-        <div class="alt-container">
-            <div class="alt-content">
-                <h1>What's Your Rank?</h1>
+                <h1>WANNA SEE HOW YOU RANK?</h1>
                 <a href="./Scorepage/ScorePage.php"><button>Scoreboard</button></a>
             </div>
         </div>
