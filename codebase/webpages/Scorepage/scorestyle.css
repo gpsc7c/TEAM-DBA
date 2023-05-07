@@ -1,7 +1,118 @@
-body{
-    background-color: lightgrey;
-    color: blue;
-    font-family: Calibri;
+/* COLOR PALETTE */
+/* BG: 131313*/
+/* NAVBAR: 000000*/
+/* TEXT: fff4e0*/
+/* BUTTONS: 809b4c*/
+/* ACCENTS/LINK: 449489*/
+/* LINK AFTER: 285763 */
+
+:root {
+    --bg-main: #131313;
+    --bg-main-2: #303030;
+    --nav-bg: #000000;
+    --text-main: #fff4e0;
+    --btn-main: #809b4c;
+    --accent: #449489;
+    --link-aft: #285763;
+    --errortxt: red;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-size: 18px;
+    color: var(--text-main);
+    text-align: center;
+}
+
+body {
+    background-color: var(--bg-main);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--text-main);
+}
+
+.navbar {
+    background: var(--nav-bg);
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    /* z index high so that it is always visible */
+    z-index: 999;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    height: 90px;
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#home-button {  /*add text shadow later*/
+    font-family: 'Press Start 2P', sans-serif;
+    background-color: var(--btn-main);
+    background-image: linear-gradient(to bottom, var(--text-main) 0%, var(--bg-main) 100%);
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.4rem;
+    width: 200px;
+}
+
+.navbar-menu {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: space-evenly;
+}
+
+.navbar-item {
+    display: flex;
+    width: 100px;
+    font-size: 1rem;
+    margin: 0 10px;
+    justify-content: space-evenly;
+}
+
+.navbar-link {
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-decoration: none;
+    height: 100%;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.navbar-link:hover {
+    color: var(--text-main);
+    transition: all 0.3s ease;
 }
 
 .container {
@@ -10,8 +121,10 @@ body{
     padding: 20px;
 }
 
-h1{
-    text-align: center;
+.user-score-container, .all-scores-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .scoretable {
@@ -20,13 +133,23 @@ h1{
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
+    display: grid;
+    border: none;
+}
+
+#table-title1, #table-title2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* column-span: all; */
 }
 
 .scoretable thead tr {
-    background-color: Grey;
-    color: #ffffff;
+    background-color: var(--nav-bg);
+    color: var(--text-main);
     text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .scoretable th, html .scoretable td {
@@ -34,19 +157,21 @@ h1{
 }
 
 .scoretable tbody tr {
-    border-bottom: 1px solid midnightblue;
+    /* border-bottom: 1px solid midnightblue; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .scoretable tbody tr:nth-of-type(even) {
-    background-color: silver;
+    background-color: var(--bg-main);
 }
 
 .scoretable tbody tr:nth-of-type(odd) {
-    background-color: darkgrey;
+    background-color: var(--bg-main-2);
 }
 
 .scoretable tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid var(--link-aft);
 }
 
 button {
@@ -61,4 +186,8 @@ button {
 
 button:hover {
     background-color: darkgreen;
+}
+
+footer p {
+    font-size: 0.8rem;
 }

@@ -2,10 +2,10 @@
 session_start();
 include '../Scorepage/scoreDatabaseFunctions.php';
 $ranks = new scoreDatabaseFunctions();
-if (!isset($_SESSION['username'])){
-    $loggedoutmsg = "You are not currently logged in, your data will not be saved.";
-    echo $loggedoutmsg;
-}else{echo "logged in";}
+// if (!isset($_SESSION['username'])){
+//     $loggedoutmsg = "You are not currently logged in, your data will not be saved.";
+//     echo $loggedoutmsg;
+// }else{echo "logged in";}
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,8 @@ if (!isset($_SESSION['username'])){
  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="gamestyles.css" />
 </head>
 
@@ -23,7 +24,7 @@ if (!isset($_SESSION['username'])){
     <nav class="navbar">
         <div class="navbar-container">
             <!-- home button/logo -->
-            <a href="./mainpage.html" id="home-button">Fraction Runner</a>
+            <a href="../index.php" id="home-button">Fraction Runner</a>
 
             <!-- other navbar items -->
             <ul class="navbar-menu">
@@ -39,23 +40,23 @@ if (!isset($_SESSION['username'])){
                 <li class="navbar-item">
                     <?php
                     if (isset($_SESSION["username"])){
-                        echo '<a class="navbar-link" href="./GameLogin/signout.php">Account</a>';
+                        echo '<a class="navbar-link" href="../GameLogin/signout.php">Account</a>';
                     }
                     else{
-                        echo '<a class="navbar-link" href="./GameLogin/signlog.php">Log In</a>';
+                        echo '<a class="navbar-link" href="../GameLogin/signlog.php">Log In</a>';
                     }
                 ?>
                 </li>
                 <li class="navbar-item">
-                    <a class="navbar-link" href="./Gamepage/game.php">Play</a>
+                    <a class="navbar-link" href="../Gamepage/game.php">Play</a>
                 </li>
                 <li class="navbar-item">
-                    <a class="navbar-link" href="./Scorepage/ScorePage.php">Scoreboard</a>
+                    <a class="navbar-link" href="../Scorepage/ScorePage.php">Scoreboard</a>
                 </li>
             </ul>
         </div>
     </nav>
-    
+
     <!-- HTML canvas element -->
     <div id="canvas-container" class="game-container hide">
         <canvas id="canvas1"></canvas>
@@ -121,16 +122,13 @@ if (!isset($_SESSION['username'])){
                 <img class="char-image" src="./img/charv-static-0.png" id="charvio">
             </div>
             <p id="no-char-selected" class="invisible">Please select your character.</p>
-        </br>
         </div>
-    </br>
         <div class="num-input">
-            <label for="rep-digits" class="num-input">
+            <label for="rep-digits">
                 <h3>Input your repeating digits:</h3>
             </label>
                 <input type="number" name="rep-digits" id="user-num" class="user-num-input">
                 <p id="invalid-num" class="invisible">Please enter a nonzero number with 1 to 9 digits.</p>
-        </br>
                 <button id="game-start">START GAME</button>
         </div>
     </div>
