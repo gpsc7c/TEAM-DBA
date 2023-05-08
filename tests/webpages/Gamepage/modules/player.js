@@ -11,7 +11,7 @@
         this.x = 100; //screen position x
         this.y = this.ground; //sets current y to ground
         this.velY = 0; //velocity for jump
-        this.gravity = 1.1; //counterbalance to velY variable; will allow character to fall after reaching peak of jump
+        this.gravity = 0.8; //counterbalance to velY variable; will allow character to fall after reaching peak of jump
         //add in spritesheet info here
         this.stateImage = "Stationary";
         this.animFrame = 0; //tracks current frame in sprite animation

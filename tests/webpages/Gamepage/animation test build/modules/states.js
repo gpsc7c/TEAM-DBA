@@ -74,7 +74,7 @@ export class Jumping extends State {
     enter() {
         //will need to change jump image later
         if (this.game.player.grounded())
-            this.game.player.velY -= 23;
+            this.game.player.velY -= 21.5;
         this.game.player.stateImage = "Jump"
         this.game.player.animFrame = 0;
         this.game.player.maxFrame = 0;

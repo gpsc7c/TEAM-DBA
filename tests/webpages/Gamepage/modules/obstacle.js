@@ -28,7 +28,7 @@ class Obstacle {
         }
     }
     draw(context) {
-        context.fillStyle = 'red';
+        //context.fillStyle = 'red';
         //context.fillRect(this.x, this.y, this.width, this.height);
         //context.drawImage(this.image, this.x, this.y)
     }
@@ -38,19 +38,20 @@ export class JumpObstacle extends Obstacle {
     constructor(game) {
         super();
         this.game = game;
-        this.width = 60; //will need to be updated based on final sprite size
-        this.height = 60;
+        this.width = 88; //will need to be updated based on final sprite size
+        this.height = 36;
         this.x = this.game.width;
         this.y = this.game.height - this.height - this.game.groundHeight;
-        //this.image = document.getElementByID('filename'); //when we are ready to pass in images for ground obstacles
+        this.image = document.getElementById("jumpObs"); 
         this.speedX = this.game.speed;
         this.speedY = 0;
         //this.maxFrame = 0; //in case this obstacle is animated
+        console.log(this.image);
     }
     draw(context) {
-        super.draw(context);
-        context.fillStyle = 'red';
-        context.fillRect(this.x, this.y, this.width, this.height);
+        //super.draw(context);
+        //context.fillStyle = 'red';
+        context.drawImage(this.image, this.x, this.y);
     }
 }
 

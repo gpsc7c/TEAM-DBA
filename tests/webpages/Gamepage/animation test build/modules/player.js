@@ -18,7 +18,7 @@
         this.duckYOffset = 20;
         this.jumpYOffset = -5;
         this.velY = 0; //velocity for jump
-        this.gravity = 1.1; //counterbalance to velY variable; will allow character to fall after reaching peak of jump
+        this.gravity = 0.92; //counterbalance to velY variable; will allow character to fall after reaching peak of jump
         //add in spritesheet info here
         this.character = character;
         this.stateImage = "Static";
