@@ -79,18 +79,19 @@
     </div>
 
     <!-- CONTROLS SECTION -->
-      <div class="main" id="controls">
+    <div class="main" id="controls">
         <div class="alt-container">
             <div class="alt-content">
                 <h1>CONTROLS</h1>
-                <?php
-                    if (isset($_SESSION["username"])){
-                        echo '<a href="./GameLogin/signout.php"><button>Account Maintenance and Log Out</button></a>';
-                    }
-                    else{
-                        echo '<a href="./GameLogin/signlog.php"><button>Log In and Sign Up</button></a>';
-                    }
-                ?>
+                <div class="about-img-container">
+                    <img src="./controls demo.gif" alt="Demonstration of game controls" class="controls-gif">
+                </div>
+                <p>
+                    The controls in Fraction Runner are simple. Press the Up Arrow key to jump over red obstacles, press the Down Arrow key to duck under blue obstacles, and press the Enter key to destroy green obstacles.
+                </p>
+                <p>
+                    Press the Space key during gameplay to pause or to restart the game after a game over.
+                </p>
             </div>
         </div>
       </div>
@@ -99,8 +100,17 @@
       <div class="main" id="log-and-score">
         <div class="alt-container">
             <div class="alt-content">
-                <h1>WANNA SEE HOW YOU RANK?</h1>
-                <a href="./Scorepage/ScorePage.php"><button>Scoreboard</button></a>
+                <h1>HOW DO YOU RANK?</h1>
+                <p>
+                    Want to see if your name is at the top of the scoreboard? Just trying to keep track of your personal best score? Start by creating an account!
+                </p>
+                <p>
+                    Fraction Runner can be played without creating an account or signing in, but your scores will not be saved.
+                </p>
+                <p>
+                    Check out the rankings <a href="./Scorepage/ScorePage.php">here</a>.
+                </p>
+                <!-- </p> <a href="./Scorepage/ScorePage.php"><button>Scoreboard</button></a> -->
             </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 export class UI {
     constructor(game) {
         this.game = game;
-        this.fontSize = 30;
+        this.fontSize = 40;
         this.fontFamily = 'Courier New';
     }
     draw(context) {
@@ -11,8 +11,8 @@ export class UI {
         //score text
         context.fillText('Score: ' + this.game.score, 20, 40);
         //number of players who generated same number string
-        context.font = this.fontSize * 0.75 + 'px ' + this.fontFamily;
-        context.fillText('Players have generated your number string ' + 'placeholder' + ' times', 20, 70);  //placeholder is where actual # will go
+        // context.font = this.fontSize * 0.75 + 'px ' + this.fontFamily;
+        // context.fillText('Players have generated your number string ' + 'placeholder' + ' times', 20, 70);  //placeholder is where actual # will go
         //timer text
         // context.font = this.fontSize * 0.9 + 'px ' + this.fontFamily;
         // context.fillText('Time: ' + (this.game.gameTimer/1000).toFixed(1), 20, 90);
