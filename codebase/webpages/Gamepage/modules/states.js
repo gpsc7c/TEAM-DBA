@@ -168,6 +168,16 @@ export class Lose extends State {
     }
     enter() {   
         //GAME OVER STATE IS TRIGGERED HERE; THIS IS PROBABLY BEST PLACE TO OUTPUT SCORE TO DATABASE
+        console.log(this.game.score);
+        
+        $.ajax({
+        type:"POST",
+        data:{"score": this.game.score},
+        url:'./scoresaver.php', 
+        success: function (scoresuccess) {
+             console.log("successful score update");
+        }
+      });
         this.game.player.stateImage = "Hurt"
         this.game.player.animFrame = 0;
         this.game.player.maxFrame = 0;

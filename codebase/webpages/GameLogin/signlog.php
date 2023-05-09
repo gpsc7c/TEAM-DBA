@@ -8,11 +8,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SignUp and Login</title>
+	<title>Sign Up and Login</title>
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+
+	<!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- home button/logo -->
+            <a href="../index.php" id="home-button">Fraction Runner</a>
+
+            <!-- other navbar items -->
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <!-- SESSION USAGE -->
+                    <!-- line below displays username, put it in the navbar -->
+                    <p id="user-greet"><?php
+                    if (isset($_SESSION["username"])){
+                      echo 'Hello, '; echo $_SESSION['username'];
+                    }
+                    ?></p>
+                </li>
+                <li class="navbar-item">
+                    <?php
+                    if (isset($_SESSION["username"])){
+                        echo '<a class="navbar-link" href="../GameLogin/signout.php">Account</a>';
+                    }
+                    else{
+                        echo '<a class="navbar-link" href="../GameLogin/signlog.php">Log In</a>';
+                    }
+                ?>
+                </li>
+                <li class="navbar-item">
+                    <a class="navbar-link" href="../Gamepage/game.php">Play</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="navbar-link" href="../Scorepage/ScorePage.php">Scoreboard</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
 
 <div class="container" id="container">
 <div class="form-container sign-up-container">
@@ -27,7 +66,6 @@
 <div class="form-container sign-in-container">
 	<form action="./signin.php" method="post">
 		<h1>Sign In</h1>
-	<span>or use your account</span>
 	<input type="text" name="name" placeholder="Username">
 	<input type="password" name="password" placeholder="Password">
 	<!-- Cut because we do not have high enough level encryption to take email addresses <a href="#">Forgot Your Password</a>-->
@@ -39,12 +77,12 @@
 	<div class="overlay">
 		<div class="overlay-panel overlay-left">
 			<h1>Welcome Back!</h1>
-			<p>To keep connected with us please login with your personal info</p>
+			<p>Login to track your scoreboard rank!</p>
 			<button class="ghost" id="signIn">Sign In</button>
 		</div>
 		<div class="overlay-panel overlay-right">
 			<h1>Hello</h1>
-			<p>Enter your details and start Playing</p>
+			<p>Enter your details and start playing!</p>
 			<button class="ghost" id="signUp">Sign Up</button>
 		</div>
 	</div>

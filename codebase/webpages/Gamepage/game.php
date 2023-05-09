@@ -31,7 +31,7 @@ $ranks = new scoreDatabaseFunctions();
                 <li class="navbar-item">
                     <!-- SESSION USAGE -->
                     <!-- line below displays username, put it in the navbar -->
-                    <p><?php
+                    <p id="user-greet"><?php
                     if (isset($_SESSION["username"])){
                       echo 'Hello, '; echo $_SESSION['username'];
                     }

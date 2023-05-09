@@ -22,7 +22,6 @@
     box-sizing: border-box;
     font-size: 18px;
     font-family: sans-serif;
-    font-size: 18px;
     color: var(--text-main);
     text-align: center;
 }
@@ -145,6 +144,12 @@ button:hover {
     scale: 1.1;
     color: var(--text-main);
 }
+
+#user-greet {
+    font-size: 1rem;
+}
+
+/* GAME CANVAS */
 
 #canvas1 {
     border: 5px solid var(--nav-bg);

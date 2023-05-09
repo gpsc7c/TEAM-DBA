@@ -7,7 +7,6 @@ var script = document.createElement('script');
 script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'; // Check https://jquery.com/ for the current version
 document.getElementsByTagName('head')[0].appendChild(script);
 
-
 //waits for webpage to fully load before executing function
 window.addEventListener("load", function() {
     //get HTML page elements
@@ -32,10 +31,6 @@ window.addEventListener("load", function() {
 
     //canvas mode set to 2d
     const ctx = canvas.getContext("2d");
-
-    //value needed to calculate delta time for frame rate delta time for frame rate
-    let dt = 0;
-    let prevTime = 0;
 
 
     //manually setting canvas width and height for correct image scaling
@@ -76,6 +71,8 @@ window.addEventListener("load", function() {
         }
         update(dt) {
             if (!this.pause && !this.gameOver) {  //calls update function if game is not paused or game over
+                //update game timer
+                this.gameTimer += dt;
                 //call bg update function
                 this.bg.update();
                 //call player update function
@@ -99,6 +96,13 @@ window.addEventListener("load", function() {
                 //use filter method to remove particles and obstacles that are off screen to avoid image jitter
                 this.particles = this.particles.filter(particle => !particle.offScreen);
                 this.obstacles = this.obstacles.filter(obstacle => !obstacle.offScreen);
+                }
+
+                if (this.gameTimer > 3000) {
+                    this.speed *= 1.01;
+                    this.maxSpeed *= 1.01;
+                    this.gameTimer = 0;
+                    console.log(this.speed);
                 }
         }
         draw(context) {
@@ -144,6 +148,7 @@ window.addEventListener("load", function() {
             this.score = 0;
             this.obstacles = [];    //empty the obstacle array
             this.speed = 3;         //reset initial game speed
+            this.maxSpeed = 3;
             this.spawnTimer = 0;
             this.spawnInterval = 1000; //reset spawn interval
             this.gameOver = false; //reset game over and pause to false only before game start
@@ -160,9 +165,18 @@ window.addEventListener("load", function() {
     const g = new Game(CANVAS_WIDTH, CANVAS_HEIGHT);
     //console.log(g);
 
+    //value needed to calculate delta time for frame rate delta time for frame rate
+    let prevTime;
+
     function animate(newTime) {
         if (!g.gameOver) {
-            dt = newTime - prevTime;
+            if (prevTime == null) {
+                prevTime = newTime;
+                requestAnimationFrame(animate);
+                return;
+            }
+
+            const dt = newTime - prevTime;
             prevTime = newTime;
             ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
             g.update(dt);
@@ -212,7 +226,7 @@ window.addEventListener("load", function() {
             //complete setup before hiding game start options and starting game
             g.scroll = new NumberString(g, inputBar.value, 1);  //sets scrolling number string
             g.player.character = selectedChar;  //sets player character
-
+            
             numMessage.classList.add("invisible");
             charMessage.classList.add("invisible");
             inputBar.classList.remove("error");
@@ -248,6 +262,7 @@ window.addEventListener("load", function() {
         success: function (timesgenned) {
              console.log("success");
              timesnumgenned = timesgenned;
+             window.TIMESGENNED = timesnumgenned;   //attempting to pass this variable as a window attribute so it can be displayed in UI
              console.log(timesnumgenned)
              //USE TIMESNUMGENNED TO FILL PLACEHOLDER FOR TIMES NUMBER PREVIOUSLY GENERATED
         }

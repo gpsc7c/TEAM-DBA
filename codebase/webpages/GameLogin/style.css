@@ -1,24 +1,119 @@
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+:root {
+    --bg-main: #131313;
+    --nav-bg: #000000;
+    --text-main: #fff4e0;
+    --btn-main: #809b4c;
+    --accent: #449489;
+    --link-aft: #285763;
+    --errortxt: red;
+}
 
 * {
 	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-size: 18px;
+	font-family: sans-serif;
 }
 
 body {
-	background: #fff;
+	background: var(--bg-main);
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	/* justify-content: center; */
+	/* align-items: center; */
 	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
+	/* color: var(--text-main); */
 	height: 100vh;
-	margin: -20px 0 50px;
+	/* margin: -20px 0 50px; */
 }
 
+/* NAVBAR */
+
+.navbar {
+    background: var(--nav-bg);
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    /* z index high so that it is always visible */
+    z-index: 999;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    height: 90px;
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#home-button {  /*add text shadow later*/
+    font-family: 'Press Start 2P', sans-serif;
+    background-color: var(--btn-main);
+    background-image: linear-gradient(to bottom, var(--text-main) 0%, var(--bg-main) 100%);
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.4rem;
+    width: 200px;
+}
+
+.navbar-menu {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: space-evenly;
+}
+
+.navbar-item {
+    display: flex;
+    width: 100px;
+    font-size: 1rem;
+    margin: 0 10px;
+    justify-content: space-evenly;
+}
+
+.navbar-link {
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-decoration: none;
+    height: 100%;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.navbar-link:hover {
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+#user-greet {
+    font-size: 1rem;
+}
+
+/* PAGE CONTENTS */
+
 h1 {
-	font-weight: bold;
-	margin: 0;
+	/* font-weight: bold; */
+	font-family: 'Press Start 2P', sans-serif;
+	font-size: 1.8rem;
+	margin: 0.7rem 0;
 }
 
 h2 {
@@ -26,9 +121,9 @@ h2 {
 }
 
 p {
-	font-size: 14px;
+	font-size: 1rem;
 	font-weight: 100;
-	line-height: 20px;
+	/* line-height: 20px; */
 	letter-spacing: 0.5px;
 	margin: 20px 0 30px;
 }
@@ -38,40 +133,49 @@ span {
 }
 
 a {
-	color: #333;
-	font-size: 14px;
+	color: var(--accent);
+	font-size: 1rem;
 	text-decoration: none;
 	margin: 15px 0;
 }
 
 button {
-	border-radius: 20px;
-	border: 1px solid #000;
-	background-color: #000;
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
+	border-radius: 10px;
+	/* border: 1px solid #000; */
+	outline: none;
+	border: none;
+	background-color: var(--btn-main);
+	color: var(--nav-bg);
+	font-family: 'Press Start 2P', sans-serif;
+	font-size: 1rem;
+	/* font-weight: bold; */
 	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	transition: transform 80ms ease-in;
+	/* letter-spacing: 1px; */
+	/* text-transform: uppercase; */
+    transition: all 0.2s ease;
+	cursor: pointer;
+}
+
+button:hover {
+    scale: 1.1;
+    color: var(--text-main);
 }
 
 button:active {
 	transform: scale(0.95);
 }
 
-button:focus {
+/* button:focus {
 	outline: none;
-}
+} */
 
-button.ghost {
+/* button.ghost {
 	background-color: transparent;
-	border-color: #FFFFFF;
-}
+	border-color: var(--text-main);
+} */
 
 form {
-	background-color: #FFFFFF;
+	background-color: var(--text-main);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -82,19 +186,25 @@ form {
 }
 
 input {
-	background-color: #eee;
+	background-color: var(--text-main);
+	/* border: none; */
 	border: none;
+	outline: none;
+	border-bottom: 2px solid var(--accent);
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
 }
 
 .container {
-	background-color: #fff;
+	background-color: var(--bg-main);
 	border-radius: 10px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -60%);
 	overflow: hidden;
 	width: 768px;
 	max-width: 100%;
@@ -160,12 +270,12 @@ input {
 }
 
 .overlay {
-	background: #808080;
+	background: var(--bg-main);
 	
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
-	color: #FFFFFF;
+	color: var(--text-main);
 	position: relative;
 	left: -100%;
 	height: 100%;

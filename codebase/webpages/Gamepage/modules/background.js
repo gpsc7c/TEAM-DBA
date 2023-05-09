@@ -81,7 +81,7 @@ export class Background {
         this.layer4image = document.getElementById("bgLayer4");    //this will match the id of an image layer in the HTML document later; they will have the class .gameImg as well
         this.layer1 = new Layer(this.game, this.width, this.height, 0, this.layer1image);
         this.layer2 = new Layer(this.game, this.width, this.height, 0.4, this.layer2image);
-        this.layer3 = new Layer(this.game, this.width, this.height, 0.4, this.layer3image);
+        this.layer3 = new Layer(this.game, this.width, this.height, 0.2, this.layer3image);
         this.layer4 = new Layer(this.game, this.width, this.height + 10, 1, this.layer4image);
         this.backgroundLayers = [this.layer1, this.layer2, this.layer3, this.layer4]; //array to hold each layer of bg
     }

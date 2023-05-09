@@ -48,7 +48,6 @@
     }
     update(input, dt) {
         if (!this.dead)
-            this.game.gameTimer += dt;
         //check for collisions
         this.checkCollision();
         //call handleInput function in state manager

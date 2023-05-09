@@ -115,6 +115,10 @@ a:hover {
     transition: all 0.3s ease;
 }
 
+#user-greet {
+    font-size: 1rem;
+}
+
 .container {
     max-width: 800px;
     margin: 0 auto;

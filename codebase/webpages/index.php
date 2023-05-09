@@ -18,7 +18,7 @@
                 <li class="navbar-item">
                     <!-- SESSION USAGE -->
                     <!-- line below displays username, put it in the navbar -->
-                    <p><?php
+                    <p id="user-greet"><?php
                     if (isset($_SESSION["username"])){
                       echo 'Hello, '; echo $_SESSION['username'];
                     }
@@ -114,11 +114,6 @@
             </div>
         </div>
       </div>
-
-
-    <footer class="main">
-      <p>&copy; 2023 Game Company. All rights reserved.</p>
-    </footer>
 
   </body>
 </html>
